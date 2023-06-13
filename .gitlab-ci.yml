@@ -1,20 +1,16 @@
 stages:
-  - install
-  - build
+  - sonarqube
 
-setup-job 1/2:
-  stage: install
+sonarqube:
+  stage:
+    sonarqube
   tags:
-    - nodejs
-    - npm
+    - sonarqube
+  variables:
+    GIT_DEPTH: "0"
   script:
-    - npm ci
-
-setup-job 2/2:
-  stage: build
-  tags:
-    - nodejs
-    - npm
-  script:
-    - npm install -g @angular/cli
-    - ng build --prod --base-href=/kms-todo/
+    - sonar-scanner -D"sonar.projectKey=kms-cargonaut" -Dsonar.login=a9c8a840ff4254e520eeeac8eb54bf1fa20af045 -Dsonar.host.url=https://scm.thm.de/sonar
+  only:
+    - merge_requests
+    - develop
+    - master
