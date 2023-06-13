@@ -1,0 +1,7 @@
+stages:
+  - test
+
+test_job:
+  stage: test
+  script:
+    - echo "This is just a test job. It's working!"
