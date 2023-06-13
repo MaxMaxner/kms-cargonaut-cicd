@@ -1,0 +1,7 @@
+{
+  "name"        : "mycargonout",
+  "version"     : "1.0.0",
+  "description" : "a simple mycargonout",
+  "title"       : "a platform for carsharing ",
+  "url"         : "http://localhost:8080"
+}

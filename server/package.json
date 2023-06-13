@@ -1,0 +1,32 @@
+{
+  "name": "mycargonaut",
+  "version": "2.0.0",
+  "description": "mycargonaut master example using ApiDoc",
+  "main": "src/server.ts",
+  "author": "THM-Students KMS, SoSe23",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@git.thm.de:jcwb53/kms-cargonout.git"
+  },
+  "dependencies": {
+    "@types/crypto-js": "^3.1.43",
+    "@types/express-session": "^1.15.15",
+    "@types/mysql": "^2.15.10",
+    "apidoc": "^0.17.7",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "mysql": "^2.18.1"
+
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.1",
+    "@types/node": "^12.11.1"
+  },
+  "scripts": {
+    "apidoc": "apidoc -i src -o apidoc/",
+    "run": "node server.js"
+  }
+}
+
