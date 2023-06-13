@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build
+.angular/
+karma.conf.js/
+www/
+android/
+
+# Files copied as part of the build
+packages/types/src/generated/**/*.ts
