@@ -1,7 +1,20 @@
 stages:
-  - test
+  - install
+  - build
 
-test_job:
-  stage: test
+setup-job 1/2:
+  stage: install
+  tags:
+    - nodejs
+    - npm
   script:
-    - echo "This is just a test job. It's working!"
+    - npm ci
+
+setup-job 2/2:
+  stage: build
+  tags:
+    - nodejs
+    - npm
+  script:
+    - npm install -g @angular/cli
+    - ng build --prod --base-href=/kms-todo/
