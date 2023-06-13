@@ -1,3 +1,31 @@
+# Project Setup
+
+## Installation 
+```
+cd existing_repo
+npm install
+cd frontend
+npm install
+```
+
+## Run the fronted
+```
+cd existing_repo/frontend
+ng serve
+```
+
+## Run the unit-tests
+```
+cd existing_repo/frontend
+ng test
+```
+
+## Run the Linter
+```
+cd existing_repo
+npx eslint .
+```
+
 # How to develop
 
 To make it easy for you to get started, here's a list of recommended steps for working on this project.
