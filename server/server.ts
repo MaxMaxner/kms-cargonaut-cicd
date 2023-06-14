@@ -11,14 +11,25 @@ import session = require ('./node_modules/express-session');
 const router = express();
 const database: Connection = mysql.createConnection(Configuration.mysqlOptions);
 
-let server = router.listen(8080, function () {
-    console.log('Server started: http://localhost:8080');
-});
-
 router.use(bodyParser.json());
 router.use(session(Configuration.sessionOptions));
 
-//---- connect to database ----------------------------------------------------
+/*****************************************************************************
+ * STATIC ROUTES                                                             *
+ *****************************************************************************/
+router.use('/', express.static("".concat(__dirname, "/../frontend/dist/frontend")));
+router.use('/*', express.static("".concat(__dirname, "/../frontend/dist/frontend")));
+let server = router.listen(8080, 'localhost', function () {
+    console.log('');
+    console.log('-------------------------------------------------------------');
+    console.log('       Frontend aufrufen: http://localhost:8080              ');
+    console.log('-------------------------------------------------------------');
+});
+
+
+/*****************************************************************************
+ * CONNECTION DB                                                             *
+ *****************************************************************************/
 database.connect((err: MysqlError) => {
     if (err) {
         console.log('Database connection failed: ', err);
@@ -26,18 +37,6 @@ database.connect((err: MysqlError) => {
         console.log('Database is connected');
     }
 });
-
-/*****************************************************************************
- * STATIC ROUTES                                                             *
- *****************************************************************************/
-const basedir: string = __dirname + '/../..';  // get rid of /server/src
-router.use('/', express.static(basedir + '/client/views'));
-router.use('/css', express.static(basedir + '/client/css'));
-router.use('/src', express.static(basedir + '/client/src'));
-router.use('/jquery', express.static(basedir + '/client/node_modules/jquery/dist'));
-router.use('/popperjs', express.static(basedir + '/client/node_modules/popper.js/dist'));
-router.use('/bootstrap', express.static(basedir + '/client/node_modules/bootstrap/dist'));
-router.use('/font-awesome', express.static(basedir + '/client/node_modules/font-awesome'));
 
 
 /*****************************************************************************
@@ -56,6 +55,9 @@ router.use('/font-awesome', express.static(basedir + '/client/node_modules/font-
  */
 function loginCheck() {
     // Abstract middleware route for checking login state of the user
+    // Create database query and data
+     const query: string = 'SELECT * FROM Benutzer WHERE Email = ? AND Passwort = ?;';
+
     return (req: Request, res: Response, next) => {
         // @ts-ignore
         if (req.session.user) {
