@@ -256,7 +256,7 @@ router.post('/user', (req: Request, res: Response) => {
     const nachname: string = req.body.nachname;
     const email: string = req.body.email;
     const password: string = cryptoJS.SHA512(req.body.password).toString();
-    const birthday: string = req.body.birthday;
+    const geburtstag: string = req.body.geburtstag;
 
     // add a new user if first- and lastname exist
     if (vorname && nachname) {
@@ -264,7 +264,7 @@ router.post('/user', (req: Request, res: Response) => {
         // Create database query and data
         const data: [string, string, string, string, string, Date ] = [
 
-            vorname, nachname, email, password, birthday,   new Date(),]; // As standard, any new user has rights Rights.User
+            vorname, nachname, email, password, geburtstag,   new Date(),]; // As standard, any new user has rights Rights.User
         const query: string = "INSERT INTO `Benutzer` ( `Vorname`, `Nachname`, `Email`, `Passwort`, `Geburtstag`, `ErstelltAm`) VALUES (?, ?, ?, ?, ?, ?);";
         // Execute database query
         database.query(query, data, (err: MysqlError, result: any) => {

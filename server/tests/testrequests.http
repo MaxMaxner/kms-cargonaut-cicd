@@ -22,8 +22,8 @@ Content-Type: application/json
 {
   "vorname": "Testnutzer",
   "nachname": "Testnutzer",
-  "email": "email@mail.com",
+  "email": " ",
   "password": "1234",
-  "birthday": "2022-12-10"
+  "geburtstag": "2022-12-10"
 }
 
