@@ -1,8 +1,8 @@
 node_modules/
 dist/
-build
+build/
 .angular/
-karma.conf.js/
+karma.conf.js
 www/
 android/
 
