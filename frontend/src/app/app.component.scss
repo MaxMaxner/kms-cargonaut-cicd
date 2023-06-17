@@ -5,7 +5,13 @@
 }
 
 .content-container {
-    flex-grow: 1;
-    padding-bottom: 60px;
-    /* Adjust this value as needed */
+    flex: 1; //Let the content container grow to take remaining vertical space
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1; // Let the main content grow to take remaining vertical space */
+    padding-top: 100px;
+    overflow-y: auto;
 }
