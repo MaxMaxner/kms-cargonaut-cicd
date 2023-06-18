@@ -1,0 +1,99 @@
+<div class="profile">
+    <div class="user-information" *ngIf="!editingMode">
+        <button class="edit" (click)="toggleEditingMode()">&#9998;</button>
+        <div class="pic-and-name">
+            <div class="profile-picture">
+                <img [src]="profilePicture" alt="Profile Picture" />
+            </div>
+            <div class="name-and-age">{{ firstname }} {{ lastname }}, {{ calculateAge() }}</div>
+        </div>
+
+        <div class="profile-infos">
+            <p class="notice">{{ notice }}</p>
+            <div class="languages">
+                Sprachen:
+                <ul>
+                    <li *ngFor="let language of spokenLanguages">{{ language }}</li>
+                </ul>
+            </div>
+            <p>{{ smokingStatus }}</p>
+            <p>Anzahl Mitfahrer: {{ drivenPeople }}</p>
+            <p>Gefahrene Kilometer: {{ drivenKilometers }}</p>
+            <p>Gefahrenes Gewicht: {{ drivenWeight }}</p>
+        </div>
+    </div>
+
+    <div *ngIf="!editingMode" class="reviews">
+        <h3>Bewertungen:</h3>
+        <ul>
+            <li *ngFor="let review of reviews" class="review-box">{{ review }}</li>
+        </ul>
+    </div>
+
+    <div *ngIf="editingMode" class="edit-view">
+        <div class="left-edit">
+            <div class="pic">
+                <label for="profile-picture-input">Profil Bild </label><br />
+                <input id="profile-picture-input" type="file" />
+            </div>
+
+            <div class="firstname">
+                <label for="name-input">Vorname</label><br />
+                <input id="name-input" type="text" [(ngModel)]="firstname" />
+            </div>
+            <div class="lastname">
+                <label for="name-input">Nachname</label><br />
+                <input id="name-input" type="text" [(ngModel)]="lastname" />
+            </div>
+
+            <div class="smoker">
+                <label for="smoking-status">Während dem Fahren</label> <br />
+                <select id="smoking-status" [(ngModel)]="smokingStatus" name="smokingStatus">
+                    <option value="Raucher">Raucher</option>
+                    <option value="Nicht-Raucher">Nicht-Raucher</option>
+                </select>
+            </div>
+
+            <div class="languages">
+                <label for="languages">Sprachen </label><br />
+                <select id="languages" multiple>
+                    <option
+                        *ngFor="let language of languageOptions"
+                        (click)="toggleLanguage(language)"
+                    >
+                        {{ language }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="selected-languages">
+                <p>Ausgewählte Sprachen:</p>
+                <ul>
+                    <li *ngFor="let language of spokenLanguages" (click)="removeLanguage(language)">
+                        {{ language }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="right-edit">
+            <div class="phone">
+                <label for="phone">Handynummer</label><br />
+                <input id="phone" type="string" [(ngModel)]="phone" />
+            </div>
+            <div class="birth">
+                <label for="age-input">Geburtstag</label><br />
+                <input id="age-input" type="date" [(ngModel)]="birthday" />
+            </div>
+            <div class="notice">
+                <label for="notice-input">Über mich</label><br />
+                <textarea id="notice-input" class="notice-input" [(ngModel)]="notice"></textarea>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button (click)="saveChanges()">Speichern</button>
+            <button (click)="toggleEditingMode()">Abbrechen</button>
+        </div>
+    </div>
+</div>
