@@ -8,13 +8,12 @@ import { Component } from '@angular/core';
 })
 export class OffersComponent {
 
-
-  von  = "";
-  nach  = "";
-  datum  = "";
-  anzahl  =  "";
-  gewicht  = "";
-  ausmessung = "";
+  public von  = "";
+  public nach  = "";
+  public datum  = "";
+  public anzahl  =  "";
+  public gewicht  = "";
+  public ausmessung = "";
 
 
   filter(){

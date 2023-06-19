@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
 import { RegisterComponent } from './register/register.component';
 import { OffersComponent } from './offers/offers.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { OffersComponent } from './offers/offers.component';
     AppRoutingModule,
     NgIconsModule.withIcons({ heroUsers }),
     FormsModule,
+    RouterModule
 
   ],
   providers: [],

@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup,} from '@angular/forms';
 
 
 @Component({
@@ -13,7 +12,6 @@ export class RegisterComponent {
   ProfilePicture: any;
 
   pbToUpload: File | undefined;
-  public SignUpForm!: FormGroup;
   public vorname = "";
   public nachname = "";
   public email = "";
@@ -21,10 +19,6 @@ export class RegisterComponent {
   public password = "";
   public passwordbestaetigt = "";
   public geburtstag = new Date();
-
-  constructor(private formBuilder: FormBuilder) {
-  }
-
 
   SignUp(): void {
     const mailformat = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;

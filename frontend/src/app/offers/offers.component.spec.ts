@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { OffersComponent } from './offers.component';
+import {FormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('OffersComponent', () => {
   let component: OffersComponent;
@@ -8,7 +10,12 @@ describe('OffersComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [OffersComponent]
+      imports: [
+        RouterModule.forRoot([]),
+        RouterTestingModule,
+        FormsModule
+      ],
+      declarations: [OffersComponent],
     });
     fixture = TestBed.createComponent(OffersComponent);
     component = fixture.componentInstance;
