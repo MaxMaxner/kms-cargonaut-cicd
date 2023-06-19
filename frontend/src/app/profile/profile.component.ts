@@ -16,12 +16,19 @@ export class ProfileComponent implements OnInit {
     phone: string = ''
     reviews: string[] = []
 
-    drivenWeight: number = 200
-    drivenPeople: number = 10
-    drivenKilometers: number = 4500
-    smokingStatus: string = 'Nicht-Raucher' // Selected smoking status
-    languageOptions: string[] = ['English', 'Spanish', 'French', 'German', 'Chinese', 'Japanese']
-    spokenLanguages: string[] = ['English'] // Selected spoken languages
+    drivenWeight: number = 0
+    drivenPeople: number = 0
+    drivenKilometers: number = 0
+    smokingStatus: string = ''
+    languageOptions: string[] = [
+        'Englisch',
+        'Spanisch',
+        'Französisch',
+        'Deutsch',
+        'Chinesisch',
+        'Japanisch',
+    ]
+    spokenLanguages: string[] = []
 
     editingMode: boolean = false
     isDropDownOpen: boolean = false
@@ -34,7 +41,11 @@ export class ProfileComponent implements OnInit {
         this.birthday = '1965-02-01'
         this.birthdate = new Date(this.birthday)
         this.phone = '+49 0127893793'
-
+        this.spokenLanguages = ['Deutsch']
+        this.drivenKilometers = 4500
+        this.drivenPeople = 10
+        this.drivenWeight = 378
+        this.smokingStatus = 'Raucher'
         this.notice =
             'Hallo! Willkommen auf meinem Profil. Ich bin der Kapitän der Landstraße! Folgt mit für Spaß und Kilometer!'
         this.reviews = [
@@ -49,8 +60,6 @@ export class ProfileComponent implements OnInit {
     }
 
     saveChanges(): void {
-        // Save changes made in the editing mode
-        // You can implement the saving logic here
         this.editingMode = false
     }
 
