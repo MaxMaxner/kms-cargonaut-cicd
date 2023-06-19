@@ -7,18 +7,23 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarLogedInComponent } from './navbar-loged-in/navbar-loged-in.component';
+import { LoginComponent } from './login/login.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    NavbarLogedInComponent
+    NavbarLogedInComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgIconsModule.withIcons({ heroUsers }),
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
