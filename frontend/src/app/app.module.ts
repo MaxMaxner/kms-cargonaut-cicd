@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { GesucheErstellenComponent } from './gesuche-erstellen/gesuche-erstellen.component';
 import { AngebotErstellenEinsComponent } from './angebot-erstellen1/angebot-erstellen1.component';
 import { AngebotErstellenZweiComponent } from './angebot-erstellen2/angebot-erstellen2.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AngebotErstellenZweiComponent } from './angebot-erstellen2/angebot-erst
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
