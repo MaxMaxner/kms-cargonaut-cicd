@@ -7,6 +7,7 @@ import { AngebotErstellenEinsComponent } from './angebot-erstellen1/angebot-erst
 import { AngebotErstellenZweiComponent } from './angebot-erstellen2/angebot-erstellen2.component';
 import {FormsModule} from "@angular/forms";
 import { KasseComponent } from './kasse/kasse.component';
+import { TrackingComponent } from './tracking/tracking.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { KasseComponent } from './kasse/kasse.component';
     GesucheErstellenComponent,
     AngebotErstellenEinsComponent,
     AngebotErstellenZweiComponent,
-    KasseComponent
+    KasseComponent,
+    TrackingComponent
   ],
   imports: [
     BrowserModule,
