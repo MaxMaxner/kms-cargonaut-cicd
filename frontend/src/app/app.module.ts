@@ -6,13 +6,15 @@ import { GesucheErstellenComponent } from './gesuche-erstellen/gesuche-erstellen
 import { AngebotErstellenEinsComponent } from './angebot-erstellen1/angebot-erstellen1.component';
 import { AngebotErstellenZweiComponent } from './angebot-erstellen2/angebot-erstellen2.component';
 import {FormsModule} from "@angular/forms";
+import { KasseComponent } from './kasse/kasse.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GesucheErstellenComponent,
     AngebotErstellenEinsComponent,
-    AngebotErstellenZweiComponent
+    AngebotErstellenZweiComponent,
+    KasseComponent
   ],
   imports: [
     BrowserModule,
