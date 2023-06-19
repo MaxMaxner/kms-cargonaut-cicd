@@ -1,0 +1,113 @@
+<!-- contact section -->
+<section class="contact_section layout_padding">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <input [(ngModel)]="von" type="text" placeholder="Von">
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="Datum">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <input  [(ngModel)]="nach" type="text" placeholder="Nach">
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="anzahl"  type="text" placeholder="Anzahl Plätze">
+        </div>[(ngModel)]
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <input  [(ngModel)]="gewicht"type="text" placeholder="Gewicht Fracht">
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="ausmessung"  type="text" placeholder="Maße Fracht">
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="form-group">
+          <button (click)="filter()" id="filter" type="button" class="btn">
+            <i style="color: white"  class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <h2 style="display: inline">Angebote</h2>
+      </div>
+      <div class="col-1">
+        <button [routerLink]="['/createover']" id="createoffer" type="button" class="btn">
+        <i    id="faplus" class="bi bi-plus-lg"></i>
+
+        </button>
+      </div>
+      <div class="col-1">
+        <span id="angebotschrift">Angebot erstellen</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="offercards" style="margin-top: 10px;align-items: start" class="card">
+        <table class="offertable">
+          <tr>
+            <td>
+              <span style="font-weight: bold">Hamburg</span> nach <span style="font-weight: bold">München</span>
+            </td>
+            <td style="padding-left: 70px; font-weight: lighter">
+              So, 25.09.2022 9Uhr
+            </td>
+            <td style="padding-left: 150px;">
+              <img style="height: 200px; width: 100px; border-radius: 100px" src="../../assets/images/Offers/frau.jpg">
+            </td>
+          </tr>
+        </table>
+        <table class="offertable">
+          <tr>
+            <td style="font-weight: bold">
+           <i style="color:#3A9B8F" class="bi bi-person"></i>
+
+              3
+            </td>
+            <td style="padding-left: 100px; font-weight: bold">
+           <i style="color:#3A9B8F " class="bi bi-minecart-loaded"></i>
+
+              50kg
+            </td>
+            <td style="padding-left: 100px; font-weight: bold">
+              <i style="color:#3A9B8F"   class="bi bi-search"></i>
+
+              1,50m x 2m
+            </td>
+          </tr>
+        </table>
+
+        <table class="offertable">
+          <tr>
+            <td>
+              <i  style="color:#3A9B8F" class="bi bi-check-lg"></i>              Nichtraucher
+            </td>
+            <td style="padding-left: 70px">
+              <i  style="color:#3A9B8F" class="bi bi-check-lg"></i>              Keine Tiere
+            </td>
+            <td style="padding-left: 70px">
+              <i  style="color:#3A9B8F" class="bi bi-check-lg"></i>              Musik
+            </td>
+            <td style="padding-left: 70px">
+               <i style="color:#3A9B8F" class="bi bi-x-lg"></i>
+              Unterhaltung
+            </td>
+            <td style="padding-left: 200px">
+              <span style="font-weight: bold; font-size: 30px">30€</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</section>
+
