@@ -12,6 +12,7 @@ import {FormsModule} from "@angular/forms";
 import { RegisterComponent } from './register/register.component';
 import { OffersComponent } from './offers/offers.component';
 import {RouterModule} from "@angular/router";
+import { OfferDetailsComponent } from './offer-details/offer-details.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {RouterModule} from "@angular/router";
     NavbarLogedInComponent,
     LoginComponent,
     RegisterComponent,
-    OffersComponent
+    OffersComponent,
+    OfferDetailsComponent
   ],
   imports: [
     BrowserModule,
