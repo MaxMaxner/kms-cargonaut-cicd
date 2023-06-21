@@ -12,6 +12,7 @@ import {FormsModule} from "@angular/forms";
 import { RegisterComponent } from './register/register.component';
 import { OffersComponent } from './offers/offers.component';
 import {RouterModule} from "@angular/router";
+import {ExperienceComponent} from "./experience/experience.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {RouterModule} from "@angular/router";
     NavbarLogedInComponent,
     LoginComponent,
     RegisterComponent,
-    OffersComponent
+    OffersComponent,
+    ExperienceComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,6 @@ import {RouterModule} from "@angular/router";
     NgIconsModule.withIcons({ heroUsers }),
     FormsModule,
     RouterModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
