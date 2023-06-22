@@ -8,5 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class OfferDetailsComponent {
 
   public owner  = true;
+  public booked = true;
+  public rideDone= true;
+  public allowTracking = true;
 
 }
