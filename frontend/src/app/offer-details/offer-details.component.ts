@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OfferDetailsComponent {
 
-  public owner  = true;
-  public booked = true;
-  public rideDone= true;
+  public owner  = false;
+  public booked = false;
+  public rideDone= false;
   public allowTracking = true;
 
 }
