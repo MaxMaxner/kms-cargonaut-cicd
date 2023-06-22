@@ -5,11 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './offer-details.component.html',
   styleUrls: ['./offer-details.component.scss']
 })
-export class OfferDetailsComponent implements OnInit {
+export class OfferDetailsComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  public owner  = true;
 
 }
