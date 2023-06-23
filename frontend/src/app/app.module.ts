@@ -14,6 +14,7 @@ import { OffersComponent } from './offers/offers.component';
 import { ExperienceComponent } from "./experience/experience.component";
 import { RouterModule } from "@angular/router";
 import { OfferDetailsComponent } from './offer-details/offer-details.component';
+import { BookOfferDetailsComponent } from './book-offer-details/book-offer-details.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { OfferDetailsComponent } from './offer-details/offer-details.component';
     OffersComponent,
     OfferDetailsComponent,
     ExperienceComponent,
+    BookOfferDetailsComponent,
   ],
   imports: [
     BrowserModule,
