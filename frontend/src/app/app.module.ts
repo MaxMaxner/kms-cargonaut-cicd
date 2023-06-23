@@ -8,10 +8,10 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarLogedInComponent } from './navbar-loged-in/navbar-loged-in.component';
 import { LoginComponent } from './login/login.component';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { RegisterComponent } from './register/register.component';
 import { OffersComponent } from './offers/offers.component';
-import {RouterModule} from "@angular/router";
+import { RouterModule } from "@angular/router";
 import { OfferDetailsComponent } from './offer-details/offer-details.component';
 
 @NgModule({
@@ -31,7 +31,6 @@ import { OfferDetailsComponent } from './offer-details/offer-details.component';
     NgIconsModule.withIcons({ heroUsers }),
     FormsModule,
     RouterModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
