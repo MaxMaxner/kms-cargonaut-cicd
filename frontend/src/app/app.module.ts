@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from "@angular/forms";
 import { RegisterComponent } from './register/register.component';
 import { OffersComponent } from './offers/offers.component';
+import { ExperienceComponent } from "./experience/experience.component";
 import { RouterModule } from "@angular/router";
 import { OfferDetailsComponent } from './offer-details/offer-details.component';
 
@@ -23,7 +24,8 @@ import { OfferDetailsComponent } from './offer-details/offer-details.component';
     LoginComponent,
     RegisterComponent,
     OffersComponent,
-    OfferDetailsComponent
+    OfferDetailsComponent,
+    ExperienceComponent,
   ],
   imports: [
     BrowserModule,
