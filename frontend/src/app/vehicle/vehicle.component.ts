@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core'
 @Component({
     selector: 'app-vehicle',
     templateUrl: './vehicle.component.html',
-    styleUrls: ['./vehicle.component.scss'],
+    styleUrls: ['./vehicle.component.scss', '../app.component.scss'],
 })
 export class VehicleComponent implements OnInit {
     profilePicture: string = ''
