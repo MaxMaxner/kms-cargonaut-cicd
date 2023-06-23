@@ -8,11 +8,12 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarLogedInComponent } from './navbar-loged-in/navbar-loged-in.component';
 import { LoginComponent } from './login/login.component';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { RegisterComponent } from './register/register.component';
 import { OffersComponent } from './offers/offers.component';
-import {RouterModule} from "@angular/router";
-import {ExperienceComponent} from "./experience/experience.component";
+import { ExperienceComponent } from "./experience/experience.component";
+import { RouterModule } from "@angular/router";
+import { OfferDetailsComponent } from './offer-details/offer-details.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {ExperienceComponent} from "./experience/experience.component";
     LoginComponent,
     RegisterComponent,
     OffersComponent,
+    OfferDetailsComponent,
     ExperienceComponent,
   ],
   imports: [
