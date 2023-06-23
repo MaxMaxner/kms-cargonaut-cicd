@@ -15,7 +15,9 @@ import { ExperienceComponent } from './experience/experience.component'
 import { RouterModule } from '@angular/router'
 import { OfferDetailsComponent } from './offer-details/offer-details.component'
 import { ProfileComponent } from './profile/profile.component'
-import { FormsModule } from '@angular/forms'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { MatSelectModule } from '@angular/material/select';
+import { VehicleComponent } from './vehicle/vehicle.component'
 
 @NgModule({
     declarations: [
@@ -29,6 +31,7 @@ import { FormsModule } from '@angular/forms'
         OfferDetailsComponent,
         ExperienceComponent,
         ProfileComponent,
+        VehicleComponent,
     ],
     imports: [
         BrowserModule,
@@ -36,6 +39,8 @@ import { FormsModule } from '@angular/forms'
         NgIconsModule.withIcons({ heroUsers }),
         FormsModule,
         RouterModule,
+        BrowserAnimationsModule,
+        MatSelectModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

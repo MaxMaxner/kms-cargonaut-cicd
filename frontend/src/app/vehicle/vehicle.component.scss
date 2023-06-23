@@ -1,13 +1,13 @@
-.profile {
-    .user-information {
-        .profile-infos {
+.vehicle {
+    .vehicle-information {
+        .vehicle-infos {
             margin: 3vh 0 5vh 3vw;
             padding-bottom: 3vh;
             background-color: #f5f5f5;
-            .name-header {
+            .model-header {
                 margin: 5vh 0;
             }
-            .notice {
+            .extras {
                 border: 1px solid black;
                 border-radius: 20px;
                 margin: 5vh auto;
@@ -35,16 +35,6 @@
                     display: block;
                 }
             }
-        }
-    }
-
-    .reviews {
-        .review-box {
-            background-color: #f5f5f5;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            list-style-type: none;
         }
     }
 
@@ -80,8 +70,8 @@
             height: 150px;
         }
 
-        .profile-nav {
-            .profile-nav-el {
+        .vehicle-nav {
+            .vehicle-nav-el {
                 margin-bottom: 2vh;
             }
         }
@@ -103,19 +93,15 @@
         }
 
         .profile-pic {
-            .profile-pic-upload {
-                border: 1px solid black;
-                border-radius: 50%;
-                height: 10vh;
-                width: 10vh;
+            .profile-picture {
+                max-width: 10vw;
+                height: auto;
+                margin: auto;
 
-                input {
-                    display: none;
-                }
-
-                .label-text {
-                    margin-top: 40%;
-                    cursor: pointer;
+                img {
+                    max-width: 100%;
+                    height: auto;
+                    display: block;
                 }
             }
         }

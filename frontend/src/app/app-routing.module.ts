@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component'
 import { OffersComponent } from './offers/offers.component'
 import { OfferDetailsComponent } from './offer-details/offer-details.component'
 import { ExperienceComponent } from './experience/experience.component'
+import { VehicleComponent } from './vehicle/vehicle.component'
 
 const routes: Routes = [
     // fallback route
@@ -22,7 +23,8 @@ const routes: Routes = [
     { path: 'offers', component: OffersComponent },
     { path: 'offer-details/:id', component: OfferDetailsComponent },
     { path: 'experience/:id', component: ExperienceComponent },
-    { path: 'profile/:id', component: ProfileComponent },
+    { path: 'profile', component: ProfileComponent },
+    { path: 'vehicle', component: VehicleComponent },
 ]
 
 @NgModule({

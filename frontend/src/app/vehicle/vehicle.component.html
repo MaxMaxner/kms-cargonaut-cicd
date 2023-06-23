@@ -1,0 +1,111 @@
+<div class="vehicle">
+    <div class="vehicle-information row" *ngIf="!editingMode">
+        <div class="vehicle-infos card col-md-8 text-center">
+            <h1 class="model-header">{{ model }}, {{ YoC }}</h1>
+            <p class="row">
+                <span class="col-md-4"> <i class="bi bi-person"></i> {{ seats }} Sitzplätze </span>
+                <span class="col-md-4">
+                    <i class="bi bi-globe-europe-africa"></i> {{ dimensions[0] }} x
+                    {{ dimensions[1] }}
+                </span>
+                <span class="col-md-4">
+                    <i class="bi bi-minecart-loaded"></i> {{ weight }} kg
+                </span>
+            </p>
+            <p class="extras col-md-6 text-center">{{ extras }}</p>
+        </div>
+
+        <div class="pic-and-name col-md-3 text-center">
+            <div class="profile-picture">
+                <img [src]="profilePicture" alt="Profile Picture" />
+            </div>
+            <div class="name-and-age">{{ firstname }} {{ lastname }}</div>
+            <button class="btn" (click)="toggleEditingMode()">&#9998;</button>
+        </div>
+    </div>
+
+    <div *ngIf="editingMode" class="edit-view">
+        <div class="row text-start">
+            <div class="vehicle-nav col-md-2">
+                <div class="vehicle-nav-el">
+                    <a href="/profile">Mein Profil</a>
+                </div>
+                <div class="vehicle-nav-el">
+                    <a href="#">Mein Fahrzeug</a>
+                </div>
+                <div class="vehicle-nav-el">
+                    <a href="#">Erfahrungen und Bewertungen</a>
+                </div>
+            </div>
+            <div class="left col-md-4">
+                <h2 class="header col-md-10">Mein Fahrzeug</h2>
+                <div class="model">
+                    <label for="model-input">Modell</label>
+                    <input id="model-input" type="text" [(ngModel)]="model" placeholder="Modell" />
+                </div>
+                <div class="weight">
+                    <label for="weight-input">Gewicht</label>
+                    <input
+                        id="weight-input"
+                        placeholder="Gewicht"
+                        type="text"
+                        [(ngModel)]="weight"
+                    />
+                </div>
+                <div class="seats">
+                    <label for="seats-input">Sitzplätze</label>
+                    <input
+                        id="seats-input"
+                        placeholder="Sitzplätze"
+                        type="text"
+                        [(ngModel)]="seats"
+                    />
+                </div>
+            </div>
+
+            <div class="right col-md-4">
+                <h2 style="color: white">|</h2>
+                <div class="dimensions">
+                    <label for="dimension">Maße</label>
+                    <input
+                        id="dimension"
+                        placeholder="Maße"
+                        type="string"
+                        [(ngModel)]="dimensions"
+                    />
+                </div>
+                <!--<div class="yoc">
+                    <label for="yoc-input">Baujahr</label>
+                    <input
+                        id="yoc-input"
+                        placeholder="Geburtstag"
+                        type="date"
+                        [(ngModel)]="dimensions"
+                    />
+                </div>-->
+                <div class="notice">
+                    <label for="notice-input">Notizen</label><br />
+                    <textarea
+                        id="notice-input"
+                        class="notice-input"
+                        [(ngModel)]="extras"
+                    ></textarea>
+                </div>
+
+                <div class="buttons text-center">
+                    <button class="btn" (click)="saveChanges()">Speichern</button>
+                    <button class="btn" (click)="toggleEditingMode()">Abbrechen</button>
+                </div>
+            </div>
+
+            <div class="profile-pic col-md-2 text-center">
+                <div class="pic">
+                    <div class="profile-picture">
+                        <img [src]="profilePicture" alt="Profile Picture" />
+                    </div>
+                    <div class="name-and-age">{{ firstname }} {{ lastname }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

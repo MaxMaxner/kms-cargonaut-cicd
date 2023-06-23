@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
     profilePicture: string = ''
     firstname: string = ''
     lastname: string = ''
+    email: string = ''
     age: number = 0
     birthday: string = ''
     birthdate: Date = new Date()
@@ -34,13 +35,13 @@ export class ProfileComponent implements OnInit {
     spokenLanguages: string[] = []
 
     editingMode: boolean = false
-    isDropDownOpen: boolean = false
 
     ngOnInit(): void {
         // Initialize profile data
         this.profilePicture = 'assets/img/profile.png'
         this.firstname = 'Manfred'
         this.lastname = 'Degenhort'
+        this.email = 'manfred1965@outlook.com'
         this.birthday = '1965-02-01'
         this.birthdate = new Date(this.birthday)
         this.phone = '+49 0127893793'
@@ -82,19 +83,7 @@ export class ProfileComponent implements OnInit {
         return this.age
     }
 
-    toggleLanguage(language: string): void {
-        if (this.spokenLanguages.includes(language)) {
-            this.spokenLanguages = this.spokenLanguages.filter((lang) => lang !== language)
-        } else {
-            this.spokenLanguages.push(language)
-        }
-    }
-
-    toggleDropdown(): void {
-        this.isDropDownOpen = !this.isDropDownOpen
-    }
-
-    removeLanguage(language: string): void {
-        this.spokenLanguages = this.spokenLanguages.filter((l) => l !== language)
+    toggleLanguage(languages: string[]): void {
+        this.spokenLanguages = languages
     }
 }

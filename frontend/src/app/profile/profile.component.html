@@ -1,99 +1,160 @@
 <div class="profile">
-    <div class="user-information" *ngIf="!editingMode">
-        <button class="edit" (click)="toggleEditingMode()">&#9998;</button>
-        <div class="pic-and-name">
+    <div class="user-information row" *ngIf="!editingMode">
+        <div class="profile-infos card col-md-8 text-center">
+            <h1 class="name-header">{{ firstname }} {{ lastname }}, {{ calculateAge() }}</h1>
+            <p class="row">
+                <span class="col-md-4">
+                    <i class="bi bi-person"></i> {{ drivenPeople }} Personen
+                </span>
+                <span class="col-md-4">
+                    <i class="bi bi-globe-europe-africa"></i> {{ drivenKilometers }} km
+                </span>
+                <span class="col-md-4">
+                    <i class="bi bi-minecart-loaded"></i> {{ drivenWeight }} kg
+                </span>
+            </p>
+            <p class="row">
+                <span class="col-md-4">
+                    <i class="bi bi-translate"></i> {{ spokenLanguages }}
+                </span>
+                <span class="col-md-4"
+                    ><i
+                        [ngClass]="
+                            smokingStatus == 'Nicht-Raucher' ? 'bi bi-check-lg' : 'bi bi-x-lg'
+                        "
+                    ></i>
+                    {{ smokingStatus }}</span
+                >
+            </p>
+
+            <p class="notice col-md-6 text-center">{{ notice }}</p>
+        </div>
+
+        <div class="pic-and-name col-md-3 text-center">
             <div class="profile-picture">
                 <img [src]="profilePicture" alt="Profile Picture" />
             </div>
             <div class="name-and-age">{{ firstname }} {{ lastname }}, {{ calculateAge() }}</div>
-        </div>
-
-        <div class="profile-infos">
-            <p class="notice">{{ notice }}</p>
-            <div class="languages">
-                Sprachen:
-                <ul>
-                    <li *ngFor="let language of spokenLanguages">{{ language }}</li>
-                </ul>
-            </div>
-            <p>{{ smokingStatus }}</p>
-            <p>Anzahl Mitfahrer: {{ drivenPeople }} Menschen</p>
-            <p>Gefahrene Kilometer: {{ drivenKilometers }} km</p>
-            <p>Gefahrenes Gewicht: {{ drivenWeight }} kg</p>
+            <button class="btn" (click)="toggleEditingMode()">&#9998;</button>
         </div>
     </div>
 
-    <div *ngIf="!editingMode" class="reviews">
-        <h3>Bewertungen:</h3>
-        <ul>
-            <li *ngFor="let review of reviews" class="review-box">{{ review }}</li>
+    <div *ngIf="!editingMode" class="reviews row">
+        <h3 class="col-md-12 text-center">Bewertungen:</h3>
+        <span class="col-md-2"></span>
+        <ul class="col-md-8 text-center">
+            <li *ngFor="let review of reviews" class="review-box">
+                {{ review }}
+            </li>
         </ul>
     </div>
 
     <div *ngIf="editingMode" class="edit-view">
-        <div class="left-edit">
-            <div class="pic">
-                <label for="profile-picture-input">Profil Bild </label><br />
-                <input id="profile-picture-input" type="file" />
+        <div class="row text-start">
+            <div class="profile-nav col-md-2">
+                <div class="profile-nav-el">
+                    <a href="#">Mein Profil</a>
+                </div>
+                <div class="profile-nav-el">
+                    <a href="/vehicle">Mein Fahrzeug</a>
+                </div>
+                <div class="profile-nav-el">
+                    <a>Erfahrungen und Bewertungen</a>
+                </div>
             </div>
-
-            <div class="firstname">
-                <label for="name-input">Vorname</label><br />
-                <input id="name-input" type="text" [(ngModel)]="firstname" />
-            </div>
-            <div class="lastname">
-                <label for="name-input">Nachname</label><br />
-                <input id="name-input" type="text" [(ngModel)]="lastname" />
-            </div>
-
-            <div class="smoker">
-                <label for="smoking-status">Während dem Fahren</label> <br />
-                <select id="smoking-status" [(ngModel)]="smokingStatus" name="smokingStatus">
-                    <option value="Raucher">Raucher</option>
-                    <option value="Nicht-Raucher">Nicht-Raucher</option>
-                </select>
-            </div>
-
-            <div class="languages">
-                <label for="languages">Sprachen </label><br />
-                <select id="languages" multiple>
-                    <option
-                        *ngFor="let language of languageOptions"
-                        (click)="toggleLanguage(language)"
+            <div class="left col-md-4">
+                <h2 class="header col-md-10">Mein Profil</h2>
+                <div class="email">
+                    <label for="email-input">Email</label>
+                    <input id="email-input" type="text" [(ngModel)]="email" placeholder="E-Mail" />
+                </div>
+                <div class="firstname">
+                    <label for="firstname-input">Vorname</label>
+                    <input
+                        id="firstname-input"
+                        placeholder="Vorname"
+                        type="text"
+                        class="ng-untouched ng-pristine ng-valid"
+                        [(ngModel)]="firstname"
+                    />
+                </div>
+                <div class="lastname">
+                    <label for="lastname-input">Nachname</label>
+                    <input
+                        id="lastname-input"
+                        placeholder="Nachname"
+                        type="text"
+                        [(ngModel)]="lastname"
+                    />
+                </div>
+                <div class="languages">
+                    <mat-label for="language">Sprachen</mat-label>
+                    <mat-select
+                        multiple
+                        #language
+                        (selectionChange)="toggleLanguage(language.value)"
+                        class="selection"
                     >
-                        {{ language }}
-                    </option>
-                </select>
+                        <mat-option
+                            *ngFor="let language of languageOptions"
+                            value="{{ language }}"
+                            >{{ language }}</mat-option
+                        >
+                    </mat-select>
+                </div>
+
+                <div class="smoker">
+                    <label for="smoking-status">Raucher</label>
+                    <mat-select
+                        id="smoking-status"
+                        [(ngModel)]="smokingStatus"
+                        name="smokingStatus"
+                        class="selection"
+                    >
+                        <mat-option value="Raucher">Ja</mat-option>
+                        <mat-option value="Nicht-Raucher">Nein</mat-option>
+                    </mat-select>
+                </div>
             </div>
 
-            <div class="selected-languages">
-                <p>Ausgewählte Sprachen:</p>
-                <ul>
-                    <li *ngFor="let language of spokenLanguages" (click)="removeLanguage(language)">
-                        {{ language }}
-                    </li>
-                </ul>
-            </div>
-        </div>
+            <div class="right col-md-4">
+                <h2 style="color: white">|</h2>
+                <div class="phone">
+                    <label for="phone">Handynummer</label>
+                    <input id="phone" placeholder="Handynummer" type="string" [(ngModel)]="phone" />
+                </div>
+                <div class="birth">
+                    <label for="age-input">Geburtsdatum</label>
+                    <input
+                        id="age-input"
+                        placeholder="Geburtstag"
+                        type="date"
+                        [(ngModel)]="birthday"
+                    />
+                </div>
+                <div class="notice">
+                    <label for="notice-input">Notizen</label><br />
+                    <textarea
+                        id="notice-input"
+                        class="notice-input"
+                        [(ngModel)]="notice"
+                    ></textarea>
+                </div>
 
-        <div class="right-edit">
-            <div class="phone">
-                <label for="phone">Handynummer</label><br />
-                <input id="phone" type="string" [(ngModel)]="phone" />
+                <div class="buttons text-center">
+                    <button class="btn" (click)="saveChanges()">Speichern</button>
+                    <button class="btn" (click)="toggleEditingMode()">Abbrechen</button>
+                </div>
             </div>
-            <div class="birth">
-                <label for="age-input">Geburtstag</label><br />
-                <input id="age-input" type="date" [(ngModel)]="birthday" />
-            </div>
-            <div class="notice">
-                <label for="notice-input">Über mich</label><br />
-                <textarea id="notice-input" class="notice-input" [(ngModel)]="notice"></textarea>
-            </div>
-        </div>
 
-        <div class="buttons">
-            <button (click)="saveChanges()">Speichern</button>
-            <button (click)="toggleEditingMode()">Abbrechen</button>
+            <div class="profile-pic col-md-2 text-center">
+                <div class="pic">
+                    <label for="profile-picture-input" class="profile-pic-upload">
+                        <input id="profile-picture-input" type="file" />
+                        <p class="label-text">Profil Bild &#9998;</p>
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
 </div>
