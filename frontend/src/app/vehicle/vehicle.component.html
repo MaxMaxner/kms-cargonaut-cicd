@@ -5,7 +5,7 @@
             <p class="row">
                 <span class="col-md-4"> <i class="bi bi-person"></i> {{ seats }} Sitzplätze </span>
                 <span class="col-md-4">
-                    <i class="bi bi-globe-europe-africa"></i> {{ dimensions[0] }} x
+                    <i class="bi bi-arrows-angle-expand"></i> {{ dimensions[0] }} x
                     {{ dimensions[1] }}
                 </span>
                 <span class="col-md-4">
@@ -15,7 +15,7 @@
             <p class="extras col-md-6 text-center">{{ extras }}</p>
         </div>
 
-        <div class="pic-and-name col-md-3 text-center">
+        <div class="pic-and-name col-md-2 text-center">
             <div class="profile-picture">
                 <img [src]="profilePicture" alt="Profile Picture" />
             </div>
@@ -66,13 +66,23 @@
             <div class="right col-md-4">
                 <h2 style="color: white">|</h2>
                 <div class="dimensions">
-                    <label for="dimension">Maße</label>
-                    <input
-                        id="dimension"
-                        placeholder="Maße"
-                        type="string"
-                        [(ngModel)]="dimensions"
-                    />
+                    <label for="dimensions">Maße</label>
+                    <div id="dimensions">
+                        <input
+                            id="dimension1"
+                            placeholder="Länge"
+                            type="string"
+                            class="dimension"
+                            [(ngModel)]="dimensions[0]"
+                        />
+                        <input
+                            id="dimension2"
+                            placeholder="Breite"
+                            type="string"
+                            class="dimension"
+                            [(ngModel)]="dimensions[1]"
+                        />
+                    </div>
                 </div>
                 <!--<div class="yoc">
                     <label for="yoc-input">Baujahr</label>

@@ -1,7 +1,7 @@
 .vehicle {
     .vehicle-information {
         .vehicle-infos {
-            margin: 3vh 0 5vh 3vw;
+            margin: 3vh 0 5vh 5vw;
             padding-bottom: 3vh;
             background-color: #f5f5f5;
             .model-header {
@@ -24,6 +24,7 @@
         }
 
         .pic-and-name {
+            margin-left: 10vw;
             .profile-picture {
                 max-width: 10vw;
                 height: auto;
@@ -64,6 +65,11 @@
 
         .selection {
             padding-top: 2.5%;
+        }
+
+        .dimension {
+            width: 49%;
+            margin-right: 1%;
         }
 
         textarea {
