@@ -16,7 +16,7 @@ export class VehicleComponent implements OnInit {
     extras: string = ''
     dateOfConstruction: string = ''
     YoC: Date = new Date()
-    editingMode: boolean = false
+    editingMode: boolean = true
 
     ngOnInit(): void {
         // Initialize profile data
