@@ -1,0 +1,40 @@
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    opacity: 0.3;
+}
+
+.col {
+    position: relative;
+}
+
+.text-block {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.heading-font-style {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: bolder;
+    color: #005b52;
+    font-size: 40px !important;
+}
+
+.info-msg-style {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: bold;
+    font-size: 20px !important;
+}
+
+.registerBtn {
+    background-color: #3a9b8f;
+    color: white;
+    border: none;
+    text-align: center;
+    font-family: Noto Sans JP, sans-serif;
+    width: 250px;
+    margin-top: 100px;
+}

@@ -1,0 +1,17 @@
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-container {
+    flex: 1; //Let the content container grow to take remaining vertical space
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1; // Let the main content grow to take remaining vertical space */
+    padding-top: 100px;
+    overflow-y: auto;
+}

@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+  userIsLoggedIn: boolean;
+
+  constructor(
+    // private authService: AuthService  <== handle auth logic here to determine if user is logged in
+  ) {
+    this.userIsLoggedIn = true; // <== this.userIsLoggedIn = this.authService.isLoggedIn(); or something like that
+  }
 }

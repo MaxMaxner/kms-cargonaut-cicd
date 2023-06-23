@@ -1,0 +1,73 @@
+<!-- contact section -->
+<section class="contact_section layout_padding">
+  <div class="container ">
+    <div class="heading_container">
+      <h2 class="">
+        Registrieren
+      </h2>
+      <img  id="logo" src="../../assets/images/myCargonautLogo/SVG/semi_iOSMyCargonaut.svg" height="150"  width="200">
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control" placeholder="Vorname"
+            [(ngModel)]="vorname"/>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"placeholder="Nachmame"
+            [(ngModel)]="nachname"/>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"placeholder="Email"
+            [(ngModel)]="email"/>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"placeholder="Email bestätigen"
+            [(ngModel)]="emailbestaetigt"/>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"placeholder="Passwort"
+            [(ngModel)]="password"/>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"placeholder="Passwort bestätigen"
+            [(ngModel)]="passwordbestaetigt"/>
+        </div>
+        <div class="form-group">
+          <input
+            type="date"
+            class="form-control"placeholder="Geburtstag"
+            [(ngModel)]="geburtstag"/>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            Profilbild
+            <input  (change)="handleFileInput($event)" type="file" class="form-control" id="pb" [(ngModel)]="ProfilePicture">
+          </div>
+        </div>
+        <div id="submit "class="d-flex ">
+          <button (click)="SignUp()">
+            Submit
+          </button>
+        </div>
+        <p style="text-align: center; padding-top: 20px;"> Du hast schon einen Account?<br>
+          <a [routerLink] = "['/login']"> Hier gehts zum Login </a> </p>
+      </div>
+    </div>
+  </div>
+</section>
+

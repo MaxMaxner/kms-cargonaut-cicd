@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { ProfileComponent } from './profile/profile.component'
 import { HomeComponent } from './home/home.component'
+import { ProfileComponent } from './profile/profile.component'
+import { LoginComponent } from './login/login.component'
+import { RegisterComponent } from './register/register.component'
+import { OffersComponent } from './offers/offers.component'
+import { OfferDetailsComponent } from './offer-details/offer-details.component'
+import { ExperienceComponent } from './experience/experience.component'
 
 const routes: Routes = [
     // fallback route
@@ -12,7 +17,12 @@ const routes: Routes = [
     },
     // route to home component
     { path: 'home', component: HomeComponent },
-    { path: 'profile', component: ProfileComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'offers', component: OffersComponent },
+    { path: 'offer-details/:id', component: OfferDetailsComponent },
+    { path: 'experience/:id', component: ExperienceComponent },
+    { path: 'profile/:id', component: ProfileComponent },
 ]
 
 @NgModule({
