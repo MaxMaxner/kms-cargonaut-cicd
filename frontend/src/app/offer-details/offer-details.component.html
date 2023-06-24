@@ -157,13 +157,16 @@
     <button *ngIf="!rideDone && booked" type="button" class="btn btn-primary "
             style="background-color:#3A9B8F; border: none">Fahrt abgeschlossen
     </button>
-    <button *ngIf="rideDone" type="button" class="btn btn-primary " style="background-color:#3A9B8F; border: none">
-      Bewerten
-    </button>
+    <div *ngIf="rideDone">
+      <button  type="button" (click)="review()" class="btn btn-primary " style="background-color:#3A9B8F; border: none">
+        Bewerten
+      </button>
+    </div>
+
 
   </div>
   <div *ngIf="!owner && booked" class="d-flex my-3" style="justify-content: flex-end">
-    <button *ngIf="rideDone" type="button" class="btn btn-primary" style="background-color:#3A9B8F; border: none">
+    <button *ngIf="rideDone" (click)="review()" type="button" class="btn btn-primary" style="background-color:#3A9B8F; border: none">
       Bewerten
     </button>
     <button *ngIf="!rideDone" type="button" class="btn btn-primary" style="background-color:#3A9B8F; border: none;">

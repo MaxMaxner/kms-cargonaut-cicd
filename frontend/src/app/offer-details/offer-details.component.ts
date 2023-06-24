@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {BookOfferDetailsComponent} from "../book-offer-details/book-offer-details.component";
+import {ReviewsComponent} from "../reviews/reviews.component";
 
 @Component({
   selector: 'app-offer-details',
@@ -24,14 +25,22 @@ export class OfferDetailsComponent {
   }
 
 
-  public owner  = false;
-  public booked = false;
-  public rideDone= false;
+  public owner  = true;
+  public booked = true;
+  public rideDone= true;
   public allowTracking = true;
 
   async book() {
     try {
       await this.modalService.open(BookOfferDetailsComponent).result
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  async review() {
+    try {
+      await this.modalService.open(ReviewsComponent).result
     } catch (err) {
       console.log(err)
     }
