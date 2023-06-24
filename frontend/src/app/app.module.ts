@@ -15,6 +15,7 @@ import { ExperienceComponent } from "./experience/experience.component";
 import { RouterModule } from "@angular/router";
 import { OfferDetailsComponent } from './offer-details/offer-details.component';
 import { BookOfferDetailsComponent } from './book-offer-details/book-offer-details.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BookOfferDetailsComponent } from './book-offer-details/book-offer-detai
     AppRoutingModule,
     NgIconsModule.withIcons({ heroUsers }),
     FormsModule,
-    RouterModule
+    RouterModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
