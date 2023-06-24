@@ -16,6 +16,7 @@ import { RouterModule } from "@angular/router";
 import { OfferDetailsComponent } from './offer-details/offer-details.component';
 import { BookOfferDetailsComponent } from './book-offer-details/book-offer-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     OfferDetailsComponent,
     ExperienceComponent,
     BookOfferDetailsComponent,
+    ReviewsComponent,
   ],
   imports: [
     BrowserModule,
