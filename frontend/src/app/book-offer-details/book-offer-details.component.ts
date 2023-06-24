@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./book-offer-details.component.scss']
 })
 export class BookOfferDetailsComponent {
+  public title: string;
 
+  constructor(public activeModal: NgbActiveModal) {
+  }
+
+  save() {
+    if (this.title.trim().length > 0) {
+      this.activeModal.close(this.title);
+    }
+  }
 }
