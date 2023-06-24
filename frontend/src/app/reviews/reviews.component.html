@@ -6,23 +6,32 @@
   <div class="form-group">
     <div class="form-check my-2">
       <input class="form-check-input" type="checkbox" [checked]="check1" id="flexCheck1" style="border-color: #3A9B8F; background-color: #F5F5F5">
-      <label class="form-check-label" for="flexCheck1">
+      <label *ngIf="!offerDetails.owner" class="form-check-label" for="flexCheck1">
         Der/Die Fahrer/in war pünktlich (+/- 5 Minuten)
+      </label>
+      <label *ngIf="offerDetails.owner" class="form-check-label" for="flexCheck1">
+        Der Mitfahrer war pünktlich (+/- 5 Minuten)
       </label>
     </div>
     <div class="form-check">
       <input class="form-check-input" type="checkbox" [checked]="check2" id="flexCheck2" style="border-color: #3A9B8F; background-color: #F5F5F5">
-      <label class="form-check-label" for="flexCheck2">
+      <label *ngIf="!offerDetails.owner" class="form-check-label" for="flexCheck2">
         Hat sich der Fahrer an alle Abmachungen gehalten? (Treffpunkt usw.)
+      </label>
+      <label *ngIf="offerDetails.owner" class="form-check-label" for="flexCheck2">
+        Hat sich der Mitfahrer an alle Abmachungen gehalten? (Treffpunkt usw.)
       </label>
     </div>
     <div class="form-check">
       <input class="form-check-input" type="checkbox" [checked]="check3" id="flexCheck3" style="border-color: #3A9B8F; background-color: #F5F5F5">
-      <label class="form-check-label" for="flexCheck3">
+      <label *ngIf="!offerDetails.owner" class="form-check-label" for="flexCheck3">
         Haben Sie sich bei der Fahrt wohl gefühlt?
       </label>
+      <label *ngIf="offerDetails.owner" class="form-check-label" for="flexCheck3">
+        Haben Sie den Mitfahrer gerne mitgenommen?
+      </label>
     </div>
-    <div class="form-check">
+    <div *ngIf="!offerDetails.owner" class="form-check">
       <input class="form-check-input" type="checkbox" [checked]="check4" id="flexCheck4" style="border-color: #3A9B8F; background-color: #F5F5F5">
       <label class="form-check-label" for="flexCheck4">
         Ist die Fracht unbeschadet angekommen?

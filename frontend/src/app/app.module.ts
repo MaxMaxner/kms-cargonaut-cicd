@@ -40,7 +40,7 @@ import { ReviewsComponent } from './reviews/reviews.component';
     RouterModule,
     NgbModule
   ],
-  providers: [],
+  providers: [OfferDetailsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

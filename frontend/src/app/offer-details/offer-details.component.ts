@@ -25,7 +25,7 @@ export class OfferDetailsComponent {
   }
 
 
-  public owner  = true;
+  public owner  = false;
   public booked = true;
   public rideDone= true;
   public allowTracking = true;

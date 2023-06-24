@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {OfferDetailsComponent} from "../offer-details/offer-details.component";
 
 @Component({
   selector: 'app-reviews',
@@ -13,7 +14,7 @@ export class ReviewsComponent {
   public check3 = false;
   public check4 = false;
   public rating = 0;
-  constructor(public activeModal: NgbActiveModal) {
+  constructor(public activeModal: NgbActiveModal, public offerDetails: OfferDetailsComponent) {
   }
 
   save() {
@@ -21,6 +22,4 @@ export class ReviewsComponent {
       this.activeModal.close({comments: this.comments, rating: this.rating});
     }
   }
-
-  protected readonly console = console;
 }
