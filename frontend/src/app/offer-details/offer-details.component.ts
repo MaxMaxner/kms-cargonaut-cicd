@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {BookOfferDetailsComponent} from "../book-offer-details/book-offer-details.component";
 
 @Component({
   selector: 'app-offer-details',
@@ -10,6 +12,7 @@ export class OfferDetailsComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private modalService: NgbModal
   ) {  }
 
   // this function will be called when the component is initialized
@@ -25,5 +28,13 @@ export class OfferDetailsComponent {
   public booked = false;
   public rideDone= false;
   public allowTracking = true;
+
+  async book() {
+    try {
+      await this.modalService.open(BookOfferDetailsComponent).result
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
 }
