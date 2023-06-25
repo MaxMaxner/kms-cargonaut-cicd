@@ -5,7 +5,7 @@ var Configuration = /** @class */ (function () {
     function Configuration() {
     }
     Configuration.mysqlOptions = {
-        database: 'mycargonaut',
+        database: 'mycargonautv1',
         host: 'localhost',
         password: '',
         user: 'root',
@@ -18,7 +18,7 @@ var Configuration = /** @class */ (function () {
         resave: true,
         rolling: true,
         saveUninitialized: true,
-        secret: 'secretword', // Encrypt session id using this modifier, e.g. 'Secret'
+        secret: 'secretword', // Encrypt session id using this modifier, e.g. 'Secret',
     };
     return Configuration;
 }());

@@ -1,10 +1,10 @@
-import { SessionOptions } from 'express-session';
+import {Session, SessionOptions} from 'express-session';
 import { ConnectionConfig } from 'mysql';
 
 export class Configuration {
 
     public static mysqlOptions: ConnectionConfig = {
-        database: 'mycargonaut',
+        database: 'mycargonautv1',
         host: 'localhost',
         password: '',
         user: 'root',
@@ -18,7 +18,9 @@ export class Configuration {
         resave: true, // save with new time stamp (for operating systems without 'touch' command)
         rolling: true, // re-generate the cookie on every request
         saveUninitialized: true, // save session even if it stores no data
-        secret: 'secretword', // Encrypt session id using this modifier, e.g. 'Secret'
+        secret: 'secretword', // Encrypt session id using this modifier, e.g. 'Secret',
+
     };
+
 
 }

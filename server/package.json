@@ -17,6 +17,7 @@
     "crypto-js": "^3.1.9-1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
+    "cookie-parser": "^1.4.6",
     "mysql": "^2.18.1"
 
   },
@@ -25,7 +26,7 @@
     "@types/node": "^12.11.1"
   },
   "scripts": {
-    "apidoc": "apidoc -i src -o apidoc/",
+    "apidoc": "apidoc -i src -o server/apidoc/",
     "run": "node server.js"
   }
 }

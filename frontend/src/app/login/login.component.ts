@@ -17,17 +17,12 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string = "";
   message: string = "";
+  stayLoggedIn = false;
   public environment = {
     apiUrl: 'http://localhost:8080'
   };
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private sessionService: SessionServiceService,
-    private http: HttpClient,
-  ) {
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private sessionService: SessionServiceService, private http: HttpClient, private alert: AlertService) {
     // redirect to home if already logged in
     if (this.sessionService.userValue) {
       this.router.navigate(['/']);
@@ -36,6 +31,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+this.sessionService.checkLogin();
+
+    //Formvalidator
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -64,20 +62,9 @@ export class LoginComponent implements OnInit {
     this.login(this.f.email.value, this.f.password.value);
     console.log(this.f.email.value)
     this.loading = true;
-
   }
-   login(email: string, password: string) {
-    this.http.post<any>(`https://localhost:8080/login`, {email, password}).subscribe({
-      next: res => {
-        this.message = res.message;
-        this.loading = false;
-      },
-      error: error => {
-        this.message = error.message;
-        this.loading = false;
-        console.error('There was an error!', error);
-      }
-    })
 
+   login(email: string, password: string) {
+     this.sessionService.login(this.f.email.valuetrim(), this.f.password.value);
   }
 }

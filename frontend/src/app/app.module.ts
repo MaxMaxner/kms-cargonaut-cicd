@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -24,12 +23,16 @@ import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AlertComponent } from './alert/alert.component';
+import { StartComponent } from './start/start.component';
+import {AlertService} from "./services/alert-service.service";
 
 
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  {path: 'start', component: StartComponent},
 
 ]
 
@@ -37,7 +40,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
+    AlertComponent,
+    StartComponent,
 
 
   ],
@@ -63,9 +67,10 @@ const appRoutes: Routes = [
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
-  providers: [SessionServiceService, LoginComponent],
+  providers: [SessionServiceService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
