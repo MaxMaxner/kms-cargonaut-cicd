@@ -38,7 +38,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { AlertComponent } from './alert/alert.component'
 import { StartComponent } from './start/start.component'
-import { AlertService } from './services/alert-service.service'
+import { AlertService } from './services/alert-service.service';
+import { MyrequestsComponent } from './myrequests/myrequests.component';
+import { RequestsComponent } from './requests/requests.component';
+import { MyoffersComponent } from './myoffers/myoffers.component'
 
 const appRoutes: Routes = [
     { path: '', component: LoginComponent },
@@ -61,6 +64,9 @@ const appRoutes: Routes = [
         LoginComponent,
         AlertComponent,
         StartComponent,
+        MyrequestsComponent,
+        RequestsComponent,
+        MyoffersComponent,
     ],
     imports: [
         BrowserModule,

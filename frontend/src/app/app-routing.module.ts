@@ -10,6 +10,9 @@ import { OffersComponent } from './offers/offers.component'
 import { OfferDetailsComponent } from './offer-details/offer-details.component'
 import { ExperienceComponent } from './experience/experience.component'
 import { VehicleComponent } from './vehicle/vehicle.component'
+import {RequestsComponent} from "./requests/requests.component";
+import {MyrequestsComponent} from "./myrequests/myrequests.component";
+import {MyoffersComponent} from "./myoffers/myoffers.component";
 
 const routes: Routes = [
     {
@@ -30,7 +33,9 @@ const routes: Routes = [
     { path: 'offer-details/:id', component: OfferDetailsComponent },
     { path: 'experience/:id', component: ExperienceComponent },
     { path: 'profile', component: ProfileComponent },
-    { path: 'vehicle', component: VehicleComponent },
+    { path: 'myoffers', component: MyoffersComponent },
+    { path: 'requests', component: RequestsComponent },
+    { path: 'myrequests', component: MyrequestsComponent },
 ]
 
 @NgModule({
