@@ -1,52 +1,9 @@
-<!-- rectangle.component.html -->
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rectangle Component</title>
-  <style>
-    /* styles.css */
-    .background {
-      background-color: white;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .rectangle {
-      width: 900px;
-      height: 600px;
-      background-color: rgba(128, 128, 128, 0.5); /* Grey transparent color */
-      border: 2px solid white;
-    }
-  </style>
-</head>
-
-<body>
-<div class="background">
-  <div class="rectangle">
-    <div id="map"></div>
-  </div>
+<div class="app-container">
+    <app-navbar *ngIf="!userIsLoggedIn"></app-navbar>
+    <app-navbar-loged-in *ngIf="userIsLoggedIn"></app-navbar-loged-in>
+    <div class="content-container">
+        <div class="main-content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 </div>
-
-<script>
-  // rectangle.component.js
-  function initMap() {
-    // Specify your desired map options
-    var mapOptions = {
-      center: { lat: 40.712776, lng: -74.005974 }, // Example coordinates (New York City)
-      zoom: 12, // Adjust the zoom level as needed
-    };
-
-    // Create the map instance
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-  }
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
-</body>
-
-</html>

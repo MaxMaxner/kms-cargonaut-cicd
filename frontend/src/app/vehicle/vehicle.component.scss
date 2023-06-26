@@ -1,0 +1,98 @@
+.vehicle {
+    .vehicle-information {
+        .vehicle-infos {
+            margin: 3vh 0 5vh 5vw;
+            padding-bottom: 3vh;
+            background-color: #f5f5f5;
+            .model-header {
+                margin: 5vh 0;
+            }
+            .extras {
+                border: 1px solid black;
+                border-radius: 20px;
+                margin: 5vh auto;
+                padding: 2%;
+            }
+
+            p {
+                margin-top: 3vh;
+            }
+
+            i {
+                color: #007bff;
+            }
+        }
+
+        .pic-and-name {
+            margin-left: 10vw;
+            .profile-picture {
+                max-width: 10vw;
+                height: auto;
+                margin: auto;
+
+                img {
+                    max-width: 100%;
+                    height: auto;
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .edit-view {
+        margin: 6vh 2vw;
+
+        .selection {
+            padding-top: 2.5%;
+        }
+
+        .dimension {
+            width: 49%;
+            margin-right: 1%;
+        }
+
+        textarea {
+            height: 150px;
+        }
+
+        .vehicle-nav {
+            .vehicle-nav-el {
+                margin-bottom: 2vh;
+            }
+        }
+
+        .left {
+            .header {
+                margin-bottom: 2vh;
+            }
+        }
+
+        .right {
+            .buttons {
+                button {
+                    width: 40%;
+                    color: white;
+                    margin: 2vh 1vw;
+                }
+            }
+        }
+
+        .profile-pic {
+            .profile-picture {
+                max-width: 10vw;
+                height: auto;
+                margin: auto;
+
+                img {
+                    max-width: 100%;
+                    height: auto;
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .btn {
+        margin-top: 2vh;
+    }
+}

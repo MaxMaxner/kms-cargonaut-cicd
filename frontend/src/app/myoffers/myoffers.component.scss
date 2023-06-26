@@ -1,0 +1,128 @@
+
+#filter {
+  background-color: #3A9B8F;
+  align-items: center;
+  justify-content: center;
+}
+
+#searchicon {
+  color: white;
+}
+
+.row {
+  margin-top: 10px;
+  margin-left: 10px;
+
+}
+
+#überschrift {
+  margin-left: 20px;
+}
+
+
+#createoffer {
+  background-color: #3A9B8F;
+  border-radius: 100%;
+  margin-left: 20px;
+}
+
+
+#inputrow {
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background-color: #F5F5F5;
+}
+
+.bi-star-fill {
+  margin-left: 10px;
+}
+
+#cardrow {
+  margin-left: 10px;
+}
+
+#vonnach {
+  padding-top: 15px;
+}
+
+i {
+  font-weight: bold;
+}
+
+.container{
+  margin-top: 50px;
+}
+
+#name {
+  margin-left: 10px;
+  margin-right: 10px
+}
+#preisdiff{
+  justify-content: end;
+
+}
+
+#anbieterbild {
+  height: 80px;
+  width: 80px;
+  border-radius: 100px;
+  margin-bottom: 2px
+}
+
+#datum {
+  padding-top: 15px;
+}
+
+span {
+  font-weight: bold;
+}
+
+.bi-person {
+  font-size: 40px;
+  color: #3A9B8F;
+}
+
+#preis {
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 10px;
+  margin-right: 10px
+}
+
+.bi-arrows-angle-expand, .bi-minecart-loaded, {
+  font-size: 40px;
+  color: #3A9B8F;
+}
+
+.bi-check-lg, .bi-x-lg {
+  padding-left: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #3A9B8F;
+}
+
+#faplus {
+  color: white;
+}
+
+#angebotschrift {
+  font-size: 18px;
+  padding-left: 5px;
+}
+
+@media (max-width: 1000px) {
+  #Zielort {
+    margin-left: 10px;
+  }
+
+}@media (max-width: 775px) {
+  #createoffer{
+    margin-left: 200px;
+  }
+
+}
+
+
