@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
+import { start } from '@popperjs/core'
+import { StartComponent } from './start/start.component'
 import { HomeComponent } from './home/home.component'
 import { ProfileComponent } from './profile/profile.component'
 import { LoginComponent } from './login/login.component'
@@ -10,6 +12,10 @@ import { ExperienceComponent } from './experience/experience.component'
 import { VehicleComponent } from './vehicle/vehicle.component'
 
 const routes: Routes = [
+    {
+        path: 'start',
+        component: StartComponent,
+    },
     // fallback route
     {
         path: '',
