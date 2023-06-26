@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Configuration = void 0;
-var Configuration = /** @class */ (function () {
+var Configuration = exports.Configuration = /** @class */ (function () {
     function Configuration() {
     }
     Configuration.mysqlOptions = {
@@ -22,4 +22,3 @@ var Configuration = /** @class */ (function () {
     };
     return Configuration;
 }());
-exports.Configuration = Configuration;
