@@ -1,0 +1,91 @@
+<div class="container-fluid">
+  <div class="row m-2 mt-5 flex-row flex-wrap-reverse">
+    <div class="col-lg-2">
+      <!-- section with clickable links -->
+      <div class="profile-navigation">
+        <p><a href="#" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Mein
+          Profil</a></p>
+        <p><a href="#" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Mein
+          Fahrzeug</a></p>
+        <p>Erfahrungen und Bewertungen</p>
+      </div>
+    </div>
+
+
+    <!-- Erfahrungen -->
+    <div class="col-lg-4">
+      <div class="row flex-column">
+        <div class="col">
+          <h2 class="heading-font-style">Erfahrungen</h2>
+          <p>gefahrene Strecke: <span class="highlight-results"> {{ user?.totalDistance }} km </span></p>
+          <p>Anzahl Gewicht: <span class="highlight-results"> {{ user?.transportedWeight }} kg </span></p>
+          <p>Anzahl Mitfahrer: <span class="highlight-results"> {{ user?.passengerCount }} kg </span></p>
+          <p>Anzahl Fahrten: <span class="highlight-results"> {{ user?.totalTrips }} </span></p>
+        </div>
+        <div class="col">
+          <div class="row flex-row diagram">
+            <div class="col-4 circle-chart-position">
+              <div class="circle-chart" [ngStyle]="getCircleStyles()">
+              </div>
+            </div>
+            <div class="col-8 diagramText">
+              <p class="offer-circle">Angeboten: {{ user?.totalOffers }}</p>
+              <p class="searches-circle">Gesuch: {{ user?.totalSearches }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Bewertungen -->
+    <div class="col-lg-4">
+      <h2 class="heading-font-style">Bewertungen</h2>
+      <div class="ratings-box" *ngFor="let rating of detailedRating">
+        <div class="initials">von: <span class="userInitialsRater"> {{ rating.fromRaterFirstInitial }}{{ rating.fromRaterLastInitial }} </span> </div>
+        <div class="ratings-comment">
+          <p>
+            {{ rating.comment }}
+          </p>
+        </div>
+        <!-- depending on data type of rating this could and should get simplified -->
+        <div class="rating" *ngIf="rating.rating === 1">
+          <span class="star-detailed-rating" *ngFor="let star of [1]">&#9733;</span>
+        </div>
+        <div class="rating" *ngIf="rating.rating === 2">
+          <span class="star-detailed-rating" *ngFor="let star of [1, 2]">&#9733;</span>
+        </div>
+        <div class="rating" *ngIf="rating.rating === 3">
+          <span class="star-detailed-rating" *ngFor="let star of [1, 2, 3]">&#9733;</span>
+        </div>
+        <div class="rating" *ngIf="rating.rating === 4">
+          <span class="star-detailed-rating" *ngFor="let star of [1, 2, 3, 4]">&#9733;</span>
+        </div>
+        <div class="rating" *ngIf="rating.rating === 5">
+          <span class="star-detailed-rating" *ngFor="let star of [1, 2, 3, 4, 5]">&#9733;</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Profile Picture, User Name, and Overall Rating -->
+    <div class="col-lg-2">
+      <div class="profile-section">
+        <img src="{{ user?.avatar }}" alt="Profile Picture" class="profile-picture">
+        <p class="username"> {{ user?.firstName }} {{user?.lastName}} </p>
+        <div class="overall-rating">
+          <i class="bi bi-star-fill userRating" *ngFor="let rating of displayRating"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
