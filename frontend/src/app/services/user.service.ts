@@ -30,7 +30,7 @@ export class UserService {
 
 
   // insert code to fetch the user ratings from the backend
-  public getDetailedRatings(serId: string) {
+  public getDetailedRatings(userId: string) {
     const detailedRatings: IRating[] = [
       {
         id: 1,
