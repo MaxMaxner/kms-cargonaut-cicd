@@ -41,7 +41,12 @@ import { StartComponent } from './start/start.component'
 import { AlertService } from './services/alert-service.service';
 import { MyrequestsComponent } from './myrequests/myrequests.component';
 import { RequestsComponent } from './requests/requests.component';
-import { MyoffersComponent } from './myoffers/myoffers.component'
+import { MyoffersComponent } from './myoffers/myoffers.component';
+import { AngebotErstellenZweiComponent} from "./angebot-erstellen2/angebot-erstellen2.component";
+import {AngebotErstellenEinsComponent} from "./angebot-erstellen1/angebot-erstellen1.component";
+import {GesucheErstellenComponent} from "./gesuche-erstellen/gesuche-erstellen.component";
+import {TrackingComponent} from "./tracking/tracking.component";
+import {KasseComponent} from "./kasse/kasse.component";
 
 const appRoutes: Routes = [
     { path: '', component: LoginComponent },
@@ -67,6 +72,11 @@ const appRoutes: Routes = [
         MyrequestsComponent,
         RequestsComponent,
         MyoffersComponent,
+        AngebotErstellenEinsComponent,
+        AngebotErstellenZweiComponent,
+        GesucheErstellenComponent,
+        KasseComponent,
+        TrackingComponent,
     ],
     imports: [
         BrowserModule,
