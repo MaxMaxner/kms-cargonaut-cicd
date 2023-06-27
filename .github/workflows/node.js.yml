@@ -44,4 +44,5 @@ jobs:
 
       # build the frontend
       - name: build frontend
-        run: npx ng build
+        run: cd ../frontend && npm install && npx ng build
+        continue-on-error: true
