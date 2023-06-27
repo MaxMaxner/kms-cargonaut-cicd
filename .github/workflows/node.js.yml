@@ -40,5 +40,8 @@ jobs:
       # eslint
       - name: run eslint
         run: npx eslint .
-        continue-on-error: true
+        continue-on-error: true # continue on error to run other jobs because there are so many linter errors which needs to be fixed
 
+      # build the frontend
+      - name: build frontend
+        run: npx run build
