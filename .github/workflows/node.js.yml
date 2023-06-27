@@ -44,4 +44,4 @@ jobs:
 
       # build the frontend
       - name: build frontend
-        run: npx run build
+        run: npx ng build
