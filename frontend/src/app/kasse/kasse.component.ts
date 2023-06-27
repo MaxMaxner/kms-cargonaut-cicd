@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NgForm} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-kasse',
@@ -7,15 +7,37 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./kasse.component.scss']
 })
 export class KasseComponent {
-  validateForm(form: NgForm): boolean {
+  myForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.myForm = this.formBuilder.group({
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      datum: ['', Validators.required],
+      time: [''],
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      anzahlPersonen: ['', Validators.required],
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      fracht: ['', Validators.required],
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      von: ['', Validators.required],
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      nach: ['', Validators.required],
+      anmerkungen: [''],
+      keineTiere: [false],
+      nichtraucher: [false],
+    });
+  }
+
+  validateForm(): boolean {
+    const form = this.myForm;
     if (form.invalid) {
       const emptyInputs = Object.keys(form.controls)
         .filter(key => {
           const control = form.controls[key];
-          const isCheckbox = control.value === false; // Check if it's a checkbox and not checked
-          const isSonstigeInfos = key === 'sonstigeinfos' && control.value === '';
+          const isCheckbox = control.value === false;
+          const isAnmerkungen = key === 'anmerkungen' && control.value === '';
 
-          return (control.value === '' || isCheckbox || isSonstigeInfos);
+          return control.value === '' || isCheckbox || isAnmerkungen;
         });
 
       if (emptyInputs.length > 0) {

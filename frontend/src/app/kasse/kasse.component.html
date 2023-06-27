@@ -38,60 +38,50 @@
 <div class="container center-content">
   <div class="col-lg-6">
     <h1 class="smaller-text" style="margin-bottom: 30px">Kasse</h1>
-    <form (ngSubmit)="validateForm(myForm)" #myForm="ngForm">
+    <form [formGroup]="myForm" (ngSubmit)="validateForm()">
       <div class="row">
         <div class="col-md-6">
-
           <div class="form-group">
             <label for="datum">Name & Vorname</label>
-            <input type="text" class="form-control" id="datum" name="datum" required>
+            <input type="text" class="form-control" id="datum" formControlName="datum" required>
           </div>
-
           <div class="form-group">
             <label for="time">Anschrift</label>
-            <input type="text" class="form-control" id="time" name="time">
+            <input type="text" class="form-control" id="time" formControlName="time">
           </div>
-
           <div class="form-group">
             <label for="anzahlPersonen">Telefonnummer</label>
-            <input type="text" class="form-control" id="anzahlPersonen" name="anzahlPersonen" required>
+            <input type="text" class="form-control" id="anzahlPersonen" formControlName="anzahlPersonen" required>
           </div>
-
           <div class="form-group">
             <label for="fracht">E-Mail</label>
-            <input type="text" class="form-control" id="fracht" name="fracht" required>
+            <input type="text" class="form-control" id="fracht" formControlName="fracht" required>
           </div>
           <div class="form-group">
             <label for="von">Kreditinstitut</label>
-            <input type="text" class="form-control" id="von" name="von" required>
+            <input type="text" class="form-control" id="von" formControlName="von" required>
           </div>
-
           <div class="form-group">
             <label for="nach">IBAN</label>
-            <input type="text" class="form-control" id="nach" name="nach" required>
+            <input type="text" class="form-control" id="nach" formControlName="nach" required>
           </div>
-
         </div>
-
         <div class="col-md-6">
-
           <div class="form-group">
             <label for="anmerkungen">Anmerkungen</label>
-            <textarea class="form-control" id="anmerkungen" name="anmerkungen"></textarea>
+            <textarea class="form-control" id="anmerkungen" formControlName="anmerkungen"></textarea>
           </div>
-
           <div class="form-group" style="margin-top: 200px">
-            <label style="font-size: large; font-weight: bold;">Trackinoptionen</label>
+            <label style="font-size: large; font-weight: bold;">Trackingoptionen</label>
             <div class="form-check">
-              <input type="checkbox" style="height: 80px; width: 80px" class="form-check-input" id="keineTiere" name="keineTiere" formControlName="keineTiere">
+              <input type="checkbox" style="height: 80px; width: 80px" class="form-check-input" id="keineTiere" formControlName="keineTiere">
               <label class="form-check-label" for="keineTiere">Mein Fahrer soll seinen Standort mit mir teilen.</label>
             </div>
             <div class="form-check">
-              <input type="checkbox" style="height: 80px; width: 80px" class="form-check-input" id="nichtraucher" name="nichtraucher" formControlName="nichtraucher">
-              <label class="form-check-label" for="nichtraucher">Ich will nicht den Standort meines Fahrers sehen. </label>
+              <input type="checkbox" style="height: 80px; width: 80px" class="form-check-input" id="nichtraucher" formControlName="nichtraucher">
+              <label class="form-check-label" for="nichtraucher">Ich will nicht den Standort meines Fahrers sehen.</label>
             </div>
-            <button type="submit" style="margin-top: 20px; background-color: #3A9B8F;color: white" class="btn float-right">Bezahlen</button>
-
+            <button type="submit" style="margin-top: 20px; background-color: #3A9B8F; color: white" class="btn float-right">Bezahlen</button>
           </div>
         </div>
       </div>

@@ -38,28 +38,28 @@
 <div class="container center-content">
   <div class="col-lg-6">
     <h1 class="smaller-text" style="margin-bottom: 30px">Angebot erstellen</h1>
-    <h1  style="margin-bottom: 30px; font-size: 22px">Fahrzeug</h1>
-    <form (ngSubmit)="validateForm(myForm2)" #myForm2="ngForm">
+    <h1 style="margin-bottom: 30px; font-size: 22px">Fahrzeug</h1>
+    <form (ngSubmit)="validateForm()" [formGroup]="myForm">
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             <label for="verfügbarePlätze">Verfügbare Plätze</label>
-            <input type="text" class="form-control" id="verfügbarePlätze" required>
+            <input type="text" class="form-control" id="verfügbarePlätze" formControlName="verfügbarePlätze" required>
           </div>
 
           <div class="form-group">
             <label for="verfügbaresMass">Verfügbares Maß</label>
-            <input type="text" class="form-control" id="verfügbaresMass" required>
+            <input type="text" class="form-control" id="verfügbaresMass" formControlName="verfügbaresMass" required>
           </div>
 
           <div class="form-group">
             <label for="verfügbaresGewicht">Verfügbares Gewicht</label>
-            <input type="text" class="form-control" id="verfügbaresGewicht">
+            <input type="text" class="form-control" id="verfügbaresGewicht" formControlName="verfügbaresGewicht">
           </div>
 
           <div class="form-group">
             <label for="Anhanger">Anhänger</label>
-            <select class="form-control" id="Anhanger">
+            <select class="form-control" id="Anhanger" formControlName="Anhanger">
               <option value="car">Ja</option>
               <option value="van">Nein</option>
             </select>
@@ -67,7 +67,7 @@
 
           <div class="form-group">
             <label for="AnhangerGrosse">Anhänger Größe</label>
-            <input type="text" class="form-control" id="AnhangerGrosse" required>
+            <input type="text" class="form-control" id="AnhangerGrosse" formControlName="AnhangerGrosse" required>
           </div>
 
         </div>
@@ -75,32 +75,32 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="PreisProPerson">Preis pro Person</label>
-            <input type="text" class="form-control" id="PreisProPerson" required>
+            <input type="text" class="form-control" id="PreisProPerson" formControlName="PreisProPerson" required>
           </div>
 
           <div class="form-group">
             <label for="PreisProPracht">Preis pro Fracht</label>
-            <input type="text" class="form-control" id="PreisProPracht" required>
+            <input type="text" class="form-control" id="PreisProPracht" formControlName="PreisProPracht" required>
           </div>
-
-
 
           <div class="form-group" style="margin-top: 50px">
             <div class="form-check">
-              <input type="checkbox" style="height: 80px; width: 80px" class="form-check-input" id="price-negotiable">
+              <input type="checkbox" style="height: 80px; width: 80px" class="form-check-input" id="price-negotiable"
+                     formControlName="priceNegotiable">
               <label class="form-check-label" for="price-negotiable">Preis verhandelbar?</label>
             </div>
           </div>
 
           <div class="form-group" style="margin-top: 90px">
             <label for="sonstige-info">Weitere Informationen</label>
-            <textarea class="form-control rounded" id="sonstige-info"></textarea>
+            <textarea class="form-control rounded" id="sonstige-info" formControlName="sonstigeInfos"></textarea>
           </div>
 
         </div>
       </div>
 
-      <button type="submit" style="margin-top: 20px; background-color: #3A9B8F;color: white" class="btn float-right">Angebot erstellen</button>
+      <button type="submit" style="margin-top: 20px; background-color: #3A9B8F;color: white"
+              class="btn float-right">Angebot erstellen</button>
     </form>
   </div>
 </div>
@@ -109,4 +109,3 @@
 </body>
 
 </html>
-

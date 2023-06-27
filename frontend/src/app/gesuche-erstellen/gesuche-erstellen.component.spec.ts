@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms'; // Add this import
+import { ReactiveFormsModule } from '@angular/forms';
 import { GesucheErstellenComponent } from './gesuche-erstellen.component';
 
 describe('GesucheErstellenComponent', () => {
@@ -8,7 +9,8 @@ describe('GesucheErstellenComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [GesucheErstellenComponent]
+      declarations: [GesucheErstellenComponent],
+      imports: [FormsModule,ReactiveFormsModule]
     });
     fixture = TestBed.createComponent(GesucheErstellenComponent);
     component = fixture.componentInstance;

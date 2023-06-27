@@ -38,7 +38,7 @@
 <div class="container center-content">
   <div class="col-lg-6">
     <h1 class="smaller-text" style="margin-bottom: 30px">Gesuch erstellen</h1>
-    <form (ngSubmit)="validateForm(myForm)" #myForm="ngForm">
+    <form (ngSubmit)="validateForm()" [formGroup]="myForm">
       <div class="row">
         <div class="col-md-6">
 
@@ -65,7 +65,7 @@
           <div class="form-group" style="margin-top: 20px">
             <label for="sonstigeinfos" style="font-size: large; font-weight: bold;">Sonstige Infos</label>
             <div class="form-check">
-              <input type="checkbox" class="form-check-input" style="height: 80px; width: 80px" id="musik" name="musik" >
+              <input type="checkbox" class="form-check-input" style="height: 80px; width: 80px" id="musik" name="musik">
               <label class="form-check-label" for="musik">Ich höre gerne Musik</label>
             </div>
             <div class="form-check">
