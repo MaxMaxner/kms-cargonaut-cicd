@@ -49,7 +49,6 @@ import {GesucheErstellenComponent} from "./gesuche-erstellen/gesuche-erstellen.c
 import {TrackingComponent} from "./tracking/tracking.component";
 import {KasseComponent} from "./kasse/kasse.component";
 import { BookOfferDetailsComponent } from './book-offer-details/book-offer-details.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewsComponent } from './reviews/reviews.component';
 
 const appRoutes: Routes = [
@@ -113,7 +112,7 @@ const appRoutes: Routes = [
         BrowserAnimationsModule,
         NgbModule,
     ],
-    providers: [SessionServiceService, AlertService],
+    providers: [SessionServiceService, AlertService, OfferDetailsComponent],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
