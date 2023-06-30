@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gesuch erstellen</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .center-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .smaller-text {
+      font-size: 30px;
+      text-align: left;
+    }
+
+    .rounded {
+      border-radius: 10px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+<div class="container center-content">
+  <div class="col-lg-6">
+    <h1 class="smaller-text" style="margin-bottom: 30px">Gesuch erstellen</h1>
+    <form (ngSubmit)="validateForm()" [formGroup]="myForm">
+      <div class="row">
+        <div class="col-md-6">
+
+          <div class="form-group">
+            <label for="datum">Datum</label>
+            <input type="date" class="form-control" id="datum" name="datum" required>
+          </div>
+
+          <div class="form-group">
+            <label for="time">Uhrzeit</label>
+            <input type="time" class="form-control" id="time" name="time">
+          </div>
+
+          <div class="form-group">
+            <label for="anzahlPersonen">Anzahl der Personen</label>
+            <input type="text" class="form-control" id="anzahlPersonen" name="anzahlPersonen" required>
+          </div>
+
+          <div class="form-group">
+            <label for="fracht">Fracht</label>
+            <input type="text" class="form-control" id="fracht" name="fracht" required>
+          </div>
+
+          <div class="form-group" style="margin-top: 20px">
+            <label for="sonstigeinfos" style="font-size: large; font-weight: bold;">Sonstige Infos</label>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" style="height: 80px; width: 80px" id="musik" name="musik">
+              <label class="form-check-label" for="musik">Ich höre gerne Musik</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" style="height: 80px; width: 80px" id="unterhaltung" name="unterhaltung">
+              <label class="form-check-label" for="unterhaltung">Ich unterhalte mich gerne</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" style="height: 80px; width: 80px" id="mitfahrer" name="mitfahrer">
+              <label class="form-check-label" for="mitfahrer">Ich brauche oft Pipipausen</label>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="von">Von</label>
+            <input type="text" class="form-control" id="von" name="von" required>
+          </div>
+
+          <div class="form-group">
+            <label for="nach">Nach</label>
+            <input type="text" class="form-control" id="nach" name="nach" required>
+          </div>
+
+          <div class="form-group">
+            <label for="anmerkungen">Weitere Informationen</label>
+            <textarea class="form-control" id="anmerkungen" name="anmerkungen"></textarea>
+          </div>
+
+          <div class="form-group" style="margin-top: 80px">
+            <label style="font-size: large; font-weight: bold;">Einschränkungen</label>
+            <div class="form-check">
+              <input type="checkbox" style="height: 80px; width: 80px" class="form-check-input" id="keineTiere" name="keineTiere" formControlName="keineTiere">
+              <label class="form-check-label" for="keineTiere">Tiere erlaubt?</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" style="height: 80px; width: 80px" class="form-check-input" id="nichtraucher" name="nichtraucher" formControlName="nichtraucher">
+              <label class="form-check-label" for="nichtraucher">Nichtraucher?</label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <button type="submit" style="margin-top: 20px; background-color: #3A9B8F;color: white" class="btn float-right">Gesuch einstellen</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {IUser} from "../../interfaces/IUser";
 import {IRating} from "../../interfaces/IRating";
+import {IExperience} from "../../interfaces/IExperience";
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class UserService {
 
 
   // insert code to fetch the user ratings from the backend
-  public getDetailedRatings(serId: string) {
+  public getDetailedRatings(userId: string): IRating[] {
     const detailedRatings: IRating[] = [
       {
         id: 1,
@@ -56,6 +57,20 @@ export class UserService {
 
       ]
     return detailedRatings;
+  }
+
+  getExperience(userId: string): IExperience {
+    // insert code to fetch the user experience from the backend
+    const experience: IExperience = {
+      id: 1234567890, // this could be the user id to identify the experience and safe additional id-field
+      totalDistance: 3456,
+      transportedWeight: null,
+      passengerCount: 189,
+      totalTrips: 170,
+      totalOffers: 234,
+      totalSearches: 156,
+    }
+    return experience;
   }
 
 

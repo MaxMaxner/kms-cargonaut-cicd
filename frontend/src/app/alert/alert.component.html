@@ -1,0 +1,9 @@
+<ngb-toast *ngFor="let toast of alert.toasts"
+           [header]="toast.header"
+           [autohide]="true"
+           [delay]="toast.delay || 5000"
+           (hidden)="alert.remove(toast)" style="background-color:#5ec5bc" class="mt-3"
+           [animation]="true">
+  {{toast.body}}
+</ngb-toast>
+

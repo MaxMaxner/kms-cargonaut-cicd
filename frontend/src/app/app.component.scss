@@ -15,3 +15,33 @@
     padding-top: 100px;
     overflow-y: auto;
 }
+
+input,
+textarea {
+    width: 100%;
+    border: none;
+    height: 50px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    padding-left: 25px;
+    background-color: #f5f5f5;
+    outline: none;
+    color: #101010;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16);
+    resize: none;
+
+    &::placeholder {
+        color: #131313;
+    }
+}
+
+textarea {
+    padding: 1.5vh;
+}
+
+.btn {
+    padding: 1vh 2vw;
+    background-color: #3a9b8f;
+}

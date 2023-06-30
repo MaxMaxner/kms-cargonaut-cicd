@@ -1,5 +1,9 @@
+# Due to the outdated Node version and limited permissions on the thm.gitlab instance we decided
+# to just keep Sonarqube running here -- so that at least one pipeline/job will be triggered.
+# The other ci/cd jobs e.g. building, linting, testing are moved to another repo at github
+# and can be triggered via a separate commit/push. See wiki for this.
+
 stages:
-  - lint
   - sonarqube
 
 sonarqube:
@@ -15,16 +19,3 @@ sonarqube:
     - merge_requests
     - develop
     - master
-
-
-# linter: node version on the gitlab.thm runner is to low (see description in ./info/pipeline
-#lint:
-#  stage: lint
-#  image: node:lts
-#  tags:
-#    - nodejs
-#    - npm
-#  before_script:
-#    - npm install eslint@latest
-#  script:
-#    - npx eslint .
