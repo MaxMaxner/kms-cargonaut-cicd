@@ -82,8 +82,8 @@
       <div class="profile-section">
         <img src="{{ user?.avatar }}" alt="Profile Picture" class="profile-picture">
         <p class="username"> {{ user?.firstName }} {{user?.lastName}} </p>
-        <div class="overall-rating">
-          <i class="bi bi-star-fill userRating" *ngFor="let rating of displayRating"></i>
+        <div class="overall-rating" *ngIf="displayRatingUnderProfilePicture">
+          <i class="bi bi-star-fill userRating" *ngFor="let rating of displayRatingUnderProfilePicture"></i>
         </div>
       </div>
     </div>

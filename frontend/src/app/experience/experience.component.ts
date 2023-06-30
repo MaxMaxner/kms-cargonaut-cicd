@@ -16,7 +16,7 @@ export class ExperienceComponent implements  OnInit {
   public user?: IUser;
   public experience?: IExperience;
   public detailedRating: IRating[] = [];
-  public displayRating: number[] = [];
+  public displayRatingUnderProfilePicture: number[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -27,9 +27,12 @@ export class ExperienceComponent implements  OnInit {
   ngOnInit() {
     const userId: string | null = this.route.snapshot.paramMap.get('id'); // get the id from the url
     if (userId) {
-      this.initData(userId); // initialize the data
-      this.initRating(userId);
-      this.initExperience(userId);
+      this.initData(userId); // initialize the user
+      if (this.user?.rating) {
+        this.initDisplayRatingUnderProfilePicture(this.user!.rating); // initialize the rating under the profile picture
+        this.initRating(userId); // initialize the user rating
+        this.initExperience(userId); // initialize the user experience
+      }
     }
   }
 
@@ -37,7 +40,10 @@ export class ExperienceComponent implements  OnInit {
   // this method calls the user.service to get the user data from the backend
   public initData(userId: string): void {
     this.user = this.userService.getUser(userId);
-    this.displayRating = this.getRating(this.user.rating);
+  }
+
+  public initDisplayRatingUnderProfilePicture(rating: number): void {
+    this.displayRatingUnderProfilePicture = Array(rating).fill(0).map((x, index) => index + 1);
   }
 
   // this method calls the user.service to get the user rating data from the backend
@@ -48,12 +54,6 @@ export class ExperienceComponent implements  OnInit {
   // this method calls the user.service to get the user experience data from the backend
   public initExperience(userId: string): void {
     this.experience = this.userService.getExperience(userId);
-  }
-
-
-  // this function will return an array of numbers from 1 to the rating, so it can be used in the html with *ngFor
-  getRating(rating: number): number[] {
-    return  Array(rating).fill(0).map((x, index) => index + 1);
   }
 
   // This creates the styles for the circle-shaped diagram in the html
