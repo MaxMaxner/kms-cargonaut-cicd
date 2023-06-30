@@ -13,14 +13,14 @@
 
 
     <!-- Erfahrungen -->
-    <div class="col-lg-4">
+    <div class="col-lg-4" *ngIf="experience"> <!-- Only render if user has experience to be shown -->
       <div class="row flex-column">
         <div class="col">
           <h2 class="heading-font-style">Erfahrungen</h2>
-          <p>gefahrene Strecke: <span class="highlight-results"> {{ user?.totalDistance }} km </span></p>
-          <p>Anzahl Gewicht: <span class="highlight-results"> {{ user?.transportedWeight }} kg </span></p>
-          <p>Anzahl Mitfahrer: <span class="highlight-results"> {{ user?.passengerCount }} kg </span></p>
-          <p>Anzahl Fahrten: <span class="highlight-results"> {{ user?.totalTrips }} </span></p>
+          <p>gefahrene Strecke: <span class="highlight-results"> {{ experience.totalDistance }} km </span></p>
+          <p *ngIf="experience.transportedWeight != null">Anzahl Gewicht: <span class="highlight-results"> {{ experience?.transportedWeight }} kg </span></p>
+          <p>Anzahl Mitfahrer: <span class="highlight-results"> {{ experience.passengerCount }} kg </span></p>
+          <p>Anzahl Fahrten: <span class="highlight-results"> {{ experience.totalTrips }} </span></p>
         </div>
         <div class="col">
           <div class="row flex-row diagram">
@@ -29,8 +29,8 @@
               </div>
             </div>
             <div class="col-8 diagramText">
-              <p class="offer-circle">Angeboten: {{ user?.totalOffers }}</p>
-              <p class="searches-circle">Gesuch: {{ user?.totalSearches }}</p>
+              <p class="offer-circle">Angeboten: {{ experience.totalOffers }}</p>
+              <p class="searches-circle">Gesuch: {{ experience.totalSearches }}</p>
             </div>
           </div>
         </div>
@@ -39,7 +39,7 @@
 
 
     <!-- Bewertungen -->
-    <div class="col-lg-4">
+    <div class="col-lg-4" *ngIf="detailedRating"> <!-- Only render if user has ratings to be shown -->
       <h2 class="heading-font-style">Bewertungen</h2>
       <div class="ratings-box" *ngFor="let rating of detailedRating">
         <div class="initials">von: <span class="userInitialsRater"> {{ rating.fromRaterFirstInitial }}{{ rating.fromRaterLastInitial }} </span> </div>
@@ -67,6 +67,15 @@
       </div>
     </div>
 
+
+    <div class="col-lg-4" *ngIf="!experience && !detailedRating"> <!-- Default for users that haven`t done Trips yet -->
+      <div class="row flex-column">
+        <div class="col">
+          <p>This User has made no Trips as driver so far.</p>
+          <p>After completing the first Trip this users experience and rating will be shown here.</p>
+        </div>
+      </div>
+    </div>
 
     <!-- Profile Picture, User Name, and Overall Rating -->
     <div class="col-lg-2">
