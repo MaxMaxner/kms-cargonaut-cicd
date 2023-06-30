@@ -22,4 +22,17 @@ describe('ExperienceComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  /*********************************************************************************************************************
+   * Additional tests
+   ********************************************************************************************************************/
+
+  it('should initialize the component correctly', () => {
+    expect(component.user).toBeUndefined(); // Initial value of user should be undefined
+    expect(component.experience).toBeUndefined(); // Initial value of experience should be undefined
+    expect(component.detailedRating).toEqual([]); // Initial value of detailedRating should be an empty array
+    expect(component.displayRating).toEqual([]); // Initial value of displayRating should be an empty array
+  });
+
+
 });
