@@ -1,0 +1,58 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+# This workflow is triggered on every push to develop and every pull request to develop but the origin needs to be the github repo
+# Its necessary to have this workflow in addition to the gitlab-ci.yml because the gitlab-ci.yml cant perform these tasks due to outdated node version and limited permissions on the thm.gitlab instance
+
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version:
+          - '18.x'
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      # eslint
+      - name: run eslint
+        run: npx eslint .
+        continue-on-error: true # continue on error to run other jobs because there are so many linter errors which needs to be fixed!
+
+      # build the frontend
+      - name: build frontend
+        run: cd ./frontend && npm install && npx ng build
+        continue-on-error: true # continue on error to run other jobs because there are a couple of warning and errors regarding the budget (size) of scss files - need to be addressed!
+
+      # test the frontend
+      - name: test frontend
+        run: |
+          cd ./frontend
+          npm install
+          npm install puppeteer
+          npx ng test --browsers=ChromeHeadless --watch=false
+        # The frontend tests fail because there are severe dependency issues since migrating the server

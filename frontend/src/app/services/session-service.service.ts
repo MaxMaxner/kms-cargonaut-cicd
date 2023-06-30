@@ -22,7 +22,7 @@ export class SessionServiceService {
   };
 
 
-  constructor(private router: Router, private http: HttpClient, private alert : AlertService) {
+  constructor(private router: Router, private http: HttpClient, private alert: AlertService) {
     this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem("user") || '{}'));
     this.user = this.userSubject.asObservable();
   }
@@ -30,17 +30,19 @@ export class SessionServiceService {
   public get userValue(): User {
     return this.userSubject.value;
   }
+
   checkLogin(): Promise<void> {
     return this.http.get(`${this.environment.apiUrl}/login`, httpOptions).toPromise().then((res: any) => {
 
-     this.router.navigate([`${this.environment.apiUrl}/start`],)
+      this.router.navigate([`${this.environment.apiUrl}/start`],)
 // Alertwird gezeigt.
-      this.alert.show("Erfolg",  res.message);
+      this.alert.show("Erfolg", res.message);
     }).catch((err: any) => {
       this.alert.show("Fehler", err.message);
 
     })
   };
+
   login(email: string, password: string): Promise<void> {
     return this.http.post<User>(`${this.environment.apiUrl}/login`, {
       email: email,
