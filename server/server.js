@@ -332,7 +332,7 @@ router.post('/user', function (req, res) {
  *   "message": "Passwort wurden erfolgreich geändert."
  * }
  */
-router.get('/user/:mail', loginCheck, function (req, res) {
+router.get('/user/:mail',  function (req, res) {
     // Read data from request parameters
     var mail = req.params.mail;
     var query = 'SELECT * FROM user WHERE mail = ?;';
@@ -344,7 +344,7 @@ router.get('/user/:mail', loginCheck, function (req, res) {
             });
         }
         else if (rows.length === 1) {
-            var user = new user_1.User(rows[0].mail, rows[0].firstname, rows[0].lastname, null, null, null, rows[0].photo, null, rows[0].smocker);
+            var user = new user_1.User(rows[0].mail, rows[0].firstname, rows[0].lastname, null, rows[0].birthday, rows[0].mobilephone, rows[0].photo, rows[0].licence, rows[0].smocker);
             res.status(200).send({
                 user: user,
                 message: 'Nutzerdaten erfolgreich übertragen.',

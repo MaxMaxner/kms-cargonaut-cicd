@@ -6,6 +6,8 @@ const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 }
 
+let user: IUser2
+
 @Injectable({
     providedIn: 'root',
 })
@@ -16,14 +18,20 @@ export class User2Service {
 
     constructor(private http: HttpClient) {}
 
-    getUser(mail: string): Promise<void> {
-        console.log('working Service on: ', this.environment.apiUrl + '/' + mail)
+    getUserFromDB(mail: string): Promise<void | IUser2> {
+        console.log('working Service on: ', this.environment.apiUrl + '/user/' + mail)
 
         return this.http
-            .get(`${this.environment.apiUrl}/user/` + mail, httpOptions)
+            .get(this.environment.apiUrl + '/user/' + mail, httpOptions)
             .toPromise()
             .then((res: any) => {
-                user: res.user
+                user = res.user
+                console.log(res)
             })
+    }
+
+    async getUser(mail: string): Promise<IUser2> {
+        await this.getUserFromDB(mail)
+        return user
     }
 }
