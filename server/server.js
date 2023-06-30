@@ -9,6 +9,15 @@ var cryptoJS = require("./node_modules/crypto-js");
 var session = require("./node_modules/express-session");
 var router = express();
 var database = mysql.createConnection(config_1.Configuration.mysqlOptions);
+
+const allowCrossDomain = (req, res, next) =>{
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods','*');
+    res.header('Access-Control-Allow-Headers','*');
+    next();
+}
+
+router.use(allowCrossDomain);
 router.use(bodyParser.json());
 router.use(session(config_1.Configuration.sessionOptions));
 /*****************************************************************************

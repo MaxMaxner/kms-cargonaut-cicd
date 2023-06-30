@@ -5,9 +5,9 @@ export class User {
    password: string | null;
    birthday: string;
    mobilephone: string | null;
-   photo: string | null;
-   licence: string | null;
-   smocker: string;
+   photo: string;
+   licence: boolean | null;
+   smocker: boolean;
 
   constructor(
     mail: string,
@@ -17,8 +17,8 @@ export class User {
     birthday: string,
     mobilephone: string | null,
     photo: string,
-    licence: string | null,
-    smocker: string
+    licence: boolean,
+    smocker: boolean
   ) {
     this.mail = mail;
     this.firstname = firstname;

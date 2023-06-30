@@ -36,6 +36,7 @@ const routes: Routes = [
     { path: 'myoffers', component: MyoffersComponent },
     { path: 'requests', component: RequestsComponent },
     { path: 'myrequests', component: MyrequestsComponent },
+    { path: 'vehicles', component: VehicleComponent },
 ]
 
 @NgModule({
