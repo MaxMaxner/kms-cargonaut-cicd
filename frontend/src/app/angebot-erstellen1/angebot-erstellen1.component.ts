@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-angebot-erstellen1',
@@ -9,50 +10,68 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AngebotErstellenEinsComponent implements OnInit {
   myForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) {}
 
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       datum: ['', Validators.required],
       time: [''],
       anmerkungen: [''],
       musik: [false],
       unterhaltung: [false],
       mitfahrer: [false],
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       sonstigeinfo: ['', Validators.required],
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       von: ['', Validators.required],
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       nach: ['', Validators.required],
       zwischenziel: [''],
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       handynummer: ['', Validators.required],
       keineTiere: [false],
       nichtraucher: [false]
     });
   }
 
-  validateForm(): boolean {
+  validateForm(): void {
     if (this.myForm.invalid) {
-      const emptyInputs = Object.keys(this.myForm.controls)
-        .filter(key => {
-          const control = this.myForm.controls[key];
-          const isCheckbox = control.value === false;
-          const isSonstigeInfos = key === 'sonstigeinfo' && control.value === '';
-          const isZwischenziel = key === 'zwischenziel' && control.value === '';
+      const emptyInputs = Object.keys(this.myForm.controls).filter((key: string) => {
+        const control = this.myForm.get(key);
+        const isCheckbox = control?.value === false;
+        const isSonstigeInfos = key === 'sonstigeinfo' && control?.value === '';
+        const isZwischenziel = key === 'zwischenziel' && control?.value === '';
 
-          return control.value === '' || isCheckbox || isSonstigeInfos || isZwischenziel;
-        });
+        return control?.value === '' || isCheckbox || isSonstigeInfos || isZwischenziel;
+      });
 
       if (emptyInputs.length > 0) {
         const errorMessage = 'Bitte füllen Sie alle Felder aus: ' + emptyInputs.join(', ');
         alert(errorMessage);
-        return false;
+        return;
       }
     }
 
-    return true;
+    const formData: FormData = new FormData();
+    formData.append('datum', this.myForm.get('datum')?.value);
+    formData.append('time', this.myForm.get('time')?.value);
+    formData.append('anmerkungen', this.myForm.get('anmerkungen')?.value);
+    formData.append('musik', this.myForm.get('musik')?.value);
+    formData.append('unterhaltung', this.myForm.get('unterhaltung')?.value);
+    formData.append('mitfahrer', this.myForm.get('mitfahrer')?.value);
+    formData.append('sonstigeinfo', this.myForm.get('sonstigeinfo')?.value);
+    formData.append('von', this.myForm.get('von')?.value);
+    formData.append('nach', this.myForm.get('nach')?.value);
+    formData.append('zwischenziel', this.myForm.get('zwischenziel')?.value);
+    formData.append('handynummer', this.myForm.get('handynummer')?.value);
+    formData.append('keineTiere', this.myForm.get('keineTiere')?.value);
+    formData.append('nichtraucher', this.myForm.get('nichtraucher')?.value);
+
+    this.httpClient.post('offerOne', formData).subscribe(
+      (response) => {
+        // Handle successful response
+        console.log(response);
+      },
+      (error) => {
+        // Handle error
+        console.error(error);
+      }
+    );
   }
 }
