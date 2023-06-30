@@ -41,17 +41,10 @@ export class ProfileComponent implements OnInit {
         // @TODO: Get id from url and fetch data from backend
         // Initialize profile data
         this.profilePicture = 'assets/img/profile.png'
-        this.firstname = 'Manfred'
-        this.lastname = 'Degenhort'
-        this.email = 'manfred1965@outlook.com'
-        this.birthday = '1965-02-01'
-        this.birthdate = new Date(this.birthday)
-        this.phone = '+49 0127893793'
         this.spokenLanguages = ['Deutsch']
         this.drivenKilometers = 4500
         this.drivenPeople = 10
         this.drivenWeight = 378
-        this.smokingStatus = 'Raucher'
         this.notice =
             'Hallo! Willkommen auf meinem Profil. Ich bin der Kapitän der Landstraße! Folgt mit für Spaß und Kilometer!'
         this.reviews = [
@@ -63,8 +56,14 @@ export class ProfileComponent implements OnInit {
     }
 
     async displayUser() {
-        let user
-        await this.user2Service.getUser('admin@admin.de')
+        let user = this.user2Service.getUser('admin@admin.de')
+        console.log(user)
+        this.email = (await user).mail
+        this.firstname = (await user).firstname
+        this.lastname = (await user).lastname
+        this.smokingStatus = (await user).smocker == 1 ? 'Raucher' : 'Nicht-Raucher'
+        this.birthdate = (await user).birthday
+        this.phone = (await user).mobilephone
     }
 
     toggleEditingMode(): void {

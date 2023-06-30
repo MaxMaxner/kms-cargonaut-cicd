@@ -333,7 +333,7 @@ router.post('/user', function (req, res) {
  *   "message": "Passwort wurden erfolgreich geändert."
  * }
  */
-router.get('/user/:mail', loginCheck(),  function (req, res) {
+router.get('/user/:mail',  function (req, res) {
     // Read data from request parameters
     var mail = req.params.mail;
     var query = 'SELECT * FROM user WHERE mail = ?;';
