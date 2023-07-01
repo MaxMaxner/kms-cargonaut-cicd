@@ -626,7 +626,7 @@ router.get('/users', loginCheck(), function (req, res) {
     });
 });
 
-router.post('/car', loginCheck(), function (req, res) {
+router.post('/car', function (req, res) {
     var nrplate = req.body.nrplate;
     var usermail = req.body.usermail;
     var brand = req.body.brand;
@@ -665,7 +665,7 @@ router.post('/car', loginCheck(), function (req, res) {
             });
         }
 });
-router.get('/car/:nrplate', loginCheck(),  function (req, res) {
+router.get('/car/:nrplate',  function (req, res) {
     var nrplate = req.params.nrplate;
     var query = 'SELECT * FROM car WHERE nrplate = ?;';
     database.query(query, nrplate, function (err, rows) {
@@ -689,7 +689,7 @@ router.get('/car/:nrplate', loginCheck(),  function (req, res) {
     });
 });
 
-router.put('/car/:nrplate', loginCheck(), function (req, res) {
+router.put('/car/:nrplate', function (req, res) {
     var nrplate = req.params.nrplate;
     var usermail = req.body.usermail;
     var brand = req.body.brand;
@@ -728,7 +728,7 @@ router.put('/car/:nrplate', loginCheck(), function (req, res) {
     }
 });
 
-router.delete('/car/:nrplate', loginCheck(), loginCheck(), function (req, res) {
+router.delete('/car/:nrplate', loginCheck(), function (req, res) {
     var nrplate = req.params.nrplate;
     var query = 'DELETE FROM car WHERE nrplate = ?;';
     database.query(query, nrplate, function (err, rows) {
