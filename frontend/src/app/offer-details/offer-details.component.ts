@@ -32,9 +32,6 @@ export class OfferDetailsComponent {
     }
   }
 
-
-
-
   async book() {
     try {
       await this.modalService.open(BookOfferDetailsComponent).result
