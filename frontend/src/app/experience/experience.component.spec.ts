@@ -84,6 +84,7 @@ describe('ExperienceComponent', () => {
       totalTrips: 15,
       totalOffers: 234,
       totalSearches: 156,
+      language: [],
     };
 
     // Set the mock behavior of the user service
