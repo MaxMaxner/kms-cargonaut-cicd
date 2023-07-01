@@ -2,6 +2,7 @@ import express = require ('express');
 import bodyParser = require ('body-parser');
 import {Request, Response} from 'express';
 import {User} from '../frontend/src/models/user';
+import{Entry} from '../frontend/src/models/entry';
 import {Configuration} from './config/config';
 import {Connection, MysqlError} from "./node_modules/mysql";
 import mysql = require ("./node_modules/mysql");
@@ -266,16 +267,13 @@ router.post('/user', (req: Request, res: Response) => {
     const birthday: string = req.body.birthday;
     const mobilephone: string = req.body.mobilephone;
     const photo: string = req.body.photo
-    const licence: string = req.body.licence;
-    const smocker: string = req.body.smocker;
+    const licence = req.body.licence
+    const smocker = req.body.smocker
 
-
-    //Birthday in "YYY-MM-DD"
 
     const year: number = new Date(birthday).getFullYear();
     const month: number = new Date(birthday).getMonth() + 1;
     const day: number = new Date(birthday).getDate();
-
     const formattedDate: string = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
     // add a new user if names, email- and password exist
@@ -297,7 +295,6 @@ router.post('/user', (req: Request, res: Response) => {
                         message: 'E-Mail-Adresse ' + mail + ' bereits vergeben.',
                     });
                 } else if (!err) {
-
                     res.status(201).send({
                         message: 'Nutzer wurde erfolgreich erstellt',
 
@@ -650,6 +647,43 @@ router.get('/users', loginCheck(), (req: Request, res: Response) => {
                     rows[0].mail,
                     rows[0].firstname,
                     rows[0].lastname,
+                    null,
+                    rows[0].birthday,
+                    rows[0].mobilephone,
+                    rows[0].photo,
+                    rows[0].licence,
+                    rows[0].smocker
+                ));
+            }
+
+            // Send user list to clientdir
+            res.status(200).send({
+                userList: userList,
+                message: 'Daten erfolgreich übermittelt.'
+            });
+        }
+    });
+});
+
+//For get all entries
+router.get('/entries', loginCheck(), (req: Request, res: Response) => {
+    let query: string = 'SELECT * FROM entries WHERE entrytype = offer;';
+
+    database.query(query, query, (err: MysqlError, rows: any) => {
+        if (err) {
+            // Login data is incorrect, user is not logged in
+            res.status(500).send({
+                message: 'DB-Error: ' + err,
+            });
+        } else {
+            // Create local user list to parse users from database
+            const entryList: Entry[] = [];
+            // Parse every entry
+            for (const row of rows) {
+                userList.push(new Entry(
+                    rows[0].entryID,
+                    rows[0].usermail,
+                    rows[0].entrytype,
                     null,
                     rows[0].birthday,
                     rows[0].mobilephone,

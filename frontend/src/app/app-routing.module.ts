@@ -46,7 +46,7 @@ const routes: Routes = [
     { path: 'search', component: GesucheErstellenComponent },
     { path: 'checkout', component: KasseComponent },
     { path: 'tracking', component: TrackingComponent },
-
+    { path: 'vehicles', component: VehicleComponent },
 ]
 
 @NgModule({
