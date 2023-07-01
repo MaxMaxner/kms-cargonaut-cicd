@@ -4,6 +4,7 @@ import {RegisterComponent} from './register.component';
 import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {RouterTestingModule} from "@angular/router/testing";
+import {HttpClientModule} from "@angular/common/http";
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -14,7 +15,8 @@ describe('RegisterComponent', () => {
       imports: [
         RouterModule.forRoot([]),
         RouterTestingModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule,
       ],
       declarations: [RegisterComponent]
     });
