@@ -47,6 +47,9 @@ const routes: Routes = [
     { path: 'checkout', component: KasseComponent },
     { path: 'tracking', component: TrackingComponent },
     { path: 'vehicles', component: VehicleComponent },
+  {path: 'createrequest', component: GesucheErstellenComponent},
+  {path: 'createoffer1', component: AngebotErstellenEinsComponent },
+  {path: 'createoffer2', component: AngebotErstellenZweiComponent }
 ]
 
 @NgModule({
