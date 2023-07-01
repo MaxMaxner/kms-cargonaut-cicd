@@ -165,7 +165,7 @@ router.post('/login', (req: Request, res: Response) => {
     // Read data from request
     const mail: string = req.body.mail;
     const password: string = req.body.password;
-        console.log(mail, password)
+
     // Create database query and data
     const data: [string, string] = [mail, cryptoJS.SHA512(password).toString()];
     const query: string = 'SELECT * FROM user WHERE mail = ? AND password = ?;';
@@ -180,7 +180,6 @@ router.post('/login', (req: Request, res: Response) => {
         } else {
             // Check if database response contains exactly one entry
             if (rows.length === 1) {
-                console.log(rows)
                 // Login data is correct, user is logged in
 
                 const user = (rows[0].mail,
@@ -261,8 +260,6 @@ router.post('/logout', (req: Request, res: Response) => {
  */
 router.post('/user', (req: Request, res: Response) => {
     // Read data from request body
-    console.log(req)
-    console.log(req.body);
     const mail: string = req.body.mail
     const firstname: string = req.body.firstname;
     const lastname: string = req.body.lastname;
@@ -702,6 +699,79 @@ router.get('/entries', loginCheck(), (req: Request, res: Response) => {
                 message: 'Daten erfolgreich übermittelt.'
             });
         }
+    });
+});
+
+/**
+ * @api {post} /offerOne Create an offer
+ * @apiName CreateOffer
+ * @apiGroup Offer
+ * @apiVersion 1.0.0
+ *
+ * @apiParam {String} datum Date of the offer
+ * @apiParam {String} time Time of the offer
+ * @apiParam {String} anmerkungen Additional notes for the offer
+ * @apiParam {Boolean} musik Whether music is preferred in the offer
+ * @apiParam {Boolean} unterhaltung Whether entertainment is preferred in the offer
+ * @apiParam {Boolean} mitfahrer Whether additional passengers are allowed
+ * @apiParam {String} sonstigeinfo Other information about the offer
+ * @apiParam {String} von Starting point of the offer
+ * @apiParam {String} nach Destination of the offer
+ * @apiParam {String} zwischenziel Intermediate destination of the offer
+ * @apiParam {String} handynummer Phone number of the offer creator
+ * @apiParam {Boolean} keineTiere Whether pets are not allowed in the offer
+ * @apiParam {Boolean} nichtraucher Whether smoking is not allowed in the offer
+ *
+ * @apiSuccess {String} message Success message stating that the offer was created successfully
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
+ *     "message": "Offer created successfully"
+ * }
+ *
+ * @apiError (Client Error) {400} InvalidData Error message stating that the provided data is invalid
+ *
+ * @apiErrorExample InvalidData:
+ * HTTP/1.1 400 Bad Request
+ * {
+ *     "message": "Invalid data provided"
+ * }
+ */
+
+// Route handler for '/offerOne' POST request
+router.post('/offerOne', (req, res) => {
+    // Access the form data sent from the client
+    const formData = req.body;
+
+    // Perform any necessary server-side validation or processing
+    const requiredFields = ['datum', 'sonstigeinfo', 'von', 'nach', 'handynummer'];
+    const missingFields = requiredFields.filter(field => !(field in formData));
+
+    if (missingFields.length > 0) {
+        return res.status(400).json({ message: 'Invalid data provided' });
+    }
+
+    // Save the offer data to the database
+    const query = `INSERT INTO offers (datum, time, von, nach, zwischenziel, handynummer) VALUES (?, ?, ?, ?, ?, ?)`;
+    const values = [
+        formData.datum,
+        formData.time,
+        formData.von,
+        formData.nach,
+        formData.zwischenziel || null,
+        formData.handynummer
+    ];
+
+    database.query(query, values, (err, result) => {
+        if (err) {
+            // Handle database error
+            console.error(err);
+            return res.status(500).json({ message: 'Database error' });
+        }
+
+        // Offer created successfully
+        return res.status(200).json({ message: 'Offer created successfully' });
     });
 });
 

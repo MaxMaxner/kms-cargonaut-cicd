@@ -1,0 +1,33 @@
+<div class="modal-header"><h4 class="modal-title">Buchungsdetails</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()">
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <label for="personsInput" class="mb-2">Personen</label>
+        <input type="text" class="form-control p-2" id="personsInput" [(ngModel)]="persons" placeholder="Anzahl Personen" style="background-color: #F5F5F5; border-radius: 10px; border: none">
+      </div>
+
+      </div>
+    <div class="row">
+      <label for="transportSizeInput" class="mb-2 mt-3">Frachtdetails</label>
+      <div class="col">
+        <input type="text" class="form-control p-2" id="transportSizeInput" [(ngModel)]="size" placeholder="Maße" style="background-color: #F5F5F5; border-radius: 10px; border: none">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control p-2" id="transportWeightInput" [(ngModel)]="weight" placeholder="Gewicht" style="background-color: #F5F5F5; border-radius: 10px; border: none">
+      </div>
+    </div>
+   </div>
+  <div class="row">
+    <div class="col">
+      <p class="mt-3">Mit der Buchung verpflichte ich mich, die vereinbarten Kosten zu tragen und fristgerecht zu bezahlen</p>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss()">Schließen</button>
+  <button type="button" class="btn btn-primary" style="background-color:#3A9B8F; border: none;" (click)="save()">Buchen</button>
+</div>

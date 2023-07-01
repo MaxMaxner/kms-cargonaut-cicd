@@ -48,6 +48,7 @@ import {AngebotErstellenEinsComponent} from "./angebot-erstellen1/angebot-erstel
 import {GesucheErstellenComponent} from "./gesuche-erstellen/gesuche-erstellen.component";
 import {TrackingComponent} from "./tracking/tracking.component";
 import {KasseComponent} from "./kasse/kasse.component";
+import { BookOfferDetailsComponent } from './book-offer-details/book-offer-details.component';
 
 const appRoutes: Routes = [
     { path: '', component: LoginComponent },
@@ -78,6 +79,7 @@ const appRoutes: Routes = [
         GesucheErstellenComponent,
         KasseComponent,
         TrackingComponent,
+      BookOfferDetailsComponent,
     ],
     imports: [
         BrowserModule,
