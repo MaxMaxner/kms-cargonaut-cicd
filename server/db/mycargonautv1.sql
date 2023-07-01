@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 23. Jun 2023 um 19:06
+-- Erstellungszeit: 01. Jul 2023 um 17:00
 -- Server-Version: 10.4.28-MariaDB
 -- PHP-Version: 8.1.17
 
@@ -138,17 +138,19 @@ CREATE TABLE `user` (
   `photo` mediumblob DEFAULT NULL,
   `licence` varchar(255) DEFAULT NULL,
   `registerdate` date NOT NULL DEFAULT current_timestamp(),
-  `smocker` tinyint(1) DEFAULT NULL
+  `smocker` tinyint(1) DEFAULT NULL,
+  `language` set('deutsch','englisch','japanisch','portugiesisch','spanisch','russisch','polnisch','schwedisch','') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Daten für Tabelle `user`
 --
 
-INSERT INTO `user` (`mail`, `firstname`, `lastname`, `password`, `birthday`, `mobilephone`, `photo`, `licence`, `registerdate`, `smocker`) VALUES
-('admin@admin.de', 'Admin', 'Admin', '1234', '1991-08-24', '12345', NULL, NULL, '2023-06-19', 1),
-('buyer@admin.de', 'Buyer', 'Buyer', '1234', '1991-08-24', '349304', NULL, NULL, '2023-06-19', 0),
-('offer@admin.de', 'Offer', 'Offer', '1234', '1991-08-24', '2342340', NULL, NULL, '2023-06-19', 0);
+INSERT INTO `user` (`mail`, `firstname`, `lastname`, `password`, `birthday`, `mobilephone`, `photo`, `licence`, `registerdate`, `smocker`, `language`) VALUES
+('admin@admin.de', 'Admin', 'Admin', '1234', '1991-08-24', '12345', NULL, NULL, '2023-06-19', 1, NULL),
+('buyer@admin.de', 'Buyer', 'Buyer', '1234', '1991-08-24', '349304', NULL, NULL, '2023-06-19', 0, NULL),
+('offer@admin.de', 'Offer', 'Offer', '1234', '1991-08-24', '2342340', NULL, NULL, '2023-06-19', 0, NULL),
+('t@gmail.com', 'Talia', 'Hortac', '95ccb2e1e7232cc16cf9260e65b50a96187c7d47d0c553873d43e8de5bcf016f23f0054ecccff0e3346dd7c84f1ff95996c62d74cb13584de8d7e9d94cd24632', '1999-06-20', '017896203923', '', '0', '2023-07-01', 0, NULL);
 
 --
 -- Indizes der exportierten Tabellen

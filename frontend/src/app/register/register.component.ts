@@ -20,6 +20,7 @@ export class RegisterComponent {
   photo = "";
   licence = false;
   smocker = false;
+  language = [];
   public emailbestaetigt = "";
   public passwordbestaetigt = "";
 
@@ -49,7 +50,8 @@ export class RegisterComponent {
         this.mobilephone,
         this.photo,
         this.licence,
-        this.smocker
+        this.smocker,
+        this.language
       );
       console.log(user)
       this.UserService.register(user);
