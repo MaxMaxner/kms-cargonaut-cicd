@@ -21,7 +21,11 @@
         </li>
         <li *ngIf="userIsLoggedIn" class="nav-item navbarSpacing marginTop">
           <a class="nav-link active" aria-current="page"
-             [routerLink]="['/myoffers']">Meine Fahrten</a>
+             [routerLink]="['/myoffers']">Meine Angebote</a>
+        </li>
+        <li *ngIf="userIsLoggedIn" class="nav-item navbarSpacing marginTop">
+          <a class="nav-link active" aria-current="page"
+             [routerLink]="['/myrequests']">Meine Gesuche</a>
         </li>
       </ul>
       <ul *ngIf="userIsLoggedIn" class="navbar-nav mr-auto mb-2 mb-lg-0 nunitoNavbar">
