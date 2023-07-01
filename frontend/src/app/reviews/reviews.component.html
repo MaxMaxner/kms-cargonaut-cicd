@@ -1,0 +1,73 @@
+<div class="modal-header"><h4 class="modal-title">Fahrt bewerten</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()">
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <div class="form-check my-2">
+      <input class="form-check-input" type="checkbox" [checked]="check1" id="flexCheck1" style="border-color: #3A9B8F;">
+      <label *ngIf="!offerDetails.owner" class="form-check-label" for="flexCheck1">
+        Der/Die Fahrer/in war pünktlich (+/- 5 Minuten)
+      </label>
+      <label *ngIf="offerDetails.owner" class="form-check-label" for="flexCheck1">
+        Der Mitfahrer war pünktlich (+/- 5 Minuten)
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" [checked]="check2" id="flexCheck2" style="border-color: #3A9B8F">
+      <label *ngIf="!offerDetails.owner" class="form-check-label" for="flexCheck2">
+        Hat sich der Fahrer an alle Abmachungen gehalten? (Treffpunkt usw.)
+      </label>
+      <label *ngIf="offerDetails.owner" class="form-check-label" for="flexCheck2">
+        Hat sich der Mitfahrer an alle Abmachungen gehalten? (Treffpunkt usw.)
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" [checked]="check3" id="flexCheck3" style="border-color: #3A9B8F">
+      <label *ngIf="!offerDetails.owner" class="form-check-label" for="flexCheck3">
+        Haben Sie sich bei der Fahrt wohl gefühlt?
+      </label>
+      <label *ngIf="offerDetails.owner" class="form-check-label" for="flexCheck3">
+        Haben Sie den Mitfahrer gerne mitgenommen?
+      </label>
+    </div>
+    <div *ngIf="!offerDetails.owner" class="form-check">
+      <input class="form-check-input" type="checkbox" [checked]="check4" id="flexCheck4" style="border-color: #3A9B8F">
+      <label class="form-check-label" for="flexCheck4">
+        Ist die Fracht unbeschadet angekommen?
+      </label>
+    </div>
+
+      <div class="row mt-3">
+        <div class="col">
+          <label class="form-check-label" for="flexComments">
+            Weitere Kommentare
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <textarea id="flexComments" [(ngModel)]="comments" class="form-control" aria-label="With textarea" style="border: none; background-color: #F5F5F5"></textarea>
+        </div>
+    </div>
+    <div class="row">
+      <div class="rating">
+        <input type="radio" name="rating" value="5" id="5" [checked]="false" [(ngModel)]="rating">
+        <label for="5">☆</label>
+        <input type="radio" name="rating" value="4" id="4" [checked]="false" [(ngModel)]="rating">
+        <label for="4">☆</label>
+        <input type="radio" name="rating" value="3" id="3" [checked]="false" [(ngModel)]="rating">
+        <label for="3">☆</label>
+        <input type="radio" name="rating" value="2" id="2" [checked]="false" [(ngModel)]="rating">
+        <label for="2">☆</label>
+        <input type="radio" name="rating" value="1" id="1" [checked]="false" [(ngModel)]="rating">
+        <label for="1">☆</label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss()">Schließen</button>
+  <button type="button" class="btn btn-primary" style="background-color:#3A9B8F; border: none;" (click)="save()">Bewertung abgeben</button>
+</div>
+
