@@ -333,7 +333,7 @@ router.post('/user', function (req, res) {
  *   "message": "Passwort wurden erfolgreich geändert."
  * }
  */
-router.get('/user/:mail',  function (req, res) {
+router.get('/user/:mail', loginCheck(),  function (req, res) {
     // Read data from request parameters
     var mail = req.params.mail;
     var query = 'SELECT * FROM user WHERE mail = ?;';
@@ -394,7 +394,7 @@ router.get('/user/:mail',  function (req, res) {
  *     "message":"Der Nutzer kann nicht gefunden werden"
  * }
  */
-router.put('/user/:mail', function (req, res) {
+router.put('/user/:mail', loginCheck(), function (req, res) {
     // Read data from request
     var mail = req.params.mail;
     var firstname = req.body.firstname;
@@ -488,7 +488,7 @@ router.put('/user/:mail', function (req, res) {
  *     "message":"Der Nutzer kann nicht gefunden werden"
  * }
  */
-router.put('/userpassword/:mail', function (req, res) {
+router.put('/userpassword/:mail', loginCheck(), function (req, res) {
     // Read data from request
     var mail = req.params.mail;
     var passwordNew = req.body.passwordNew;
@@ -626,7 +626,7 @@ router.get('/users', loginCheck(), function (req, res) {
     });
 });
 
-router.post('/car', function (req, res) {
+router.post('/car', loginCheck(), function (req, res) {
     var nrplate = req.body.nrplate;
     var usermail = req.body.usermail;
     var brand = req.body.brand;
@@ -665,7 +665,7 @@ router.post('/car', function (req, res) {
             });
         }
 });
-router.get('/car/:nrplate',  function (req, res) {
+router.get('/car/:nrplate', loginCheck(),  function (req, res) {
     var nrplate = req.params.nrplate;
     var query = 'SELECT * FROM car WHERE nrplate = ?;';
     database.query(query, nrplate, function (err, rows) {
@@ -689,7 +689,7 @@ router.get('/car/:nrplate',  function (req, res) {
     });
 });
 
-router.put('/car/:nrplate', function (req, res) {
+router.put('/car/:nrplate', loginCheck(), function (req, res) {
     var nrplate = req.params.nrplate;
     var usermail = req.body.usermail;
     var brand = req.body.brand;
@@ -728,7 +728,7 @@ router.put('/car/:nrplate', function (req, res) {
     }
 });
 
-router.delete('/car/:nrplate', loginCheck(), function (req, res) {
+router.delete('/car/:nrplate', loginCheck(), loginCheck(), function (req, res) {
     var nrplate = req.params.nrplate;
     var query = 'DELETE FROM car WHERE nrplate = ?;';
     database.query(query, nrplate, function (err, rows) {
