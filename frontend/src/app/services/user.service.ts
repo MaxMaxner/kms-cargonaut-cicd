@@ -1,12 +1,34 @@
 import { Injectable } from '@angular/core';
 import {IUser} from "../../interfaces/IUser";
 import {IRating} from "../../interfaces/IRating";
+import { User } from "../../models/user";
+import {BehaviorSubject, Observable} from "rxjs";
+import{ HttpClient, HttpHeaders} from "@angular/common/http";
+import {Router} from "@angular/router";
+import {AlertService} from "./alert-service.service";
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 import {IExperience} from "../../interfaces/IExperience";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+
+  constructor(private router: Router, private http: HttpClient, private alert: AlertService) {
+    this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem("user") || '{}'));
+    this.user = this.userSubject.asObservable();
+  }
+
+
+  private userSubject: BehaviorSubject<User>;
+  public user: Observable<User>;
+  public environment = {
+    apiUrl: 'http://localhost:8080'
+  };
 
   public getUser(userId: string): IUser {
     // insert code to fetch the user from the backend
@@ -73,5 +95,18 @@ export class UserService {
     return experience;
   }
 
+
+  register(user: User) {
+    return this.http.post<any>(`${this.environment.apiUrl}/user`, user, httpOptions)
+      .toPromise()
+      .then((res: any) => {
+        this.router.navigate([`${this.environment.apiUrl}/start`]);
+        this.alert.show("Erfolg", "Nutzer wurde erfolgreich eingeloggt");
+        this.router.navigate(['home']);
+      })
+      .catch((err: any) => {
+        this.alert.show("Fehler", "Nutzer konnte nicht eingeloggt werden.");
+      });
+  }
 
 }

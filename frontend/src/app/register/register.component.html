@@ -1,73 +1,92 @@
 <!-- contact section -->
-<section class="contact_section layout_padding">
-  <div class="container ">
-    <div class="heading_container">
-      <h2 class="">
+<div class="container">
+  <div class="row">
+    <div class="col-6 align-items-end">
+      <h2>
         Registrieren
       </h2>
-      <img  id="logo" src="../../assets/images/myCargonautLogo/SVG/semi_iOSMyCargonaut.svg" height="150"  width="200">
+    </div>
+    <div class="col-6">
+      <img id="logo" src="../../assets/images/myCargonautLogo/SVG/semi_iOSMyCargonaut.svg" height="100" width="200">
     </div>
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control" placeholder="Vorname"
-            [(ngModel)]="vorname"/>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control" placeholder="Vorname*"
+          [(ngModel)]="firstname"/>
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control" placeholder="Nachmame*"
+          [(ngModel)]="lastname"/>
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control" placeholder="Email*"
+          [(ngModel)]="mail"/>
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control" placeholder="Email bestätigen*"
+          [(ngModel)]="emailbestaetigt"/>
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control" placeholder="Passwort*"
+          [(ngModel)]="password"/>
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control" placeholder="Passwort bestätigen*"
+          [(ngModel)]="passwordbestaetigt"/>
+      </div>
+      <div class="form-group">
+        <input
+          type="date"
+          class="form-control" placeholder="Geburtstag*"
+          [(ngModel)]="birthday"/>
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control" placeholder="Geburtstag*"
+          [(ngModel)]="mobilephone"/>
+      </div>
+
+      <div class="row">
+        <div class="col-6 d-flex justify-content-center">
+          <input id="raucher" type="checkbox" [(ngModel)]="smocker">
+          <span id="smocker" class="checkmark" >Raucher?</span>
         </div>
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"placeholder="Nachmame"
-            [(ngModel)]="nachname"/>
-        </div>
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"placeholder="Email"
-            [(ngModel)]="email"/>
-        </div>
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"placeholder="Email bestätigen"
-            [(ngModel)]="emailbestaetigt"/>
-        </div>
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"placeholder="Passwort"
-            [(ngModel)]="password"/>
-        </div>
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"placeholder="Passwort bestätigen"
-            [(ngModel)]="passwordbestaetigt"/>
-        </div>
-        <div class="form-group">
-          <input
-            type="date"
-            class="form-control"placeholder="Geburtstag"
-            [(ngModel)]="geburtstag"/>
-        </div>
+      <div class="col-6 d-flex justify-content-center">
+          <input id="lizens" type="checkbox" [(ngModel)]="licence">
+          <span id="licence" class="checkmark" >Lizenz?</span>
+    </div>
         <div class="modal-body">
-          <div class="form-group">
-            Profilbild
-            <input  (change)="handleFileInput($event)" type="file" class="form-control" id="pb" [(ngModel)]="ProfilePicture">
+          <div class="form-group justify-content-center">
+            <div style="text-align: center;">
+              <span id="pbcaption" class="tex" style="display: block;">Profilbild</span>
+              <input  (change)="handleFileInput($event)" type="file" class="form-control" id="pb"  [(ngModel)]="photo">
+            </div>
           </div>
         </div>
-        <div id="submit "class="d-flex ">
-          <button (click)="SignUp()">
-            Submit
-          </button>
-        </div>
-        <p style="text-align: center; padding-top: 20px;"> Du hast schon einen Account?<br>
-          <a [routerLink] = "['/login']"> Hier gehts zum Login </a> </p>
       </div>
+      <div id="submit" class="d-flex ">
+        <button class="btn" (click)="SignUp()">
+          Submit
+        </button>
+      </div>
+      <p style="text-align: center; padding-top: 20px;"> Du hast schon einen Account?<br>
+        <a [routerLink]="['/login']"> Hier gehts zum Login </a></p>
     </div>
   </div>
-</section>
+</div>
 

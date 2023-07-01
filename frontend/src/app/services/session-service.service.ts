@@ -33,7 +33,6 @@ export class SessionServiceService {
 
   checkLogin(): Promise<void> {
     return this.http.get(`${this.environment.apiUrl}/login`, httpOptions).toPromise().then((res: any) => {
-
       this.router.navigate([`${this.environment.apiUrl}/start`],)
 // Alertwird gezeigt.
       this.alert.show("Erfolg", res.message);
@@ -43,20 +42,21 @@ export class SessionServiceService {
     })
   };
 
-  login(email: string, password: string): Promise<void> {
+  login(mail: string, password: string): Promise<void> {
     return this.http.post<User>(`${this.environment.apiUrl}/login`, {
-      email: email,
+      mail: mail,
       password: password
     }, httpOptions).toPromise().then((res: any) => {
 
       this.router.navigate([`${this.environment.apiUrl}/start`],)
-// Alertwird gezeigt.
-      this.alert.show("Erfolg", "Nutzer wurde erfolgreich registriert. Bitte verifizieren Sie Ihre E-Mail.");
-      this.router.navigate(['login'])
+
+      this.alert.show("Erfolg", "Nutzer wurde erfolgreich eingeloggt");
+      this.router.navigate(['home'])
     }).catch((err: any) => {
-      this.alert.show("Fehler", "Nutzer konnte nicht angelegt werden.");
+      this.alert.show("Fehler", "Nutzer konnte nicht eingeloggt werden.");
     })
   };
+
 
   /*
     logout() {
@@ -66,10 +66,7 @@ export class SessionServiceService {
       this.router.navigate([']);
     }
   /*
-    register(user:User
-    ) {
-      return this.http.post(`${this.environment.apiUrl}/users/register`, user);
-    }
+
 
     getAll() {
       return this.http.get<User[]>(`${this.environment.apiUrl}/users`);
