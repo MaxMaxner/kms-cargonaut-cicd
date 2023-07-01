@@ -1,37 +1,37 @@
 import { Injectable } from '@angular/core';
-import { IUser2 } from '../../interfaces/IUser2';
+import { IVehicle } from '../../interfaces/IVehicle';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
-let user: IUser2;
+let vehicle: IVehicle;
 
 @Injectable({
     providedIn: 'root',
 })
-export class User2Service {
+export class VehicleService {
     public environment = {
         apiUrl: 'http://localhost:8080',
     };
 
     constructor(private http: HttpClient) {}
 
-    getUserFromDB(mail: string): Promise<void | IUser2> {
-        console.log('working Service on: ', this.environment.apiUrl + '/user/' + mail);
+    getVehicleFromDB(nrplate: string): Promise<void | IVehicle> {
+        console.log('working Service on: ', this.environment.apiUrl + '/car/' + nrplate);
 
         return this.http
-            .get(this.environment.apiUrl + '/user/' + mail, httpOptions)
+            .get(this.environment.apiUrl + '/car/' + nrplate, httpOptions)
             .toPromise()
             .then((res: any) => {
-                user = res.user;
+                vehicle = res.car;
                 console.log(res);
             });
     }
 
-    async getUser(mail: string): Promise<IUser2> {
-        await this.getUserFromDB(mail);
-        return user;
+    async getVehicle(nrplate: string): Promise<IVehicle> {
+        await this.getVehicleFromDB(nrplate);
+        return vehicle;
     }
 }

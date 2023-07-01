@@ -4,6 +4,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var user_1 = require("../frontend/src/models/user");
 var config_1 = require("./config/config");
+var car_1 = require("../frontend/src/models/car");
 var mysql = require("./node_modules/mysql");
 var cryptoJS = require("./node_modules/crypto-js");
 var session = require("./node_modules/express-session");
@@ -619,6 +620,154 @@ router.get('/users', loginCheck(), function (req, res) {
             // Send user list to clientdir
             res.status(200).send({
                 userList: userList,
+                message: 'Daten erfolgreich übermittelt.'
+            });
+        }
+    });
+});
+
+router.post('/car', function (req, res) {
+    var nrplate = req.body.nrplate;
+    var usermail = req.body.usermail;
+    var brand = req.body.brand;
+    var model = req.body.model;
+    var maximalloadheight = req.body.maximalloadheight;
+    var maximalloadwidth = req.body.maximalloadwidth;
+    var weight = req.body.weight;
+    var maximalloadweight = req.body.maximalloadweight;
+    var type = req.body.type;
+    var features = req.body.features;
+    if (nrplate && usermail && brand && model) {
+            var data = new car_1.Car(nrplate, usermail, brand, model, maximalloadheight, maximalloadwidth, weight, maximalloadweight, type, features);
+            var query = "INSERT INTO `car` (`nrplate`, `usermail`, `brand`, `model`, `maximalloadheight`, `maximalloadwidth`, `weight`, `maximalloadweight`, `type`, `features`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            console.log(data);
+            database.query(query, [nrplate, usermail, brand, model, maximalloadheight, maximalloadwidth, weight, maximalloadweight, type, features], function (err, result) {
+                if (err || result === null) {
+                    res.status(400).send({
+                        message: 'Auto mit dem Nummernschild ' + nrplate + ' bereits registriert.',
+                    });
+                }
+                else if (!err) {
+                    res.status(201).send({
+                        message: 'Auto wurde erfolgreich registriert',
+                    });
+                }
+                else {
+                    res.status(500).send({
+                        message: 'DB-Error: ' + err,
+                    });
+                }
+            });
+        }
+        else {
+            res.status(400).send({
+                message: 'Es wurden nicht alle Felder gefüllt.'
+            });
+        }
+});
+router.get('/car/:nrplate',  function (req, res) {
+    var nrplate = req.params.nrplate;
+    var query = 'SELECT * FROM car WHERE nrplate = ?;';
+    database.query(query, nrplate, function (err, rows) {
+        if (err) {
+            res.status(500).send({
+                message: 'Database request failed: ' + err,
+            });
+        }
+        else if (rows.length === 1) {
+            var car = new car_1.Car(rows[0].nrplate, rows[0].usermail, rows[0].brand, rows[0].model, rows[0].maximalloadheight, rows[0].maximalloadwidth, rows[0].weight, rows[0].maximalloadweight, rows[0].type, rows[0].features);
+            res.status(200).send({
+                car: car,
+                message: 'Autodaten erfolgreich übertragen.',
+            });
+        }
+        else {
+            res.status(404).send({
+                message: 'Etwas ist schief gelaufen.',
+            });
+        }
+    });
+});
+
+router.put('/car/:nrplate', function (req, res) {
+    var nrplate = req.params.nrplate;
+    var usermail = req.body.usermail;
+    var brand = req.body.brand;
+    var model = req.body.model;
+    var maximalloadheight = req.body.maximalloadheight;
+    var maximalloadwidth = req.body.maximalloadwidth;
+    var weight = req.body.weight;
+    var maximalloadweight = req.body.maximalloadweight;
+    var type = req.body.type;
+    var features = req.body.features;
+    if (nrplate && usermail) {
+            var data = [nrplate, usermail, brand, model, maximalloadheight, maximalloadwidth, weight, maximalloadweight, type, features];
+            var query = "UPDATE `user` SET  `usermail`= ?, `brand`= ?, `model`= ?, `maximalloadheight`= ?,  `maximalloadwidth`= ?, `weight`= ?, `maximalloadweight`= ?, `type`= ?, `features`= ? WHERE nrplate =? ";
+            database.query(query, [usermail, brand, model, maximalloadheight, maximalloadwidth, weight, maximalloadweight, type, features, nrplate], function (err, result) {
+                if (err || result === null) {
+                    res.status(400).send({
+                        message: 'Auto mit dem Nummernschild ' + nrplate + ' bereits registriert.',
+                    });
+                }
+                else if (!err) {
+                    res.status(201).send({
+                        message: 'Autodaten wurden erfolgreich geändert.',
+                    });
+                }
+                else {
+                    res.status(500).send({
+                        message: 'DB-Error: ' + err,
+                    });
+                }
+            });
+    }
+    else {
+        res.status(400).send({
+            message: 'Es müssen die Felder E-Mail und Nummernschild gefüllt sein.'
+        });
+    }
+});
+
+router.delete('/car/:nrplate', loginCheck(), function (req, res) {
+    var nrplate = req.params.nrplate;
+    var query = 'DELETE FROM car WHERE nrplate = ?;';
+    database.query(query, nrplate, function (err, rows) {
+        if (err) {
+            res.status(500).send({
+                message: 'Database request failed: ' + err,
+            });
+        }
+        else {
+            if (rows.affectedRows === 1) {
+                res.status(200).send({
+                    message: "Auto erfolgreich gel\u00F6scht.",
+                });
+            }
+            else {
+                res.status(400).send({
+                    message: 'Das zu löschende Auto wurde nicht gefunden.',
+                });
+            }
+        }
+    });
+});
+
+router.get('/cars', loginCheck(), function (req, res) {
+    var query = 'SELECT * FROM car;';
+    database.query(query, query, function (err, rows) {
+        if (err) {
+            res.status(500).send({
+                message: 'DB-Error: ' + err,
+            });
+        }
+        else {
+            var carList = [];
+            for (var _i = 0, rows_1 = rows; _i < rows_1.length; _i++) {
+                var row = rows_1[_i];
+                carList.push(new car_1.Car(rows[0].nrplate, rows[0].usermail, rows[0].brand, rows[0].model, rows[0].maximalloadheight, rows[0].maximalloadwidth, rows[0].weight, rows[0].maximalloadweight, rows[0].type, rows[0].features));
+            }
+            res.status(200).send({
+                carList: carList,
                 message: 'Daten erfolgreich übermittelt.'
             });
         }
