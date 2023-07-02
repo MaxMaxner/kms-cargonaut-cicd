@@ -16,22 +16,16 @@ export class ProfileComponent implements OnInit {
     age: number = 0;
     birthday: string = '';
     birthdate: Date = new Date();
-    notice: string = '';
-    phone: string = '';
+    notice: string = 'Hier könnte ihre Werbung stehen! Oder ein Text über sie.';
+    phone: string | null = '';
     reviews: string[] = [];
 
     drivenWeight: number = 0;
     drivenPeople: number = 0;
     drivenKilometers: number = 0;
+    smoker: boolean = false;
     smokingStatus: string = '';
-    languageOptions: string[] = [
-        'Englisch',
-        'Spanisch',
-        'Französisch',
-        'Deutsch',
-        'Chinesisch',
-        'Japanisch',
-    ];
+    languageOptions: string[] = [];
     spokenLanguages: string[] = [];
 
     editingMode: boolean = false;
@@ -40,12 +34,9 @@ export class ProfileComponent implements OnInit {
         // @TODO: Get id from url and fetch data from backend
         // Initialize profile data
         this.profilePicture = 'assets/img/profile.png';
-        this.spokenLanguages = ['Deutsch'];
         this.drivenKilometers = 4500;
         this.drivenPeople = 10;
         this.drivenWeight = 378;
-        this.notice =
-            'Hallo! Willkommen auf meinem Profil. Ich bin der Kapitän der Landstraße! Folgt mit für Spaß und Kilometer!';
         this.reviews = [
             'Great person to work with!',
             'Highly recommended!',
@@ -55,14 +46,18 @@ export class ProfileComponent implements OnInit {
     }
 
     async displayUser() {
-        let user = this.user2Service.getUser('admin@admin.de');
+        let user = this.user2Service.getUser(sessionStorage.getItem('mail')); //sessionstorage email
+        console.log(sessionStorage.getItem('mail'));
         console.log(user);
         this.email = (await user).mail;
         this.firstname = (await user).firstname;
         this.lastname = (await user).lastname;
-        this.smokingStatus = (await user).smocker == 1 ? 'Raucher' : 'Nicht-Raucher';
-        this.birthdate = (await user).birthday;
+        this.smoker = (await user).smocker;
+        this.birthday = (await user).birthday;
+        console.log(this.birthday);
         this.phone = (await user).mobilephone;
+
+        this.smokingStatus = this.smoker == true ? 'Raucher' : 'Nicht-Raucher';
     }
 
     toggleEditingMode(): void {
@@ -71,6 +66,15 @@ export class ProfileComponent implements OnInit {
 
     saveChanges(): void {
         this.editingMode = false;
+        this.user2Service.updateUser(
+            this.firstname,
+            this.lastname,
+            this.smoker,
+            this.birthdate,
+            this.phone,
+            this.spokenLanguages,
+            sessionStorage.getItem('mail')
+        );
     }
 
     calculateAge() {

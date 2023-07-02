@@ -345,7 +345,8 @@ router.get('/user/:mail',  function (req, res) {
             });
         }
         else if (rows.length === 1) {
-            var user = new user_1.User(rows[0].mail, rows[0].firstname, rows[0].lastname, null, rows[0].birthday, rows[0].mobilephone, rows[0].photo, rows[0].licence, rows[0].smocker);
+            var user = new user_1.User(rows[0].mail, rows[0].firstname, rows[0].lastname, null, rows[0].birthday, rows[0].mobilephone, rows[0].photo, rows[0].licence, rows[0].smocker, rows[0].language);
+            console.log(user, rows[0].language)
             res.status(200).send({
                 user: user,
                 message: 'Nutzerdaten erfolgreich übertragen.',

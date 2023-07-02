@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { IUser2 } from '../../interfaces/IUser2';
+import { User } from '../../models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
-let user: IUser2;
+let user: User;
 
 @Injectable({
     providedIn: 'root',
@@ -16,9 +17,9 @@ export class User2Service {
         apiUrl: 'http://localhost:8080',
     };
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private router: Router) {}
 
-    getUserFromDB(mail: string): Promise<void | IUser2> {
+    getUserFromDB(mail: string): Promise<void | User> {
         console.log('working Service on: ', this.environment.apiUrl + '/user/' + mail);
 
         return this.http
@@ -27,11 +28,45 @@ export class User2Service {
             .then((res: any) => {
                 user = res.user;
                 console.log(res);
+                console.log(user.language);
             });
     }
 
-    async getUser(mail: string): Promise<IUser2> {
-        await this.getUserFromDB(mail);
+    async getUser(mail: string | null): Promise<User> {
+        if (mail != null) {
+            await this.getUserFromDB(mail);
+        } else {
+            this.router.navigate(['login']);
+        }
+
         return user;
+    }
+
+    updateUser(
+        firstname: string,
+        lastname: string,
+        smoker: boolean,
+        birthday: Date,
+        phone: string | null,
+        spokenLanguages: string[],
+        mail: string | null
+    ) {
+        if (mail != null) {
+            this.http
+                .put(
+                    this.environment.apiUrl + '/user/' + mail,
+                    {
+                        firstname: firstname,
+                        lastname: lastname,
+                        smoker: smoker,
+                        birthday: birthday,
+                        phone: phone,
+                        language: spokenLanguages,
+                    },
+                    httpOptions
+                )
+                .toPromise()
+                .then((res: any) => {});
+        }
     }
 }
