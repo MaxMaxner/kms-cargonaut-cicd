@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser'
 import { AppRoutingModule } from './app-routing.module'
 import { HomeComponent } from './home/home.component'
 import { NavbarComponent } from './navbar/navbar.component'
-import { NavbarLogedInComponent } from './navbar-loged-in/navbar-loged-in.component'
 import { RegisterComponent } from './register/register.component'
 import { OffersComponent } from './offers/offers.component'
 import { ExperienceComponent } from './experience/experience.component'
@@ -62,7 +61,6 @@ const appRoutes: Routes = [
         AppComponent,
         HomeComponent,
         NavbarComponent,
-        NavbarLogedInComponent,
         LoginComponent,
         RegisterComponent,
         OffersComponent,
