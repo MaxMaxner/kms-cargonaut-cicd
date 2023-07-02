@@ -1,5 +1,5 @@
 <div class="container">
-  <div id="inputrow" class="row">
+  <div id="inputrow" class="row align-items-center">
     <div class="col-md-3">
       <div class="form-group">
         <input [(ngModel)]="von" type="text" placeholder="Von">
@@ -43,18 +43,18 @@
       <span id="angebotschrift">Angebot erstellen</span>
     </div>
   </div>
-  <div id="offercards" class="card" [routerLink]="['/offer-details/1/false/false/false/false']">
-    <div id="cardrow" class="row">
-      <div id="vonnach" class="col-md-4">
-        <span >Hamburg</span> nach <span id="Zielort">München </span>
+  <div class="card" [routerLink]="['/offer-details/1/false/false/false/false']">
+    <div class="row cardrow">
+      <div class="col-md-4 vonnach">
+        <span>Hamburg</span> nach <span class="Zielort">München </span>
       </div>
-      <div id="datum" class="col-md-4">
+      <div class="col-md-4 datum">
         So, 25.09.2022 9Uhr
       </div>
       <div class="col-lg-4">
-        <img id="anbieterbild"
+        <img class="anbieterbild"
              src="../../assets/images/Offers/frau.jpg">
-        <span id="name">LV</span>
+        <span class="name">LV</span>
         <!--Hier kann eine forschleife angebracht werden, die je nach Bewertung die Sterne ausfüllt oder nicht-->
         <i class="bi bi-star-fill"></i>
         <i class="bi bi-star-fill"></i>
@@ -65,7 +65,7 @@
       <div class="col-md-3">
       </div>
     </div>
-    <div  class="row">
+    <div class="row">
       <div class="col-lg-2">
         <i class="bi bi-person"></i>
         <span> 3</span>
@@ -80,9 +80,9 @@
         <span> 1,50m x 2m </span>
       </div>
     </div>
-    <div id="lastlinerow" class="row d-flex justify-content-start">
+    <div class="row d-flex justify-content-start">
       <div class="col-md-2">
-        <i id="firstinformation" class="bi bi-check-lg"></i>Nichtraucher
+        <i class="bi bi-check-lg firstinformation"></i>Nichtraucher
       </div>
       <div class="col-lg-2">
         <i class="bi bi-check-lg"></i>Keine Tiere
@@ -91,13 +91,130 @@
         <i class="bi bi-check-lg"></i>Musik
       </div>
       <div class="col-lg-2">
-        <i id="lastinformation" class="bi bi-x-lg"> </i>Unterhaltung
+        <i class="bi bi-x-lg"> </i>Unterhaltung
       </div>
       <div class="col-lg-4 justify-content-end">
-        <div id="preisdiff" class="d-flex ">
-          <span id="preis">30€</span>
+        <div class="d-flex preisdiff ">
+          <span class="preis">30€</span>
         </div>
       </div>
+
+    </div>
+  </div>
+  <div class="card">
+    <div class="row cardrow">
+      <div class="col-md-4 vonnach">
+        <span>Leipzig</span> nach <span class="Zielort">Köln </span>
+      </div>
+      <div class="col-md-4 datum">
+        Mi, 02.05.2022 18Uhr
+      </div>
+      <div class="col-lg-4">
+        <img class="anbieterbild"
+             src="../../assets/images/Offers/mann.png">
+        <span class="name">ZM</span>
+        <!--Hier kann eine forschleife angebracht werden, die je nach Bewertung die Sterne ausfüllt oder nicht-->
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star"></i>
+        <i class="bi bi-star"></i>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2">
+        <i class="bi bi-person"></i>
+        <span> 2</span>
+      </div>
+      <div class="col-lg-2">
+
+        <i class="bi bi-minecart-loaded"></i>
+        <span>  23k </span>
+      </div>
+      <div class="col-lg-3">
+        <i class="bi bi-arrows-angle-expand"></i>
+        <span> 3,00m x 2,4m </span>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-start">
+      <div class="col-md-2">
+        <i class="bi bi-check-lg firstinformation"></i>Nichtraucher
+      </div>
+      <div class="col-lg-2">
+        <i class="bi bi-x-lg"></i>Keine Tiere
+      </div>
+      <div class="col-lg-2">
+        <i class="bi bi-x-lg"></i>Musik
+      </div>
+      <div class="col-lg-2">
+        <i class="bi bi-check-lg"> </i>Unterhaltung
+      </div>
+      <div class="col-lg-4 justify-content-end">
+        <div class="d-flex preisdiff ">
+          <span class="preis">50€</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="card">
+    <div class="row cardrow">
+      <div class="col-md-4 vonnach">
+        <span>Gießen</span> nach <span class="Zielort">Marburg </span>
+      </div>
+      <div class="col-md-4 datum">
+        So, 27.02.2024 12Uhr
+      </div>
+      <div class="col-lg-4">
+        <img class="anbieterbild"
+             src="../../assets/images/Offers/mann2.png">
+        <span class="name">HB</span>
+        <!--Hier kann eine forschleife angebracht werden, die je nach Bewertung die Sterne ausfüllt oder nicht-->
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star"></i>
+        <i class="bi bi-star"></i>
+        <i class="bi bi-star"></i>
+        <i class="bi bi-star"></i>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2">
+        <i class="bi bi-person"></i>
+        <span> 5</span>
+      </div>
+      <div class="col-lg-2">
+
+        <i class="bi bi-minecart-loaded"></i>
+        <span>  10k </span>
+      </div>
+      <div class="col-lg-3">
+        <i class="bi bi-arrows-angle-expand"></i>
+        <span> 2,50m x 3m </span>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-start">
+      <div class="col-md-2">
+        <i class="bi bi-check-lg firstinformation"></i>Nichtraucher
+      </div>
+      <div class="col-lg-2">
+        <i class="bi bi-x-lg"></i>Keine Tiere
+      </div>
+      <div class="col-lg-2">
+        <i class="bi bi-x-lg"></i>Musik
+      </div>
+      <div class="col-lg-2">
+        <i class="bi bi-x-lg"> </i>Unterhaltung
+      </div>
+      <div class="col-lg-4 justify-content-end">
+        <div class="d-flex preisdiff ">
+          <span class="preis">70€</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
