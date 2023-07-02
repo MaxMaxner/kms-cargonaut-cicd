@@ -27,24 +27,27 @@
 }
 
 
-#inputrow {
+.inputrow {
   justify-content: center;
   align-items: center;
 }
 
 .card {
   background-color: #F5F5F5;
+  margin-bottom: 10px;
+
 }
 
-.bi-star-fill {
+.bi-star-fill, .bi-star {
   margin-left: 10px;
 }
 
-#cardrow {
+
+.cardrow {
   margin-left: 10px;
 }
 
-#vonnach {
+.vonnach {
   padding-top: 15px;
 }
 
@@ -57,19 +60,19 @@ i {
   margin-left: 10px;
   margin-right: 10px
 }
-#preisdiff{
+.preisdiff{
   justify-content: end;
 
 }
 
-#anbieterbild {
+.anbieterbild {
   height: 80px;
   width: 80px;
   border-radius: 100px;
   margin-bottom: 2px
 }
 
-#datum {
+.datum {
   padding-top: 15px;
 }
 
@@ -82,7 +85,7 @@ span {
   color: #3A9B8F;
 }
 
-#preis {
+.preis {
   font-weight: bold;
   font-size: 30px;
   margin-bottom: 10px;
@@ -111,7 +114,7 @@ span {
 }
 
 @media (max-width: 1000px) {
-  #Zielort {
+  .Zielort {
     margin-left: 10px;
   }
 
