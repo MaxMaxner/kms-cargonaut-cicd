@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VehicleService } from '../services/vehicle.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-vehicle',
@@ -7,7 +8,7 @@ import { VehicleService } from '../services/vehicle.service';
     styleUrls: ['./vehicle.component.scss', '../app.component.scss'],
 })
 export class VehicleComponent implements OnInit {
-    constructor(private vehicleService: VehicleService) {}
+    constructor(private vehicleService: VehicleService, private router: Router) {}
 
     profilePicture: string = '';
     firstname: string = '';
@@ -29,7 +30,7 @@ export class VehicleComponent implements OnInit {
     }
 
     async displayVehicle() {
-        let vehicle = this.vehicleService.getVehicle('ADMN945');
+        let vehicle = this.vehicleService.getVehicle(sessionStorage.getItem('mail'));
         console.log(vehicle);
         this.model = (await vehicle).brand + ' ' + (await vehicle).model;
         this.weight = (await vehicle).weight;
@@ -43,5 +44,6 @@ export class VehicleComponent implements OnInit {
 
     saveChanges(): void {
         this.editingMode = false;
+        this.router.navigate(['profile']);
     }
 }

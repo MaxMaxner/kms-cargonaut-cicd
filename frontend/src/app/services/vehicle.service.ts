@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IVehicle } from '../../interfaces/IVehicle';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -16,13 +17,13 @@ export class VehicleService {
         apiUrl: 'http://localhost:8080',
     };
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private router: Router) {}
 
-    getVehicleFromDB(nrplate: string): Promise<void | IVehicle> {
-        console.log('working Service on: ', this.environment.apiUrl + '/car/' + nrplate);
+    getVehicleFromDB(mail: string): Promise<void | IVehicle> {
+        console.log('working Service on: ', this.environment.apiUrl + '/car/' + mail);
 
         return this.http
-            .get(this.environment.apiUrl + '/car/' + nrplate, httpOptions)
+            .get(this.environment.apiUrl + '/car/' + mail, httpOptions)
             .toPromise()
             .then((res: any) => {
                 vehicle = res.car;
@@ -30,8 +31,12 @@ export class VehicleService {
             });
     }
 
-    async getVehicle(nrplate: string): Promise<IVehicle> {
-        await this.getVehicleFromDB(nrplate);
+    async getVehicle(mail: string | null): Promise<IVehicle> {
+        if (mail != null) {
+            await this.getVehicleFromDB(mail);
+        } else {
+            this.router.navigate(['profile']);
+        }
         return vehicle;
     }
 }

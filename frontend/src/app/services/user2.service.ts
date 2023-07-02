@@ -4,7 +4,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+    }),
 };
 
 let user: User;
@@ -49,6 +52,8 @@ export class User2Service {
         birthday: Date,
         phone: string | null,
         spokenLanguages: string[],
+        photo: string,
+        licence: boolean | null,
         mail: string | null
     ) {
         if (mail != null) {
@@ -56,11 +61,14 @@ export class User2Service {
                 .put(
                     this.environment.apiUrl + '/user/' + mail,
                     {
+                        mail: mail,
                         firstname: firstname,
                         lastname: lastname,
-                        smoker: smoker,
                         birthday: birthday,
-                        phone: phone,
+                        mobilephone: phone,
+                        photo: photo,
+                        licence: licence,
+                        smocker: smoker,
                         language: spokenLanguages,
                     },
                     httpOptions

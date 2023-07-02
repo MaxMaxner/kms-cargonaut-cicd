@@ -11,6 +11,9 @@ var session = require("./node_modules/express-session");
 var router = express();
 var database = mysql.createConnection(config_1.Configuration.mysqlOptions);
 
+router.use(bodyParser.json());
+router.use(session(config_1.Configuration.sessionOptions));
+
 const allowCrossDomain = (req, res, next)=>{
     res.header(`Access-Control-Allow-Origin`, `*`);
     res.header(`Access-Control-Allow-Methods`, `*`);
@@ -20,8 +23,6 @@ const allowCrossDomain = (req, res, next)=>{
 
 router.use(allowCrossDomain)
 
-router.use(bodyParser.json());
-router.use(session(config_1.Configuration.sessionOptions));
 /*****************************************************************************
  * STATIC ROUTES                                                             *
  *****************************************************************************/
@@ -346,7 +347,6 @@ router.get('/user/:mail',  function (req, res) {
         }
         else if (rows.length === 1) {
             var user = new user_1.User(rows[0].mail, rows[0].firstname, rows[0].lastname, null, rows[0].birthday, rows[0].mobilephone, rows[0].photo, rows[0].licence, rows[0].smocker, rows[0].language);
-            console.log(user, rows[0].language)
             res.status(200).send({
                 user: user,
                 message: 'Nutzerdaten erfolgreich übertragen.',
@@ -395,7 +395,8 @@ router.get('/user/:mail',  function (req, res) {
  *     "message":"Der Nutzer kann nicht gefunden werden"
  * }
  */
-router.put('/user/:mail', loginCheck(), function (req, res) {
+router.put('/user/:mail', function (req, res) {
+    console.log('hallo');
     // Read data from request
     var mail = req.params.mail;
     var firstname = req.body.firstname;
@@ -410,7 +411,7 @@ router.put('/user/:mail', loginCheck(), function (req, res) {
     var year = new Date(birthday).getFullYear();
     var month = new Date(birthday).getMonth() + 1;
     var day = new Date(birthday).getDate();
-    var formattedDate = "".concat(year, "-").concat(month.toString().padStart(2, '0'), "-").concat(day.toString().padStart(2, '0'));
+    var formattedDate = "".concat(year.toString(), "-").concat(month.toString().padStart(2, '0'), "-").concat(day.toString().padStart(2, '0'));
     // add a new user if names, email- and password exist
     if (firstname && lastname && mail) {
         // Create new user
@@ -422,7 +423,7 @@ router.put('/user/:mail', loginCheck(), function (req, res) {
             var query = "UPDATE `user` SET  `firstname`= ?, `lastname`= ?, `birthday`= ?, `mobilephone`= ?,  `licence`= ?, `smocker`= ? WHERE mail =? ";
             console.log(data);
             // Execute database query
-            database.query(query, [mail, firstname, lastname, formattedDate, mobilephone, licence, smocker], function (err, result) {
+            database.query(query, [firstname, lastname, formattedDate, mobilephone, licence, smocker, mail], function (err, result) {
                 if (err || result === null) {
                     // Send response
                     res.status(400).send({
@@ -666,10 +667,10 @@ router.post('/car', function (req, res) {
             });
         }
 });
-router.get('/car/:nrplate',  function (req, res) {
-    var nrplate = req.params.nrplate;
-    var query = 'SELECT * FROM car WHERE nrplate = ?;';
-    database.query(query, nrplate, function (err, rows) {
+router.get('/car/:mail',  function (req, res) {
+    var mail = req.params.mail;
+    var query = 'SELECT * FROM car WHERE usermail = ?;';
+    database.query(query, mail, function (err, rows) {
         if (err) {
             res.status(500).send({
                 message: 'Database request failed: ' + err,

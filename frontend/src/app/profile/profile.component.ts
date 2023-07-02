@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
     smokingStatus: string = '';
     languageOptions: string[] = [];
     spokenLanguages: string[] = [];
+    licence: boolean | null = false;
 
     editingMode: boolean = false;
 
@@ -47,16 +48,25 @@ export class ProfileComponent implements OnInit {
 
     async displayUser() {
         let user = this.user2Service.getUser(sessionStorage.getItem('mail')); //sessionstorage email
-        console.log(sessionStorage.getItem('mail'));
         console.log(user);
         this.email = (await user).mail;
         this.firstname = (await user).firstname;
         this.lastname = (await user).lastname;
         this.smoker = (await user).smocker;
-        this.birthday = (await user).birthday;
         console.log(this.birthday);
         this.phone = (await user).mobilephone;
+        this.licence = (await user).licence;
 
+        var birthday = (await user).birthday;
+        var year = new Date(birthday).getFullYear();
+        var month = new Date(birthday).getMonth() + 1;
+        var day = new Date(birthday).getDate();
+        var formattedDate = ''
+            .concat(year.toString(), '-')
+            .concat(month.toString().padStart(2, '0'), '-')
+            .concat(day.toString().padStart(2, '0'));
+
+        this.birthday = formattedDate;
         this.smokingStatus = this.smoker == true ? 'Raucher' : 'Nicht-Raucher';
     }
 
@@ -66,6 +76,7 @@ export class ProfileComponent implements OnInit {
 
     saveChanges(): void {
         this.editingMode = false;
+        this.birthdate = new Date(this.birthday);
         this.user2Service.updateUser(
             this.firstname,
             this.lastname,
@@ -73,6 +84,8 @@ export class ProfileComponent implements OnInit {
             this.birthdate,
             this.phone,
             this.spokenLanguages,
+            this.profilePicture,
+            this.licence,
             sessionStorage.getItem('mail')
         );
     }
