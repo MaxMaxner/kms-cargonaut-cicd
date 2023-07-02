@@ -13,11 +13,16 @@ export class VehicleComponent implements OnInit {
     profilePicture: string = '';
     firstname: string = '';
     lastname: string = '';
+    brand: string = '';
     model: string = '';
     weight: number = 0;
+    maximalloadheight: number = 0;
+    maximalloadwidth: number = 0;
+    maximalloadweight: number = 0;
+    nrplate: string = '';
+    type: string = '';
+    features: string = '';
     seats: string = '';
-    dimensions: number[] = [];
-    extras: string = '';
     editingMode: boolean = true;
 
     ngOnInit(): void {
@@ -31,11 +36,15 @@ export class VehicleComponent implements OnInit {
 
     async displayVehicle() {
         let vehicle = this.vehicleService.getVehicle(sessionStorage.getItem('mail'));
-        console.log(vehicle);
-        this.model = (await vehicle).brand + ' ' + (await vehicle).model;
+        this.brand = (await vehicle).brand;
+        this.model = (await vehicle).model;
         this.weight = (await vehicle).weight;
-        this.extras = (await vehicle).features;
-        this.dimensions = [(await vehicle).maximalloadheight, (await vehicle).maximalloadwidth];
+        this.features = (await vehicle).features;
+        this.maximalloadheight = (await vehicle).maximalloadheight;
+        this.maximalloadwidth = (await vehicle).maximalloadwidth;
+        this.maximalloadweight = (await vehicle).maximalloadweight;
+        this.type = (await vehicle).type;
+        this.nrplate = (await vehicle).nrplate;
     }
 
     toggleEditingMode(): void {
@@ -44,6 +53,20 @@ export class VehicleComponent implements OnInit {
 
     saveChanges(): void {
         this.editingMode = false;
+        setTimeout(() => {
+            this.vehicleService.updateVehicle(
+                this.nrplate,
+                sessionStorage.getItem('mail'),
+                this.brand,
+                this.model,
+                this.maximalloadheight,
+                this.maximalloadwidth,
+                this.weight,
+                this.maximalloadweight,
+                this.type,
+                this.features
+            );
+        }, 200);
         this.router.navigate(['profile']);
     }
 }

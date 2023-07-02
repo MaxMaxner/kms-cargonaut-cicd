@@ -39,4 +39,38 @@ export class VehicleService {
         }
         return vehicle;
     }
+
+    updateVehicle(
+        nrplate: string,
+        usermail: string | null,
+        brand: string,
+        model: string,
+        maximalloadheight: number,
+        maximalloadwidth: number,
+        weight: number,
+        maximalloadweight: number,
+        type: string,
+        features: string
+    ) {
+        if (usermail != null) {
+            this.http
+                .put(
+                    this.environment.apiUrl + '/car/' + usermail,
+                    {
+                        nrplate: nrplate,
+                        brand: brand,
+                        model: model,
+                        maximalloadheight: maximalloadheight,
+                        maximalloadwidth: maximalloadwidth,
+                        weight: weight,
+                        maximalloadweight: maximalloadweight,
+                        type: type,
+                        features: features,
+                    },
+                    httpOptions
+                )
+                .toPromise()
+                .then((res: any) => {});
+        }
+    }
 }

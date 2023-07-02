@@ -396,7 +396,6 @@ router.get('/user/:mail',  function (req, res) {
  * }
  */
 router.put('/user/:mail', function (req, res) {
-    console.log('hallo');
     // Read data from request
     var mail = req.params.mail;
     var firstname = req.body.firstname;
@@ -691,9 +690,9 @@ router.get('/car/:mail',  function (req, res) {
     });
 });
 
-router.put('/car/:nrplate', function (req, res) {
-    var nrplate = req.params.nrplate;
-    var usermail = req.body.usermail;
+router.put('/car/:mail', function (req, res) {
+    var nrplate = req.body.nrplate;
+    var usermail = req.params.mail;
     var brand = req.body.brand;
     var model = req.body.model;
     var maximalloadheight = req.body.maximalloadheight;
@@ -702,10 +701,13 @@ router.put('/car/:nrplate', function (req, res) {
     var maximalloadweight = req.body.maximalloadweight;
     var type = req.body.type;
     var features = req.body.features;
+    console.log("haalllllloooooo")
+    console.log(nrplate, brand, model, maximalloadheight, maximalloadwidth, weight, maximalloadweight, type, features, usermail)
     if (nrplate && usermail) {
-            var data = [nrplate, usermail, brand, model, maximalloadheight, maximalloadwidth, weight, maximalloadweight, type, features];
-            var query = "UPDATE `user` SET  `usermail`= ?, `brand`= ?, `model`= ?, `maximalloadheight`= ?,  `maximalloadwidth`= ?, `weight`= ?, `maximalloadweight`= ?, `type`= ?, `features`= ? WHERE nrplate =? ";
-            database.query(query, [usermail, brand, model, maximalloadheight, maximalloadwidth, weight, maximalloadweight, type, features, nrplate], function (err, result) {
+            var data = [brand, model, maximalloadheight, maximalloadwidth, weight, maximalloadweight, type, features, usermail];
+            var query = "UPDATE `car` SET  `brand`= ?, `model`= ?, `maximalloadheight`= ?,  `maximalloadwidth`= ?, `weight`= ?, `maximalloadweight`= ?, `type`= ?, `features`= ? WHERE usermail =? ";
+            console.log(data)
+            database.query(query, data, function (err, result) {
                 if (err || result === null) {
                     res.status(400).send({
                         message: 'Auto mit dem Nummernschild ' + nrplate + ' bereits registriert.',
