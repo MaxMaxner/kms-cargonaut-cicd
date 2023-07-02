@@ -4,11 +4,15 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var user_1 = require("../frontend/src/models/user");
 var config_1 = require("./config/config");
+var car_1 = require("../frontend/src/models/car");
 var mysql = require("./node_modules/mysql");
 var cryptoJS = require("./node_modules/crypto-js");
 var session = require("./node_modules/express-session");
 var router = express();
 var database = mysql.createConnection(config_1.Configuration.mysqlOptions);
+
+router.use(bodyParser.json());
+router.use(session(config_1.Configuration.sessionOptions));
 
 const allowCrossDomain = (req, res, next)=>{
     res.header(`Access-Control-Allow-Origin`, `*`);
@@ -19,8 +23,6 @@ const allowCrossDomain = (req, res, next)=>{
 
 router.use(allowCrossDomain)
 
-router.use(bodyParser.json());
-router.use(session(config_1.Configuration.sessionOptions));
 /*****************************************************************************
  * STATIC ROUTES                                                             *
  *****************************************************************************/
@@ -332,7 +334,7 @@ router.post('/user', function (req, res) {
  *   "message": "Passwort wurden erfolgreich geändert."
  * }
  */
-router.get('/user/:mail', loginCheck, function (req, res) {
+router.get('/user/:mail',  function (req, res) {
     // Read data from request parameters
     var mail = req.params.mail;
     var query = 'SELECT * FROM user WHERE mail = ?;';
@@ -344,7 +346,7 @@ router.get('/user/:mail', loginCheck, function (req, res) {
             });
         }
         else if (rows.length === 1) {
-            var user = new user_1.User(rows[0].mail, rows[0].firstname, rows[0].lastname, null, null, null, rows[0].photo, null, rows[0].smocker);
+            var user = new user_1.User(rows[0].mail, rows[0].firstname, rows[0].lastname, null, rows[0].birthday, rows[0].mobilephone, rows[0].photo, rows[0].licence, rows[0].smocker, rows[0].language);
             res.status(200).send({
                 user: user,
                 message: 'Nutzerdaten erfolgreich übertragen.',
@@ -408,7 +410,7 @@ router.put('/user/:mail', function (req, res) {
     var year = new Date(birthday).getFullYear();
     var month = new Date(birthday).getMonth() + 1;
     var day = new Date(birthday).getDate();
-    var formattedDate = "".concat(year, "-").concat(month.toString().padStart(2, '0'), "-").concat(day.toString().padStart(2, '0'));
+    var formattedDate = "".concat(year.toString(), "-").concat(month.toString().padStart(2, '0'), "-").concat(day.toString().padStart(2, '0'));
     // add a new user if names, email- and password exist
     if (firstname && lastname && mail) {
         // Create new user
@@ -420,7 +422,7 @@ router.put('/user/:mail', function (req, res) {
             var query = "UPDATE `user` SET  `firstname`= ?, `lastname`= ?, `birthday`= ?, `mobilephone`= ?,  `licence`= ?, `smocker`= ? WHERE mail =? ";
             console.log(data);
             // Execute database query
-            database.query(query, [mail, firstname, lastname, formattedDate, mobilephone, licence, smocker], function (err, result) {
+            database.query(query, [firstname, lastname, formattedDate, mobilephone, licence, smocker, mail], function (err, result) {
                 if (err || result === null) {
                     // Send response
                     res.status(400).send({
@@ -487,7 +489,7 @@ router.put('/user/:mail', function (req, res) {
  *     "message":"Der Nutzer kann nicht gefunden werden"
  * }
  */
-router.put('/userpassword/:mail', function (req, res) {
+router.put('/userpassword/:mail', loginCheck(), function (req, res) {
     // Read data from request
     var mail = req.params.mail;
     var passwordNew = req.body.passwordNew;
@@ -619,6 +621,157 @@ router.get('/users', loginCheck(), function (req, res) {
             // Send user list to clientdir
             res.status(200).send({
                 userList: userList,
+                message: 'Daten erfolgreich übermittelt.'
+            });
+        }
+    });
+});
+
+router.post('/car', function (req, res) {
+    var nrplate = req.body.nrplate;
+    var usermail = req.body.usermail;
+    var brand = req.body.brand;
+    var model = req.body.model;
+    var maximalloadheight = req.body.maximalloadheight;
+    var maximalloadwidth = req.body.maximalloadwidth;
+    var weight = req.body.weight;
+    var maximalloadweight = req.body.maximalloadweight;
+    var type = req.body.type;
+    var features = req.body.features;
+    if (nrplate && usermail && brand && model) {
+            var data = new car_1.Car(nrplate, usermail, brand, model, maximalloadheight, maximalloadwidth, weight, maximalloadweight, type, features);
+            var query = "INSERT INTO `car` (`nrplate`, `usermail`, `brand`, `model`, `maximalloadheight`, `maximalloadwidth`, `weight`, `maximalloadweight`, `type`, `features`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            console.log(data);
+            database.query(query, [nrplate, usermail, brand, model, maximalloadheight, maximalloadwidth, weight, maximalloadweight, type, features], function (err, result) {
+                if (err || result === null) {
+                    res.status(400).send({
+                        message: 'Auto mit dem Nummernschild ' + nrplate + ' bereits registriert.',
+                    });
+                }
+                else if (!err) {
+                    res.status(201).send({
+                        message: 'Auto wurde erfolgreich registriert',
+                    });
+                }
+                else {
+                    res.status(500).send({
+                        message: 'DB-Error: ' + err,
+                    });
+                }
+            });
+        }
+        else {
+            res.status(400).send({
+                message: 'Es wurden nicht alle Felder gefüllt.'
+            });
+        }
+});
+router.get('/car/:mail',  function (req, res) {
+    var mail = req.params.mail;
+    var query = 'SELECT * FROM car WHERE usermail = ?;';
+    database.query(query, mail, function (err, rows) {
+        if (err) {
+            res.status(500).send({
+                message: 'Database request failed: ' + err,
+            });
+        }
+        else if (rows.length === 1) {
+            var car = new car_1.Car(rows[0].nrplate, rows[0].usermail, rows[0].brand, rows[0].model, rows[0].maximalloadheight, rows[0].maximalloadwidth, rows[0].weight, rows[0].maximalloadweight, rows[0].type, rows[0].features);
+            res.status(200).send({
+                car: car,
+                message: 'Autodaten erfolgreich übertragen.',
+            });
+        }
+        else {
+            res.status(404).send({
+                message: 'Etwas ist schief gelaufen.',
+            });
+        }
+    });
+});
+
+router.put('/car/:mail', function (req, res) {
+    var nrplate = req.body.nrplate;
+    var usermail = req.params.mail;
+    var brand = req.body.brand;
+    var model = req.body.model;
+    var maximalloadheight = req.body.maximalloadheight;
+    var maximalloadwidth = req.body.maximalloadwidth;
+    var weight = req.body.weight;
+    var maximalloadweight = req.body.maximalloadweight;
+    var type = req.body.type;
+    var features = req.body.features;
+    console.log("haalllllloooooo")
+    console.log(nrplate, brand, model, maximalloadheight, maximalloadwidth, weight, maximalloadweight, type, features, usermail)
+    if (nrplate && usermail) {
+            var data = [brand, model, maximalloadheight, maximalloadwidth, weight, maximalloadweight, type, features, usermail];
+            var query = "UPDATE `car` SET  `brand`= ?, `model`= ?, `maximalloadheight`= ?,  `maximalloadwidth`= ?, `weight`= ?, `maximalloadweight`= ?, `type`= ?, `features`= ? WHERE usermail =? ";
+            console.log(data)
+            database.query(query, data, function (err, result) {
+                if (err || result === null) {
+                    res.status(400).send({
+                        message: 'Auto mit dem Nummernschild ' + nrplate + ' bereits registriert.',
+                    });
+                }
+                else if (!err) {
+                    res.status(201).send({
+                        message: 'Autodaten wurden erfolgreich geändert.',
+                    });
+                }
+                else {
+                    res.status(500).send({
+                        message: 'DB-Error: ' + err,
+                    });
+                }
+            });
+    }
+    else {
+        res.status(400).send({
+            message: 'Es müssen die Felder E-Mail und Nummernschild gefüllt sein.'
+        });
+    }
+});
+
+router.delete('/car/:nrplate', loginCheck(), function (req, res) {
+    var nrplate = req.params.nrplate;
+    var query = 'DELETE FROM car WHERE nrplate = ?;';
+    database.query(query, nrplate, function (err, rows) {
+        if (err) {
+            res.status(500).send({
+                message: 'Database request failed: ' + err,
+            });
+        }
+        else {
+            if (rows.affectedRows === 1) {
+                res.status(200).send({
+                    message: "Auto erfolgreich gel\u00F6scht.",
+                });
+            }
+            else {
+                res.status(400).send({
+                    message: 'Das zu löschende Auto wurde nicht gefunden.',
+                });
+            }
+        }
+    });
+});
+
+router.get('/cars', loginCheck(), function (req, res) {
+    var query = 'SELECT * FROM car;';
+    database.query(query, query, function (err, rows) {
+        if (err) {
+            res.status(500).send({
+                message: 'DB-Error: ' + err,
+            });
+        }
+        else {
+            var carList = [];
+            for (var _i = 0, rows_1 = rows; _i < rows_1.length; _i++) {
+                var row = rows_1[_i];
+                carList.push(new car_1.Car(rows[0].nrplate, rows[0].usermail, rows[0].brand, rows[0].model, rows[0].maximalloadheight, rows[0].maximalloadwidth, rows[0].weight, rows[0].maximalloadweight, rows[0].type, rows[0].features));
+            }
+            res.status(200).send({
+                carList: carList,
                 message: 'Daten erfolgreich übermittelt.'
             });
         }

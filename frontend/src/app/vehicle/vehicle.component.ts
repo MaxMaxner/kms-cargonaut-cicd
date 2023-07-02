@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
+import { VehicleService } from '../services/vehicle.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-vehicle',
@@ -6,31 +8,43 @@ import { Component, OnInit } from '@angular/core'
     styleUrls: ['./vehicle.component.scss', '../app.component.scss'],
 })
 export class VehicleComponent implements OnInit {
+    constructor(private vehicleService: VehicleService, private router: Router) {}
+
     profilePicture: string = '';
     firstname: string = '';
     lastname: string = '';
+    brand: string = '';
     model: string = '';
-    weight: string = '';
+    weight: number = 0;
+    maximalloadheight: number = 0;
+    maximalloadwidth: number = 0;
+    maximalloadweight: number = 0;
+    nrplate: string = '';
+    type: string = '';
+    features: string = '';
     seats: string = '';
-    dimensions: number[] = [];
-    extras: string = '';
-    dateOfConstruction: string = '';
-    YoC: Date = new Date();
     editingMode: boolean = true;
 
     ngOnInit(): void {
         // @TODO: Get id from url and fetch data from backend
         // Initialize profile data
         this.profilePicture = 'assets/img/profile.png';
-        this.firstname = 'Manfred';
-        this.lastname = 'Degenhort';
-        this.model = 'Opel Astra';
-        this.weight = '1400';
         this.seats = '4';
-        this.dimensions = [1.8, 2.4];
-        this.extras =
-            'Das Auto fährt nicht schneller als 40 Km/H weil es kaputt ist. Mitfahrer ungern gesehen';
-        this.YoC = new Date(this.dateOfConstruction);
+
+        this.displayVehicle();
+    }
+
+    async displayVehicle() {
+        let vehicle = this.vehicleService.getVehicle(sessionStorage.getItem('mail'));
+        this.brand = (await vehicle).brand;
+        this.model = (await vehicle).model;
+        this.weight = (await vehicle).weight;
+        this.features = (await vehicle).features;
+        this.maximalloadheight = (await vehicle).maximalloadheight;
+        this.maximalloadwidth = (await vehicle).maximalloadwidth;
+        this.maximalloadweight = (await vehicle).maximalloadweight;
+        this.type = (await vehicle).type;
+        this.nrplate = (await vehicle).nrplate;
     }
 
     toggleEditingMode(): void {
@@ -39,5 +53,20 @@ export class VehicleComponent implements OnInit {
 
     saveChanges(): void {
         this.editingMode = false;
+        setTimeout(() => {
+            this.vehicleService.updateVehicle(
+                this.nrplate,
+                sessionStorage.getItem('mail'),
+                this.brand,
+                this.model,
+                this.maximalloadheight,
+                this.maximalloadwidth,
+                this.weight,
+                this.maximalloadweight,
+                this.type,
+                this.features
+            );
+        }, 200);
+        this.router.navigate(['profile']);
     }
 }

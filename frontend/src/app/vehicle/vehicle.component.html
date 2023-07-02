@@ -1,18 +1,18 @@
 <div class="vehicle">
     <div class="vehicle-information row" *ngIf="!editingMode">
         <div class="vehicle-infos card col-md-8 text-center">
-            <h1 class="model-header">{{ model }}, {{ YoC }}</h1>
+            <h1 class="model-header">{{ brand }} {{ model }}</h1>
             <p class="row">
                 <span class="col-md-4"> <i class="bi bi-person"></i> {{ seats }} Sitzplätze </span>
                 <span class="col-md-4">
-                    <i class="bi bi-arrows-angle-expand"></i> {{ dimensions[0] }} x
-                    {{ dimensions[1] }}
+                    <i class="bi bi-arrows-angle-expand"></i> {{ maximalloadheight }} x
+                    {{ maximalloadwidth }}
                 </span>
                 <span class="col-md-4">
                     <i class="bi bi-minecart-loaded"></i> {{ weight }} kg
                 </span>
             </p>
-            <p class="extras col-md-6 text-center">{{ extras }}</p>
+            <p class="extras col-md-6 text-center">{{ features }}</p>
         </div>
 
         <div class="pic-and-name col-md-2 text-center">
@@ -40,8 +40,21 @@
             <div class="left col-md-4">
                 <h2 class="header col-md-10">Mein Fahrzeug</h2>
                 <div class="model">
-                    <label for="model-input">Modell</label>
-                    <input id="model-input" type="text" [(ngModel)]="model" placeholder="Modell" />
+                    <label for="model">Marke und Modell</label>
+                    <div id="model">
+                        <input
+                            class="model-input"
+                            type="text"
+                            [(ngModel)]="brand"
+                            placeholder="Marke"
+                        />
+                        <input
+                            class="model-input"
+                            type="text"
+                            [(ngModel)]="model"
+                            placeholder="Modell"
+                        />
+                    </div>
                 </div>
                 <div class="weight">
                     <label for="weight-input">Gewicht</label>
@@ -70,17 +83,17 @@
                     <div id="dimensions">
                         <input
                             id="dimension1"
-                            placeholder="Länge"
-                            type="string"
+                            placeholder="Höhe"
+                            type="number"
                             class="dimension"
-                            [(ngModel)]="dimensions[0]"
+                            [(ngModel)]="maximalloadheight"
                         />
                         <input
                             id="dimension2"
                             placeholder="Breite"
-                            type="string"
+                            type="number"
                             class="dimension"
-                            [(ngModel)]="dimensions[1]"
+                            [(ngModel)]="maximalloadwidth"
                         />
                     </div>
                 </div>
@@ -98,7 +111,7 @@
                     <textarea
                         id="notice-input"
                         class="notice-input"
-                        [(ngModel)]="extras"
+                        [(ngModel)]="features"
                     ></textarea>
                 </div>
 
