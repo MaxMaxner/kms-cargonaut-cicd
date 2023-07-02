@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BookOfferDetailsComponent } from './book-offer-details.component';
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {FormsModule} from "@angular/forms";
 
 describe('BookOfferDetailsComponent', () => {
   let component: BookOfferDetailsComponent;
@@ -8,7 +10,11 @@ describe('BookOfferDetailsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BookOfferDetailsComponent]
+      declarations: [BookOfferDetailsComponent],
+      providers: [NgbActiveModal],
+      imports: [
+        FormsModule,
+      ],
     });
     fixture = TestBed.createComponent(BookOfferDetailsComponent);
     component = fixture.componentInstance;

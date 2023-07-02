@@ -13,4 +13,5 @@ export interface IUser {
     totalTrips: number;
     totalOffers: number;
     totalSearches: number;
+    language: string [];
 }

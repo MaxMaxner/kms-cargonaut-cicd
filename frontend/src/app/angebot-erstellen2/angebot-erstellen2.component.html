@@ -85,7 +85,7 @@
 
           <div class="form-group" style="margin-top: 50px">
             <div class="form-check">
-              <input type="checkbox" style="height: 80px; width: 80px" class="form-check-input" id="price-negotiable"
+              <input type="checkbox" class="form-check-input" id="price-negotiable"
                      formControlName="priceNegotiable">
               <label class="form-check-label" for="price-negotiable">Preis verhandelbar?</label>
             </div>
@@ -99,8 +99,8 @@
         </div>
       </div>
 
-      <button type="submit" style="margin-top: 20px; background-color: #3A9B8F;color: white"
-              class="btn float-right">Angebot erstellen</button>
+      <button type="submit" style="margin-top: 20px;margin-bottom: 20px; background-color: #3A9B8F;color: white"
+              class="btn float-right" [routerLink]="['/myoffers']">Angebot erstellen</button>
     </form>
   </div>
 </div>

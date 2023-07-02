@@ -47,6 +47,7 @@ export class UserService {
       totalTrips: 15,
       totalOffers: 234,
       totalSearches: 156,
+      language: ["deutsch"]
     }
     return user;
   }

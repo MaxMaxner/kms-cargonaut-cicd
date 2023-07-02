@@ -269,6 +269,7 @@ router.post('/user', (req: Request, res: Response) => {
     const photo: string = req.body.photo
     const licence = req.body.licence
     const smocker = req.body.smocker
+    const language = req.body.language
 
 
     const year: number = new Date(birthday).getFullYear();
@@ -284,11 +285,11 @@ router.post('/user', (req: Request, res: Response) => {
         const eighteenYearsAgo: Date = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
 
         if (new Date(birthday) <= eighteenYearsAgo) {
-            const data: User = new User(mail, firstname, lastname, password, formattedDate, mobilephone, photo, licence, smocker); // As standard, any new user
-            const query: string = "INSERT INTO `user` (`mail`, `firstname`, `lastname`, `password`, `birthday`, `mobilephone`, `photo`, `licence`, `smocker`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            const data: User = new User(mail, firstname, lastname, password, formattedDate, mobilephone, photo, licence, smocker, language); // As standard, any new user
+            const query: string = "INSERT INTO `user` (`mail`, `firstname`, `lastname`, `password`, `birthday`, `mobilephone`, `photo`, `licence`, `smocker`,`language`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
             console.log(data)
             // Execute database query
-            database.query(query, [mail, firstname, lastname, password, formattedDate, mobilephone, photo, licence, smocker], (err: MysqlError, result: any) => {
+            database.query(query, [mail, firstname, lastname, password, formattedDate, mobilephone, photo, licence, smocker, language], (err: MysqlError, result: any) => {
                 if (err || result === null) {
                     // Send response
                     res.status(400).send({
@@ -364,6 +365,8 @@ router.get('/user/:mail', loginCheck, (req: Request, res: Response) => {
                 rows[0].photo,
                 null,
                 rows[0].smocker,
+                rows[0].language,
+
             );
             res.status(200).send({
                 user,
@@ -422,6 +425,7 @@ router.put('/user/:mail', (req: Request, res: Response) => {
     const photo: string = req.body.photo
     const licence: string = req.body.licence;
     const smocker: string = req.body.smocker;
+    const language: string = req.body.language;
     // Check that all arguments are given
     //Birthday in "YYY-MM-DD"
 
@@ -440,10 +444,10 @@ router.put('/user/:mail', (req: Request, res: Response) => {
 
         if (new Date(birthday) <= eighteenYearsAgo) {
             const data: string[] = [mail, firstname, lastname, formattedDate, mobilephone, licence, smocker]; // As standard, any new user
-            const query: string = "UPDATE `user` SET  `firstname`= ?, `lastname`= ?, `birthday`= ?, `mobilephone`= ?,  `licence`= ?, `smocker`= ? WHERE mail =? ";
+            const query: string = "UPDATE `user` SET  `firstname`= ?, `lastname`= ?, `birthday`= ?, `mobilephone`= ?,  `licence`= ?, `smocker`= ?,`language`= ? WHERE mail =? ";
             console.log(data)
             // Execute database query
-            database.query(query, [mail, firstname, lastname, formattedDate, mobilephone, licence, smocker], (err: MysqlError, result: any) => {
+            database.query(query, [firstname, lastname, formattedDate, mobilephone, licence, smocker,language,mail], (err: MysqlError, result: any) => {
                 if (err || result === null) {
                     // Send response
                     res.status(400).send({
@@ -652,7 +656,8 @@ router.get('/users', loginCheck(), (req: Request, res: Response) => {
                     rows[0].mobilephone,
                     rows[0].photo,
                     rows[0].licence,
-                    rows[0].smocker
+                    rows[0].smocker,
+                    rows[0].language
                 ));
             }
 
@@ -680,22 +685,24 @@ router.get('/entries', loginCheck(), (req: Request, res: Response) => {
             const entryList: Entry[] = [];
             // Parse every entry
             for (const row of rows) {
-                userList.push(new Entry(
+                entryList.push(new Entry(
                     rows[0].entryID,
                     rows[0].usermail,
                     rows[0].entrytype,
                     null,
-                    rows[0].birthday,
-                    rows[0].mobilephone,
-                    rows[0].photo,
-                    rows[0].licence,
-                    rows[0].smocker
+                    rows[0].destination,
+                    rows[0].stops,
+                    rows[0].seats,
+                    rows[0].maxtranspweight,
+                    rows[0].price,
+                    rows[0].startdate,
+                    rows[0].starttime
                 ));
             }
 
             // Send user list to clientdir
             res.status(200).send({
-                userList: userList,
+                entryList: enrtyList,
                 message: 'Daten erfolgreich übermittelt.'
             });
         }

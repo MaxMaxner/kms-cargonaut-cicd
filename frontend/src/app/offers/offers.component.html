@@ -37,13 +37,13 @@
       <h2>Angebote</h2>
     </div>
     <div id="createofferdiv" class="col-2 col-md-6 d-flex justify-content-center align-items-center">
-      <button [routerLink]="['/createoffer']" id="createoffer" type="button" class="btn">
+      <button [routerLink]="['/createoffer1']" id="createoffer" type="button" class="btn">
         <i id="faplus" class="bi bi-plus-lg"></i>
       </button>
       <span id="angebotschrift">Angebot erstellen</span>
     </div>
   </div>
-  <div class="card">
+  <div class="card" [routerLink]="['/offer-details/1/false/false/false/false']">
     <div class="row cardrow">
       <div class="col-md-4 vonnach">
         <span>Hamburg</span> nach <span class="Zielort">München </span>
@@ -73,7 +73,7 @@
       <div class="col-lg-2">
 
         <i class="bi bi-minecart-loaded"></i>
-        <span>  50k </span>
+        <span>  50kg </span>
       </div>
       <div class="col-lg-3">
         <i class="bi bi-arrows-angle-expand"></i>

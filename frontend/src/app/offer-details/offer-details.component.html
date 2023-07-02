@@ -169,7 +169,7 @@
     <button *ngIf="rideDone" (click)="review()" type="button" class="btn btn-primary" style="background-color:#3A9B8F; border: none">
       Bewerten
     </button>
-    <button *ngIf="!rideDone" type="button" class="btn btn-primary" style="background-color:#3A9B8F; border: none;">
+    <button *ngIf="!rideDone && !owner" type="button" class="btn btn-primary" style="background-color:#3A9B8F; border: none;">
       Tracking
     </button>
   </div>

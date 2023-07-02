@@ -16,19 +16,21 @@ export class OfferDetailsComponent {
     private modalService: NgbModal
   ) {  }
 
+  public owner = false;
+  public booked = false;
+  public rideDone = false;
+  public allowTracking = false;
   // this function will be called when the component is initialized
   ngOnInit() {
-    const offerId: string | null = this.route.snapshot.paramMap.get('id'); // get the id from the url
+    const offerId: string | null = this.route.snapshot.paramMap.get('id');// get the id from the url
+    this.owner = JSON.parse(this.route.snapshot.paramMap.get('owner') as string);
+    this.booked = JSON.parse(this.route.snapshot.paramMap.get('booked') as string);
+    this.rideDone = JSON.parse(this.route.snapshot.paramMap.get('rideDone') as string)
+    this.allowTracking = JSON.parse(this.route.snapshot.paramMap.get('allowTracking') as string)
     if (offerId) {
       // TODO: get the offer from the backend/service
     }
   }
-
-
-  public owner  = false;
-  public booked = true;
-  public rideDone= true;
-  public allowTracking = true;
 
   async book() {
     try {

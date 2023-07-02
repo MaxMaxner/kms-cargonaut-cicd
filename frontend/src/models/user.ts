@@ -8,8 +8,9 @@ export class User {
    photo: string;
    licence: boolean | null;
    smocker: boolean;
+   language: string[] | null;
 
-  constructor(
+     constructor(
     mail: string,
     firstname: string,
     lastname: string,
@@ -18,7 +19,8 @@ export class User {
     mobilephone: string | null,
     photo: string,
     licence: boolean,
-    smocker: boolean
+    smocker: boolean,
+    language: string[],
   ) {
     this.mail = mail;
     this.firstname = firstname;
@@ -29,6 +31,7 @@ export class User {
     this.photo = photo;
     this.licence = licence;
     this.smocker = smocker;
+    this.language = language;
   }
   setBirthday(birthday: Date):  string {
 
