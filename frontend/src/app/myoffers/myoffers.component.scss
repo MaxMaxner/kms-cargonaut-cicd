@@ -27,52 +27,52 @@
 }
 
 
-#inputrow {
+.inputrow {
   justify-content: center;
   align-items: center;
 }
 
 .card {
   background-color: #F5F5F5;
+  margin-bottom: 10px;
+
 }
 
-.bi-star-fill {
+.bi-star-fill, .bi-star {
   margin-left: 10px;
 }
 
-#cardrow {
+
+.cardrow {
   margin-left: 10px;
 }
 
-#vonnach {
-  padding-top: 15px;
+.vonnach {
+  margin-top: 15px;
 }
 
 i {
   font-weight: bold;
 }
 
-.container{
-  margin-top: 50px;
-}
 
 #name {
   margin-left: 10px;
   margin-right: 10px
 }
-#preisdiff{
+.preisdiff{
   justify-content: end;
 
 }
 
-#anbieterbild {
+.anbieterbild {
   height: 80px;
   width: 80px;
   border-radius: 100px;
   margin-bottom: 2px
 }
 
-#datum {
+.datum {
   padding-top: 15px;
 }
 
@@ -85,7 +85,7 @@ span {
   color: #3A9B8F;
 }
 
-#preis {
+.preis {
   font-weight: bold;
   font-size: 30px;
   margin-bottom: 10px;
@@ -114,7 +114,7 @@ span {
 }
 
 @media (max-width: 1000px) {
-  #Zielort {
+  .Zielort {
     margin-left: 10px;
   }
 
@@ -125,4 +125,21 @@ span {
 
 }
 
+
+input {
+  margin-top: 20px;
+  width: 100%;
+  border: none;
+  height: 50px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  padding-left: 25px;
+  background-color: #F5F5F5;
+  outline: none;
+  color: #101010;
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16);
+
+}
 
