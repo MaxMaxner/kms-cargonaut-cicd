@@ -3,6 +3,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 import { AngebotErstellenEinsComponent } from './angebot-erstellen1.component';
+import {ActivatedRoute, RouterModule} from '@angular/router'
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {OfferDetailsComponent} from "../offer-details/offer-details.component";
 
 describe('AngebotErstellenEinsComponent', () => {
   let component: AngebotErstellenEinsComponent;
@@ -14,7 +17,16 @@ describe('AngebotErstellenEinsComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [AngebotErstellenEinsComponent],
-        imports: [FormsModule, ReactiveFormsModule, HttpClientTestingModule],
+        imports: [FormsModule, ReactiveFormsModule, HttpClientTestingModule, RouterModule],
+        providers: [
+          NgbActiveModal,
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              // Add any properties or methods you need to mock here
+            },
+          },
+        ],
       }).compileComponents();
     })
   );
