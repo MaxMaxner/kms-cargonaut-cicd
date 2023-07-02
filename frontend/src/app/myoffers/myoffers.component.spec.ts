@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MyoffersComponent } from './myoffers.component';
+import {ActivatedRoute, RouterModule} from "@angular/router";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 describe('MyoffersComponent', () => {
   let component: MyoffersComponent;
@@ -8,7 +10,17 @@ describe('MyoffersComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MyoffersComponent]
+      declarations: [MyoffersComponent],
+      imports: [RouterModule],
+      providers: [
+        NgbActiveModal,
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            // Add any properties or methods you need to mock here
+          },
+        },
+      ],
     });
     fixture = TestBed.createComponent(MyoffersComponent);
     component = fixture.componentInstance;

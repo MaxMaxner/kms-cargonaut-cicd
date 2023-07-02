@@ -35,7 +35,7 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'offers', component: OffersComponent },
-    { path: 'offer-details/:id', component: OfferDetailsComponent },
+    { path: 'offer-details/:id/:owner/:booked/:rideDone/:allowTracking', component: OfferDetailsComponent },
     { path: 'experience/:id', component: ExperienceComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'myoffers', component: MyoffersComponent },
@@ -47,6 +47,9 @@ const routes: Routes = [
     { path: 'checkout', component: KasseComponent },
     { path: 'tracking', component: TrackingComponent },
     { path: 'vehicles', component: VehicleComponent },
+  {path: 'createrequest', component: GesucheErstellenComponent},
+  {path: 'createoffer1', component: AngebotErstellenEinsComponent },
+  {path: 'createoffer2', component: AngebotErstellenZweiComponent }
 ]
 
 @NgModule({
