@@ -275,7 +275,7 @@ router.post("/user", function (req, res) {
         var eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
         if (new Date(birthday) <= eighteenYearsAgo) {
             var data = new user_1.User(mail, firstname, lastname, password, formattedDate, mobilephone, photo, licence, smocker, language); // As standard, any new user
-            var query = "INSERT INTO `user` (`mail`, `firstname`, `lastname`, `password`, `birthday`, `mobilephone`, `photo`, `licence`, `smocker`,`language`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+            var query = "INSERT INTO `user` (`mail`, `firstname`, `lastname`, `password`, `birthday`, `mobilephone`, `photo`, `licence`, `smocker`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             console.log(data);
             // Execute database query
             database.query(query, [
@@ -288,7 +288,6 @@ router.post("/user", function (req, res) {
                 photo,
                 licence,
                 smocker,
-                language,
             ], function (err, result) {
                 if (err || result === null) {
                     // Send response

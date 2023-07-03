@@ -314,7 +314,7 @@ router.post("/user", (req: Request, res: Response) => {
         language
       ); // As standard, any new user
       const query: string =
-        "INSERT INTO `user` (`mail`, `firstname`, `lastname`, `password`, `birthday`, `mobilephone`, `photo`, `licence`, `smocker`,`language`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+        "INSERT INTO `user` (`mail`, `firstname`, `lastname`, `password`, `birthday`, `mobilephone`, `photo`, `licence`, `smocker`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
       console.log(data);
       // Execute database query
       database.query(
@@ -329,7 +329,6 @@ router.post("/user", (req: Request, res: Response) => {
           photo,
           licence,
           smocker,
-          language,
         ],
         (err: MysqlError, result: any) => {
           if (err || result === null) {
