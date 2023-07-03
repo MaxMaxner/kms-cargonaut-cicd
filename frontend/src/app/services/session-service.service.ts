@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { User } from '../../models/user';
-import { LoginComponent } from '../login/login.component';
 import { AlertService } from './alert-service.service';
 
 const httpOptions = {

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { SessionServiceService } from '../services/session-service.service';
+import {AlertService} from "../services/alert-service.service";
+
 
 @Component({
     selector: 'app-login',
@@ -10,17 +12,16 @@ export class LoginComponent {
     public mail = '';
     public password = '';
 
-    constructor(private SessionService: SessionServiceService) {}
+    constructor(private SessionService: SessionServiceService, private alert: AlertService) {}
 
     Login() {
-        console.log(this.mail);
-        console.log(this.password);
+
         const mailformat = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
         if (this.password.length > 0 && this.mail.match(mailformat)) {
-            console.log('läuft');
             this.SessionService.login(this.mail, this.password);
         } else {
-            console.log('läuft nicht');
+          this.alert.show('Fehler', 'Es wurden nicht alle Felder ausgefüllt');
+
         }
     }
 }
