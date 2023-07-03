@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 var User = /** @class */ (function () {
-    function User(mail, firstname, lastname, password, birthday, mobilephone, photo, licence, smocker) {
+    function User(mail, firstname, lastname, password, birthday, mobilephone, photo, licence, smocker, language) {
         this.mail = mail;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -12,6 +12,7 @@ var User = /** @class */ (function () {
         this.photo = photo;
         this.licence = licence;
         this.smocker = smocker;
+        this.language = language;
     }
     User.prototype.setBirthday = function (birthday) {
         var eighteenYearsAgo = new Date();
