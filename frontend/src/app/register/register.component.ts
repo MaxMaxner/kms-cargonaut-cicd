@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {User} from "../../models/user";
 import {UserService} from "../services/user.service";
+import {AlertService} from "../services/alert-service.service";
+
 
 @Component({
   selector: 'app-register',
@@ -25,10 +27,10 @@ export class RegisterComponent {
   public passwordbestaetigt = "";
 
 
-  constructor(private UserService: UserService) {
+  constructor(private UserService: UserService,  private alert: AlertService) {
   }
 
-  SignUp(): void {
+  async SignUp() {
     console.log(this.licence)
     console.log(this.smocker)
     const mailformat = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
@@ -54,9 +56,9 @@ export class RegisterComponent {
         this.language
       );
       console.log(user)
-      this.UserService.register(user);
+       await this.UserService.register(user);
     } else {
-      console.log('test2');
+      this.alert.show("Fehler","Es wurden nicht alle Fehler ausgefüllt. Du musst mindestens 18 Jahre alt sein!");
     }
   }
 

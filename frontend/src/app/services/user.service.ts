@@ -102,11 +102,11 @@ export class UserService {
       .toPromise()
       .then((res: any) => {
         this.router.navigate([`${this.environment.apiUrl}/start`]);
-        this.alert.show("Erfolg", "Nutzer wurde erfolgreich eingeloggt");
+        this.alert.show("Erfolg", "Nutzer wurde erfolgreich registriert");
         this.router.navigate(['home']);
       })
       .catch((err: any) => {
-        this.alert.show("Fehler", "Nutzer konnte nicht eingeloggt werden.");
+        this.alert.show("Fehler", "Der Nutzer konnte nicht registriert werden.");
       });
   }
 
